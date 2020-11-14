@@ -9,7 +9,7 @@ const userSchema = new Schema(
     avatar: String,
     level: {
       type: String,
-      enum: ["Every force in the galaxy", "Padawan", "Jedi", "Master Jedi"],
+      enum: ["every force in the galaxy", "padawan", "jedi", "master jedi"],
     },
     role: {
       type: String,
