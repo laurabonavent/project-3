@@ -40,7 +40,7 @@ const ressourceSchema = new Schema(
     },
     level: {
       type: String,
-      enum: ["Every force the galaxy", "Padawan", "Jedi", "Master Jedi"],
+      enum: ["Every force in the galaxy", "Padawan", "Jedi", "Master Jedi"],
     },
     votes: [{ type: Schema.Types.ObjectId, ref: "User" }],
     comments: [
