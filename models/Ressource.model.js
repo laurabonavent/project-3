@@ -61,8 +61,9 @@ const ressourceSchema = new Schema(
       {
         userId: [{ type: Schema.Types.ObjectId, ref: "User" }],
         text: String,
-        date: {
-          timestamps: true,
+        timestamps: {
+          createdAt: Number,
+          updatedAt: Number,
         },
       },
     ],
@@ -71,6 +72,7 @@ const ressourceSchema = new Schema(
     timestamps: true,
   }
 );
+//ressourceSchema.index({ title: "text", description: "text" });
 
 const Ressource = mongoose.model("Ressource", ressourceSchema);
 module.exports = Ressource;
