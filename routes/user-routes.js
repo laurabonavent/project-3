@@ -74,15 +74,23 @@ userRouter.post("/ressources/:id/favorites", (req, res, next) => {
 
 // DELETE FAVORITE
 userRouter.delete("/favorites/:id", (req, res, next) => {
-  let ressourceId = req.params._id;
+  let ressourceId = req.params.id;
   User.findById(req.session.user._id)
     .then((user) => {
       let index = user.favorites.indexOf(ressourceId);
       user.favorites.splice(index, 1);
-      res.status(200).json({ message: "favorite deleted" });
+
+      user
+        .save()
+        .then((user) => {
+          res.status(200).json({ message: "Favorite deleted" });
+        })
+        .catch((err) => {
+          res.status(400).json({ message: "Favorite not deleted" });
+        });
     })
     .catch((err) => {
-      res.status(400).json({ message: "favorite not deleted" });
+      res.status(400).json({ message: "user not found" });
     });
 });
 
