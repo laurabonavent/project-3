@@ -80,7 +80,7 @@ const index = require("./routes/index");
 app.use("/", index);
 
 // Routers
-//app.use("/", require("./routes/admin-routes"));
+app.use("/", require("./routes/admin-routes"));
 app.use("/", require("./routes/auth-routes"));
 app.use("/", require("./routes/user-routes"));
 app.use("/", require("./routes/ressources-routes"));
