@@ -83,6 +83,6 @@ app.use("/", index);
 //app.use("/", require("./routes/admin-routes"));
 app.use("/", require("./routes/auth-routes"));
 app.use("/", require("./routes/user-routes"));
-//app.use("/", require("./routes/ressources-routes"));
+app.use("/", require("./routes/ressources-routes"));
 
 module.exports = app;
