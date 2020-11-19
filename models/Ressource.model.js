@@ -12,7 +12,7 @@ const ressourceSchema = new Schema(
       enum: ["french", "english"],
     },
     technology: {
-      type: String,
+      type: [String],
       enum: [
         "all",
         "api",
@@ -30,7 +30,7 @@ const ressourceSchema = new Schema(
       ],
     },
     type: {
-      type: String,
+      type: [String],
       enum: [
         "article",
         "blog",
