@@ -10,6 +10,7 @@ const logger = require("morgan");
 const path = require("path");
 const cors = require("cors");
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 mongoose
   .connect("mongodb://localhost/project-3", { useNewUrlParser: true })
@@ -44,6 +45,11 @@ app.use(
     secret: "some secret goes here",
     resave: true,
     saveUninitialized: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      // ttl => time to live
+      ttl: 60 * 60 * 24, // 60sec * 60min * 24h => 1 day
+    }),
   })
 );
 
@@ -76,7 +82,7 @@ app.use("/", index);
 // Routers
 //app.use("/", require("./routes/admin-routes"));
 app.use("/", require("./routes/auth-routes"));
-//app.use("/", require("./routes/user-routes"));
+app.use("/", require("./routes/user-routes"));
 //app.use("/", require("./routes/ressources-routes"));
 
 module.exports = app;

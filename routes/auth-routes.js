@@ -2,13 +2,22 @@ const express = require("express");
 const authRoutes = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/User.model");
+const uploader = require("../configs/cloudinary-setup.config");
 
 // POST SIGNUP
-authRoutes.post("/signup", (req, res, next) => {
-  const { email, password, username, avatar, level } = req.body;  
+authRoutes.post("/signup", uploader.single('avatar'),(req, res, next) => {
+  const { email, password, username, level } = req.body;  
   const role = "user";
+  let avatarUser;
 
-  if (!email || !password ||!username ||!avatar ||!level) {
+  if (req.file) {
+    avatarUser = req.file.path;
+  } else {
+    avatarUser =
+      "https://www.wanimo.com/veterinaire/wp-content/uploads/2015/03/images_articles_chat_chaton-sourire@2x.jpg";
+  }
+
+  if (!email || !password ||!username ||!level) {
     res.status(400).json({ message: "Provide all the information to signup" });
     return;
   }
@@ -37,10 +46,9 @@ authRoutes.post("/signup", (req, res, next) => {
         email: email,
         password: hashPass,
         username: username,
-        avatar: avatar,
+        avatar: avatarUser,
         level: level,
         role:"user",
-        
       });
 
       aNewUser
