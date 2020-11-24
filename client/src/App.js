@@ -1,24 +1,63 @@
 import logo from "./logo.svg";
 import "./App.css";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
-import Login from "./components/Login";
+import { loggedin } from "./components/auth/auth-service";
 
-function App() {
-  return (
-    <div className='App'>
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/signup' component={Signup} />
+import Login from "./components/auth/Login";
+import Home from "./components/Home";
+
+class App extends React.Component {
+  state = { loggedInUser: null };
+
+  fetchUser() {
+    if (this.state.loggedInUser === null) {
+      loggedin()
+        .then((response) => {
+          this.setState({ loggedInUser: response });
+        })
+        .catch((err) => {
+          this.setState({ loggedInUser: false });
+        });
+    }
+  }
+
+  componentDidMount() {
+    this.fetchUser();
+  }
+  updateLoggedInUser = (userObj) => {
+    this.setState({
+      loggedInUser: userObj,
+    });
+  };
+
+  render() {
+    return (
+      <div className='App'>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route
+            exact
+            path='/login'
+            render={(props) => (
+              <Login
+                history={props.history}
+                updateUser={this.updateLoggedInUser}
+              />
+            )}
+          />
+          {/* <Route exact path='/signup' component={Signup} />
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/edit-profile' component={EditProfile} />
         <Route exact path='/ressources/:id' component={Ressource} />
         <Route exact path='/ressources/create' component={CreateRessource} />
-        <Route exact path='/ressources/edit/:id' component={EditRessource} />
-      </Switch>
-    </div>
-  );
+        <Route exact path='/ressources/edit/:id' component={EditRessource} /> */}
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;

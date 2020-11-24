@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const service = axios.create({
-  baseURL: "http://localhost:5000/api", // lien vers BD
+  baseURL: "http://localhost:5000/", // lien vers BD
   withCredentials: true, //ça transmets des cookies, ça envoie en même temps le cookies
 });
 
