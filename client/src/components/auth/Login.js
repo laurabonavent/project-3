@@ -4,7 +4,6 @@ import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { login } from "./auth-service";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 
 export default class Login extends Component {
   state = { email: "", password: "" };
@@ -17,7 +16,7 @@ export default class Login extends Component {
       .then((response) => {
         this.setState({ email: response.email, password: response.password });
         this.props.updateUser(response);
-        this.props.history.push("/");
+        this.props.history.push("/profile");
       })
       .catch((error) => console.log(error));
   };
@@ -74,7 +73,7 @@ export default class Login extends Component {
               className='login-form-button'>
               Log in
             </Button>
-            Or <Link to=''>register now!</Link>
+            Or <Link to='/signup'>register now!</Link>
           </Form.Item>
         </Form>
       </div>
