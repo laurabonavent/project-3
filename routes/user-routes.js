@@ -114,4 +114,24 @@ userRouter.get("/user", (req, res, next) => {
     });
 });
 
+// GET ONLY FAVORIS
+userRouter.get("/user/favorites", (req, res, next) => {
+  if (!req.session.user) {
+    res.status(400).json({
+      message: "Please login before access the user profile",
+    });
+    return;
+  }
+
+  User.findById(req.session.user._id)
+    .populate("favorites")
+    .then((user) => {
+      console.log(user.favorites);
+      res.status(200).json({ favorites: user.favorites });
+    })
+    .catch((err) => {
+      res.status(400).json({ message: "No user found" });
+    });
+});
+
 module.exports = userRouter;
