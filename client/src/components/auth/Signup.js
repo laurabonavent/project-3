@@ -33,9 +33,9 @@ class Signup extends React.Component {
   };
 
   fileChangedHandler = (event) => {
-    this.setState({ avatar: event.target.files[0] });
+    //this.setState({ avatar: event.target.files[0] });
     const uploadData = new FormData();
-    uploadData.append("avatar", this.state.avatar);
+    uploadData.append("avatar", event.target.files[0]);
   };
 
   uploadHandler = () => {

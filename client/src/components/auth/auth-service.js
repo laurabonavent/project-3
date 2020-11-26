@@ -45,3 +45,15 @@ function loggedin() {
   return service.get("/loggedin").then((response) => response.data);
 }
 export { loggedin };
+
+// USER + FAVORITES
+function getUser() {
+  return service.get("/user").then((response) => response.data);
+}
+export { getUser };
+
+//  ONLY FAVORITES
+function getFavorites() {
+  return service.get("/user/favorites").then((response) => response.data);
+}
+export { getFavorites };
