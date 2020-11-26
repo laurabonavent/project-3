@@ -8,25 +8,27 @@ import { loggedin } from "./components/auth/auth-service";
 
 import Login from "./components/auth/Login";
 import Home from "./components/Home";
+import Signup from "./components/auth/Signup";
 
 class App extends React.Component {
   state = { loggedInUser: null };
 
-  fetchUser() {
-    if (this.state.loggedInUser === null) {
-      loggedin()
-        .then((response) => {
-          this.setState({ loggedInUser: response });
-        })
-        .catch((err) => {
-          this.setState({ loggedInUser: false });
-        });
-    }
-  }
+  // fetchUser() {
+  //   if (this.state.loggedInUser === null) {
+  //     loggedin()
+  //       .then((response) => {
+  //         this.setState({ loggedInUser: response });
+  //       })
+  //       .catch((err) => {
+  //         this.setState({ loggedInUser: false });
+  //       });
+  //   }
+  // }
 
-  componentDidMount() {
-    this.fetchUser();
-  }
+  // componentDidMount() {
+  //   this.fetchUser();
+  // }
+
   updateLoggedInUser = (userObj) => {
     this.setState({
       loggedInUser: userObj,
@@ -35,12 +37,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route exact path="/" component={Home} />
           <Route
             exact
-            path='/login'
+            path="/login"
             render={(props) => (
               <Login
                 history={props.history}
@@ -48,8 +50,8 @@ class App extends React.Component {
               />
             )}
           />
-          {/* <Route exact path='/signup' component={Signup} />
-        <Route exact path='/profile' component={Profile} />
+          <Route exact path="/signup" component={Signup} />
+          {/* <Route exact path='/profile' component={Profile} />
         <Route exact path='/edit-profile' component={EditProfile} />
         <Route exact path='/ressources/:id' component={Ressource} />
         <Route exact path='/ressources/create' component={CreateRessource} />

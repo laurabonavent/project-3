@@ -18,7 +18,10 @@ function signup(email, username, password, level, role, avatar) {
       role: role,
       avatar: avatar,
     })
-    .then((response) => response.data);
+    .then((response) => {
+      console.log("coucou")
+      return response.data
+    });
 }
 
 export { signup };

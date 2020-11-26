@@ -5,8 +5,6 @@ import { Form, Input, Select, Button } from "antd";
 
 const { Option } = Select;
 
-
-
 class Signup extends React.Component {
   state = {
     email: "",
@@ -18,7 +16,7 @@ class Signup extends React.Component {
   };
 
   onFinish = (event) => {
-    const { email, password, username, level, role, avatar } = this.state;
+    const { email, password, username, level, role, avatar } = event;
 
     signup(email, username, password, level, role, avatar)
       .then((response) => {
@@ -36,13 +34,13 @@ class Signup extends React.Component {
 
   fileChangedHandler = (event) => {
     this.setState({ avatar: event.target.files[0] });
-    const uploadData = new FormData(); 
-    uploadData.append('avatar', this.state.avatar )
-  }
+    const uploadData = new FormData();
+    uploadData.append("avatar", this.state.avatar);
+  };
 
   uploadHandler = () => {
     console.log(this.state.avatar);
-  } 
+  };
 
   render() {
     return (
@@ -115,7 +113,7 @@ class Signup extends React.Component {
             <Button
               type="primary"
               htmlType="submit"
-            // onClick={this.uploadHandler}
+              onClick={this.uploadHandler}
             >
               Register
             </Button>
