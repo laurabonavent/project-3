@@ -57,3 +57,16 @@ function getFavorites() {
   return service.get("/user/favorites").then((response) => response.data);
 }
 export { getFavorites };
+  
+// UPLOAD PHOTO
+function upload(formdata) {
+  return service.post('/upload', formdata).then(response => response.data)
+}
+export {upload}
+
+// RESSOURCES 
+function getRessources() {
+  return service.get("/ressources").then(
+    response => response.data) 
+}
+export {getRessources}

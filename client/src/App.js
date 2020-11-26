@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 import { loggedin } from "./components/auth/auth-service";
 
 import Login from "./components/auth/Login";
-import Home from "./components/Home";
+import Home from "./components/home/Home";
 import Signup from "./components/auth/Signup";
 import Profile from "./components/profile/Profile";
 

@@ -5,7 +5,7 @@ import { getFavorites } from "../auth/auth-service";
 
 import { AutoComplete } from "antd";
 
-import Favorites from "./Favorites";
+import Card from "./Card";
 
 // TODO : Rendre dynamique les options avec les favoris de l'utilisateur dans options
 const options = [
@@ -86,7 +86,7 @@ export default class Profile extends Component {
             </label>
             <h3>My favorites</h3>
             {user.favorites.map((favorite) => (
-              <Favorites favorite={favorite} />
+              <Card data={favorite} />
             ))}
           </div>
         ) : (

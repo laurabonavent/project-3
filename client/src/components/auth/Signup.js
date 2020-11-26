@@ -36,6 +36,11 @@ class Signup extends React.Component {
     //this.setState({ avatar: event.target.files[0] });
     const uploadData = new FormData();
     uploadData.append("avatar", event.target.files[0]);
+
+    service.upload(formData).then(response => {
+      
+    })
+
   };
 
   uploadHandler = () => {
@@ -106,14 +111,14 @@ class Signup extends React.Component {
               <Select.Option value="master jedi">Master Jedi</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item name="avatar" label="Avatar" value={this.state.avatar}>
+          <Form.Item name="avatar" label="Avatar">
             <input type="file" onChange={this.fileChangedHandler} />
           </Form.Item>
           <Form.Item>
             <Button
               type="primary"
               htmlType="submit"
-              onClick={this.uploadHandler}
+              //onClick={this.uploadHandler}
             >
               Register
             </Button>
