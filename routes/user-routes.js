@@ -127,7 +127,7 @@ userRouter.get("/user/favorites", (req, res, next) => {
     .populate("favorites")
     .then((user) => {
       console.log(user.favorites);
-      res.status(200).json({ favorites: user.favorites });
+      res.status(200).json(user.favorites);
     })
     .catch((err) => {
       res.status(400).json({ message: "No user found" });

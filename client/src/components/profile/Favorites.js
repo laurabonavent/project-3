@@ -1,21 +1,27 @@
 import React, { Component } from "react";
 
 export default class Favorites extends Component {
-  state = { favorite: this.props.favorite };
+  state = { favorites: this.props.favorites };
 
   render() {
-    const favorite = this.props.favorite;
+    const favorites = this.props.favorites;
     return (
       <div>
-        <a href={favorite.link} rel='noreferrer' target='_blank'>
-          {favorite.title}
-        </a>
-        <p>{favorite.description}</p>
-        <ul>
-          {favorite.type.map((type, index) => (
-            <li key={index}>{type}</li>
-          ))}
-        </ul>
+        {favorites.map((favorite, index) => {
+          return (
+            <div>
+              <a href={favorite.link} rel='noreferrer' target='_blank'>
+                {favorite.title}
+              </a>
+              <p>{favorite.description}</p>
+              <ul>
+                {favorite.type.map((type, index) => (
+                  <li key={index}>{type}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
     );
   }
