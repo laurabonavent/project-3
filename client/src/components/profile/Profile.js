@@ -5,7 +5,7 @@ import { getFavorites } from "../auth/auth-service";
 
 import { AutoComplete } from "antd";
 
-import Card from "./Card";
+import Card from "../card/Card";
 //const { Option } = AutoComplete;
 
 export default class Profile extends Component {
