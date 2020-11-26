@@ -6,8 +6,6 @@ import { getFavorites } from "../auth/auth-service";
 import { AutoComplete } from "antd";
 
 import Card from "./Card";
-
-import { AutoComplete } from "antd";
 //const { Option } = AutoComplete;
 
 export default class Profile extends Component {
@@ -58,7 +56,7 @@ export default class Profile extends Component {
       <div>
         {this.state.user && this.state.favorites ? (
           <div>
-            <img src={user.avatar} alt='' />
+            <img src={user.avatar} alt="" />
             <p>{user.username}'s dashboard</p>
             <p>Email : {user.email}</p>
             {/* <AutoComplete
@@ -74,11 +72,11 @@ export default class Profile extends Component {
                 return <Option key={index} value={option.value} />;
               })}
             </AutoComplete> */}
-            <form action=''>
+            <form action="">
               <input
-                type='search'
-                name='search'
-                placeholder='Search'
+                type="search"
+                name="search"
+                placeholder="Search"
                 value={this.state.search}
                 onChange={this.handleChange}
               />
@@ -88,15 +86,15 @@ export default class Profile extends Component {
             <label>
               Technology
               <select multiple>
-                <option value='option 1'>Option 1</option>
-                <option value='option 2'>Option 2</option>
+                <option value="option 1">Option 1</option>
+                <option value="option 2">Option 2</option>
               </select>
             </label>
             <label>
               Type
               <select multiple>
-                <option value='option 1'>Option 1</option>
-                <option value='option 2'>Option 2</option>
+                <option value="option 1">Option 1</option>
+                <option value="option 2">Option 2</option>
               </select>
             </label>
             <h3>My favorites</h3>
