@@ -19,8 +19,8 @@ function signup(email, username, password, level, role, avatar) {
       avatar: avatar,
     })
     .then((response) => {
-      console.log("coucou")
-      return response.data
+      console.log("coucou");
+      return response.data;
     });
 }
 
@@ -70,3 +70,9 @@ function getRessources() {
     response => response.data) 
 }
 export {getRessources}
+
+function getOneRessource(id) {
+  return service.get(`/ressources/${id}`).then((response) => response.data);
+}
+
+export { getOneRessource };

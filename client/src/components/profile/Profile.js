@@ -7,25 +7,16 @@ import { AutoComplete } from "antd";
 
 import Card from "./Card";
 
-// TODO : Rendre dynamique les options avec les favoris de l'utilisateur dans options
-const options = [
-  {
-    value: "Favorite 1",
-  },
-  {
-    value: "Favorite 2",
-  },
-  {
-    value: "Favorite 3",
-  },
-];
+import { AutoComplete } from "antd";
+//const { Option } = AutoComplete;
 
 export default class Profile extends Component {
-  state = { user: null, favorites: null };
+  state = { user: {}, favorites: [], search: "" };
 
   findUserInfo = () => {
     getUser()
       .then((response) => {
+        console.log("response", response);
         this.setState({ user: response.user });
       })
       .catch((error) => console.log(error));
@@ -34,9 +25,21 @@ export default class Profile extends Component {
   findUserFavorites = () => {
     getFavorites()
       .then((response) => {
-        this.setState({ favorites: response.favorites });
+        console.log("favorites", response);
+        // const autocompleteFavorite = response.favorites.map((favorite) => {
+        //   return { value: favorite.title };
+        // });
+        // console.log(autocompleteFavorite);
+        // this.setState({ favorites: autocompleteFavorite });
+        this.setState({ favorites: response });
       })
       .catch((error) => console.log(error));
+  };
+
+  handleChange = (event) => {
+    this.setState({
+      search: event.target.value,
+    });
   };
 
   componentDidMount() {
@@ -45,29 +48,41 @@ export default class Profile extends Component {
   }
 
   render() {
-    // const options = this.state.favorites.map((favorite) => {
-    //   return { value: favorite.title };
-    // });
-    // console.log(options);
     const user = this.state.user;
+    //const options = this.state.favorites;
+    const list = this.state.favorites.filter((item, index) => {
+      return item.title.toLowerCase().includes(this.state.search.toLowerCase());
+    });
+
     return (
       <div>
-        {this.state.user ? (
+        {this.state.user && this.state.favorites ? (
           <div>
             <img src={user.avatar} alt='' />
             <p>{user.username}'s dashboard</p>
             <p>Email : {user.email}</p>
-            <AutoComplete
-              style={{
-                width: 200,
-              }}
-              options={options}
+            {/* <AutoComplete
+              //options={options}
+              notFoundContent='Wait..'
               placeholder='Find a favorite'
               filterOption={(inputValue, option) =>
                 option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
                 -1
-              }
-            />
+              }>
+              {options.map((option, index) => {
+                console.log("one option", option);
+                return <Option key={index} value={option.value} />;
+              })}
+            </AutoComplete> */}
+            <form action=''>
+              <input
+                type='search'
+                name='search'
+                placeholder='Search'
+                value={this.state.search}
+                onChange={this.handleChange}
+              />
+            </form>
             {/* TODO : Rendre dynamiques les filtres avec les valeurs des enum du model */}
             <h3>Filtres</h3>
             <label>
@@ -85,9 +100,10 @@ export default class Profile extends Component {
               </select>
             </label>
             <h3>My favorites</h3>
-            {user.favorites.map((favorite) => (
-              <Card data={favorite} />
-            ))}
+            <Card data={list} />
+            {/* {user.favorites.map((favorite, index) => (
+              <Favorites favorite={favorite} />
+            ))} */}
           </div>
         ) : (
           "Loading..."
