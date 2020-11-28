@@ -38,4 +38,29 @@ ressourcesRoutes.get("/ressources/:id", (req, res, next) => {
     .catch(next);
 });
 
+// GET ENUM VALUES
+ressourcesRoutes.get("/enumvalues", (req, res, next) => {
+  const enumValuesTechnologies = Ressources.schema.path("technology").caster
+    .enumValues;
+  const enumValuesTypes = Ressources.schema.path("type").caster.enumValues;
+  const enumValuesLevels = Ressources.schema.path("level").caster.enumValues;
+  const enumValuesPrices = Ressources.schema.path("price").caster.enumValues;
+  const enumValuesLanguages = Ressources.schema.path("language").caster
+    .enumValues;
+  // console.log(
+  //   enumValuesTechnologies,
+  //   enumValuesTypes,
+  //   enumValuesLevels,
+  //   enumValuesPrices,
+  //   enumValuesLanguages
+  // );
+  res.json({
+    technologies: enumValuesTechnologies,
+    types: enumValuesTypes,
+    level: enumValuesLevels,
+    price: enumValuesPrices,
+    languages: enumValuesLanguages,
+  });
+});
+
 module.exports = ressourcesRoutes;

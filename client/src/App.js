@@ -12,6 +12,7 @@ import Home from "./components/home/Home";
 import Signup from "./components/auth/Signup";
 import Profile from "./components/profile/Profile";
 import Ressource from "./components/ressources/RessourceDetail";
+import CreateRessource from "./components/ressources/CreateRessource";
 
 class App extends React.Component {
   state = { loggedInUser: null };
@@ -53,18 +54,19 @@ class App extends React.Component {
               />
             )}
           />
-          <Route exact path='/signup' render={(props) => (
-            <Signup
-              history={props.history}
-            />)}/>
+          <Route
+            exact
+            path='/signup'
+            render={(props) => <Signup history={props.history} />}
+          />
           {/* <Route exact path='/profile' component={Profile} />
         <Route exact path='/edit-profile' component={EditProfile} />
           {/* <Route exact path='/signup' component={Signup} />*/}
           <Route exact path='/profile' render={() => <Profile />} />
           {/* <Route exact path='/edit-profile' component={EditProfile} />*/}
+          <Route exact path='/ressources/create' component={CreateRessource} />
           <Route exact path='/ressources/:id' component={Ressource} />
-          {/*<Route exact path='/ressources/create' component={CreateRessource} />
-        <Route exact path='/ressources/edit/:id' component={EditRessource} /> */}
+          {/*<Route exact path='/ressources/edit/:id' component={EditRessource} /> */}
         </Switch>
       </div>
     );
