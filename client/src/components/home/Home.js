@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { getRessources } from "../auth/auth-service";
 import Card from "../card/Card";
-import Filters from "./Filters";
+import Filters from "./filter/Filters";
 
 export default class Home extends Component {
   state = {

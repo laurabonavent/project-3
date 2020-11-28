@@ -17,9 +17,17 @@ class FilterInput extends React.Component {
           allowClear
           placeholder="Technology"
           style={{ width: "100%" }}
-          onChange={this.handleChange}>
+          onChange={this.handleChange}
+          rules={[
+            {
+              type: "array",
+              max: 15,
+            },
+          ]}>
           {this.props.dataFilters.map((el, index) => (
-            <Option key={index} value={el}>{el}</Option>
+            <Option key={index} value={el}>
+              {el}
+            </Option>
           ))}
         </Select>
       </>
