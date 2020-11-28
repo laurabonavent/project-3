@@ -35,6 +35,10 @@ export default class CreateRessource extends Component {
     this.setState({ description: value });
   };
 
+  componentDidMount() {
+    this.findEnumValues();
+  }
+
   render() {
     return (
       <div>

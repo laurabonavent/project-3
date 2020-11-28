@@ -57,27 +57,31 @@ function getFavorites() {
   return service.get("/user/favorites").then((response) => response.data);
 }
 export { getFavorites };
-  
+
 // UPLOAD PHOTO
 function upload(formdata) {
-  return service.post('/upload', formdata).then(response => response.data)
+  return service.post("/upload", formdata).then((response) => response.data);
 }
-export { upload }
+export { upload };
 
 function saveAvatar(data) {
   return service.post("/upload", data).then((response) => response.data);
 }
-export { saveAvatar }
+export { saveAvatar };
 
-// RESSOURCES 
+// RESSOURCES
 function getRessources() {
-  return service.get("/ressources").then(
-    response => response.data) 
+  return service.get("/ressources").then((response) => response.data);
 }
-export {getRessources}
+export { getRessources };
 
 function getOneRessource(id) {
   return service.get(`/ressources/${id}`).then((response) => response.data);
 }
 
 export { getOneRessource };
+
+function getEnumValues() {
+  return service.get("/enumvalues").then((response) => response.data);
+}
+export { getEnumValues };
