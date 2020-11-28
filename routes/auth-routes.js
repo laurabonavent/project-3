@@ -5,8 +5,8 @@ const User = require("../models/User.model");
 const uploader = require("../configs/cloudinary-setup.config");
 
 // POST SIGNUP
-authRoutes.post("/signup", uploader.single('avatar'),(req, res, next) => {
-  const { email, password, username, level } = req.body;  
+authRoutes.post("/signup", uploader.single("avatar"), (req, res, next) => {
+  const { email, password, username, level } = req.body;
   const role = "user";
   let avatarUser;
 
@@ -17,7 +17,7 @@ authRoutes.post("/signup", uploader.single('avatar'),(req, res, next) => {
       "https://www.wanimo.com/veterinaire/wp-content/uploads/2015/03/images_articles_chat_chaton-sourire@2x.jpg";
   }
 
-  if (!email || !password ||!username ||!level) {
+  if (!email || !password || !username || !level) {
     res.status(400).json({ message: "Provide all the information to signup" });
     return;
   }
@@ -33,9 +33,7 @@ authRoutes.post("/signup", uploader.single('avatar'),(req, res, next) => {
   User.findOne({ email })
     .then((foundUser) => {
       if (foundUser) {
-        res
-          .status(400)
-          .json({ message: "Email taken. Get another one." });
+        res.status(400).json({ message: "Email taken. Get another one." });
         return;
       }
 
@@ -48,7 +46,7 @@ authRoutes.post("/signup", uploader.single('avatar'),(req, res, next) => {
         username: username,
         avatar: avatarUser,
         level: level,
-        role:"user",
+        role: "user",
       });
 
       aNewUser
@@ -107,7 +105,7 @@ authRoutes.get("/loggedin", (req, res, next) => {
   res.status(403).json({ message: "Unauthorized" });
 });
 
-authRoutes.post('upload', uploader.single("avatar"), (req, res, next) => {
+authRoutes.post("/upload", uploader.single("avatar"), (req, res, next) => {
   // Check a file has been provided
   if (!req.file) {
     res.status(400).json({ message: "No file uploaded!" });
@@ -134,6 +132,35 @@ authRoutes.post('upload', uploader.single("avatar"), (req, res, next) => {
       res.status(200).json(req.user);
     });
   });
-})
+});
+
+authRoutes.post("/upload/image", uploader.single("image"), (req, res, next) => {
+  // Check a file has been provided
+  if (!req.file) {
+    res.status(400).json({ message: "No file uploaded!" });
+    return;
+  }
+
+  // Updating user's `image`
+  req.user.image = req.file.secure_url;
+
+  // Validating user before saving
+  req.user.validate(function (error) {
+    if (error) {
+      res.status(400).json({ message: error.errors });
+      return;
+    }
+
+    // Validation ok, let save it
+    req.user.save(function (err) {
+      if (err) {
+        res.status(500).json({ message: "Error while saving user into DB." });
+        return;
+      }
+
+      res.status(200).json(req.ressource);
+    });
+  });
+});
 
 module.exports = authRoutes;

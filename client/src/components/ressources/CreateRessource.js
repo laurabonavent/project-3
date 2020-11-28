@@ -3,6 +3,7 @@ import "antd/dist/antd.css";
 import { Form, Input, Select, Button } from "antd";
 
 import { getEnumValues } from "../auth/auth-service";
+import { uploadImage } from "../auth/auth-service";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -48,6 +49,24 @@ export default class CreateRessource extends Component {
       .catch((error) => console.log(error));
   };
 
+  fileChangedHandler = (event) => {
+    console.log("event.target", event.target.files[0]);
+
+    //this.setState({ avatar: event.target.files[0] });
+    const uploadData = new FormData();
+    uploadData.append("image", event.target.files[0]);
+    console.log(uploadData);
+
+    uploadImage(uploadData)
+      .then((response) => {
+        console.log("response", response);
+        const image = response.secure_url;
+        this.setState({ image });
+        console.log("image: ", image);
+      })
+      .catch((error) => console.log(error));
+  };
+
   componentDidMount() {
     this.findEnumValues();
   }
@@ -56,7 +75,11 @@ export default class CreateRessource extends Component {
     const enumValues = this.state.enumValues;
     return (
       <div>
-        {enumValues.technologies && enumValues.types ? (
+        {enumValues.technologies &&
+        enumValues.types &&
+        enumValues.level &&
+        enumValues.languages &&
+        enumValues.price ? (
           <div>
             Create a new ressource
             <Form name='create' onFinish={this.onFinish} scrollToFirstError>
@@ -123,10 +146,31 @@ export default class CreateRessource extends Component {
                 ]}>
                 <Select mode='multiple' allowClear>
                   {enumValues.technologies.map((technology, index) => {
-                    console.log(typeof technology);
                     return (
-                      <Select.Option type='text' value={technology} key={index}>
+                      <Select.Option value={technology} key={index}>
                         {technology}
+                      </Select.Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+              <Form.Item
+                name='type'
+                label='Type'
+                value={this.state.type}
+                rules={[
+                  {
+                    required: true,
+                    message: "Max 3 elements",
+                    type: "array",
+                    max: 3,
+                  },
+                ]}>
+                <Select mode='multiple' allowClear>
+                  {enumValues.types.map((type, index) => {
+                    return (
+                      <Select.Option value={type} key={index}>
+                        {type}
                       </Select.Option>
                     );
                   })}
@@ -139,19 +183,65 @@ export default class CreateRessource extends Component {
                 rules={[
                   {
                     required: true,
-                    message: "Please input your level!",
-                    whitespace: true,
+                    message: "Please choose a level",
                   },
                 ]}>
                 <Select>
-                  <Select.Option value='every force'>Every Force</Select.Option>
-                  <Select.Option value='padawan'>Padawan</Select.Option>
-                  <Select.Option value='jedi'>Jedi</Select.Option>
-                  <Select.Option value='master jedi'>Master Jedi</Select.Option>
+                  {enumValues.level.map((level, index) => {
+                    return (
+                      <Select.Option value={level} key={index}>
+                        {level}
+                      </Select.Option>
+                    );
+                  })}
                 </Select>
               </Form.Item>
-              <Form.Item name='avatar' label='Avatar'>
-                <input type='file' onChange={this.fileChangedHandler} />
+              <Form.Item
+                name='language'
+                label='Language'
+                value={this.state.language}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please choose a language",
+                  },
+                ]}>
+                <Select>
+                  {enumValues.languages.map((language, index) => {
+                    return (
+                      <Select.Option value={language} key={index}>
+                        {language}
+                      </Select.Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+              <Form.Item
+                name='price'
+                label='Price'
+                value={this.state.price}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please choose a price",
+                  },
+                ]}>
+                <Select>
+                  {enumValues.price.map((price, index) => {
+                    return (
+                      <Select.Option value={price} key={index}>
+                        {price}
+                      </Select.Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+              <Form.Item name='image' label='Image'>
+                <input
+                  type='file'
+                  value={this.state.image}
+                  onChange={this.fileChangedHandler}
+                />
               </Form.Item>
               <Form.Item>
                 <Button type='primary' htmlType='submit'>

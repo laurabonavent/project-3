@@ -58,6 +58,14 @@ function getFavorites() {
 }
 export { getFavorites };
 
+// UPLOAD Image
+function uploadImage(formdata) {
+  return service
+    .post("/upload/image", formdata)
+    .then((response) => response.data);
+}
+export { uploadImage };
+
 // UPLOAD PHOTO
 function upload(formdata) {
   return service.post("/upload", formdata).then((response) => response.data);
