@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { getRessources } from "../auth/auth-service";
 import Card from "../card/Card";
+import Filters from "./filter/Filters";
 
 export default class Home extends Component {
   state = {
     ressources: [],
     search: "",
-    randomRessource: [],
+    randomRessource: [],   
   };
 
   componentDidMount() {
@@ -51,6 +52,7 @@ export default class Home extends Component {
             <input onChange={this.handleChange}></input>
             <button onClick={this.getRandomRessources}>Random button</button>
             <div>{this.state.randomRessource.title}</div>
+            <Filters / >
             <div>Filter Techno</div>
             <div>Filter type</div>
             <div>Filter language</div>

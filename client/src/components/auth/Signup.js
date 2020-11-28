@@ -1,6 +1,5 @@
 import React from "react";
 import { signup } from "./auth-service";
-import "antd/dist/antd.css";
 import { Form, Input, Select, Button } from "antd";
 import { upload, saveAvatar } from "./auth-service";
 
@@ -118,7 +117,6 @@ class Signup extends React.Component {
               },
             ]}>
             <Select>
-              <Select.Option value="all">All</Select.Option>
               <Select.Option value="padawan">Padawan</Select.Option>
               <Select.Option value="jedi">Jedi</Select.Option>
               <Select.Option value="master jedi">Master Jedi</Select.Option>
