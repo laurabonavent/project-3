@@ -62,7 +62,12 @@ export { getFavorites };
 function upload(formdata) {
   return service.post('/upload', formdata).then(response => response.data)
 }
-export {upload}
+export { upload }
+
+function saveAvatar(data) {
+  return service.post("/upload", data).then((response) => response.data);
+}
+export { saveAvatar }
 
 // RESSOURCES 
 function getRessources() {

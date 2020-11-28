@@ -53,7 +53,10 @@ class App extends React.Component {
               />
             )}
           />
-          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/signup' render={(props) => (
+            <Signup
+              history={props.history}
+            />)}/>
           {/* <Route exact path='/profile' component={Profile} />
         <Route exact path='/edit-profile' component={EditProfile} />
           {/* <Route exact path='/signup' component={Signup} />*/}

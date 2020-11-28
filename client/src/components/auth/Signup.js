@@ -2,6 +2,7 @@ import React from "react";
 import { signup } from "./auth-service";
 import "antd/dist/antd.css";
 import { Form, Input, Select, Button } from "antd";
+import { upload, saveAvatar } from "./auth-service";
 
 const { Option } = Select;
 
@@ -15,8 +16,29 @@ class Signup extends React.Component {
     role: "user",
   };
 
+  fileChangedHandler = (event) => {
+    console.log("event.target", event.target.files[0]);
+    
+    //this.setState({ avatar: event.target.files[0] });
+    const uploadData = new FormData();
+    uploadData.append("avatar", event.target.files[0]);
+
+    upload(uploadData)
+      .then((response) => {
+        console.log("response", response);
+        const avatar = response.secure_url;
+        this.setState({ avatar});
+        console.log('avatar: ', avatar);
+
+      })
+      .catch((error) => console.log(error));
+  };
+
   onFinish = (event) => {
-    const { email, password, username, level, role, avatar } = event;
+    //event.preventDefault();
+    const { email, password, username, level, role } = event;
+    const avatar = this.state.avatar;
+    
 
     signup(email, username, password, level, role, avatar)
       .then((response) => {
@@ -28,24 +50,15 @@ class Signup extends React.Component {
           avatar: "",
           role: "user",
         });
+        this.props.history.push("/profile");
       })
       .catch((error) => console.log(error));
+
   };
 
-  // fileChangedHandler = (event) => {
-  //   //this.setState({ avatar: event.target.files[0] });
-  //   const uploadData = new FormData();
-  //   uploadData.append("avatar", event.target.files[0]);
-
-  //   service.upload(formData).then(response => {
-
-  //   })
-
+  // uploadHandler = () => {
+  //   console.log(this.state.avatar);
   // };
-
-  uploadHandler = () => {
-    console.log(this.state.avatar);
-  };
 
   render() {
     return (
@@ -115,11 +128,7 @@ class Signup extends React.Component {
             <input type="file" onChange={this.fileChangedHandler} />
           </Form.Item>
           <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              //onClick={this.uploadHandler}
-            >
+            <Button type="primary" htmlType="submit">
               Register
             </Button>
           </Form.Item>
@@ -127,7 +136,6 @@ class Signup extends React.Component {
       </>
     );
   }
-  
 }
 
 export default Signup;

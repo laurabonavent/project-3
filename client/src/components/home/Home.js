@@ -35,8 +35,6 @@ export default class Home extends Component {
     });
   };
 
-  
-
   render() {
     const searchRessources = this.state.ressources.filter((el) => {
       return el.title
