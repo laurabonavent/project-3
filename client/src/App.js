@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
 
-import { Switch, Route } from "react-router-dom";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
 import { loggedin } from "./components/auth/auth-service";
