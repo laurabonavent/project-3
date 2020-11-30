@@ -9,7 +9,7 @@ export default class Card extends Component {
       <div>
         {data.map((data, index) => {
           return (
-            <>
+            <div key={index}>
               <a href={data.link} rel="noreferrer" target="_blank">
                 {data.title}
               </a>
@@ -20,8 +20,8 @@ export default class Card extends Component {
                   <li key={index}>{type}</li>
                 ))}
               </ul>
-            </>
-          );
+            </div>
+          )
         })};
       </div>
     );
