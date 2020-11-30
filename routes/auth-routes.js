@@ -182,4 +182,5 @@ authRoutes.post("/upload", uploader.single("avatar"), (req, res, next) => {
   res.json({ secure_url: req.file.path });
 });
 
+
 module.exports = authRoutes;
