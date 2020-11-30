@@ -2,8 +2,8 @@ import React from "react";
 import { signup } from "./auth-service";
 import { Form, Input, Select, Button } from "antd";
 import { upload, saveAvatar } from "./auth-service";
-
 const { Option } = Select;
+
 
 class Signup extends React.Component {
   state = {

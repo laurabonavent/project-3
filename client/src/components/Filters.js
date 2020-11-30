@@ -1,7 +1,6 @@
 import React from "react";
-import { getEnumValues } from "../auth/auth-service";
-import { Select, TreeSelect } from "antd";
-const { Option } = Select;
+import { getEnumValues } from "./auth/auth-service";
+import { TreeSelect } from "antd";
 const { TreeNode } = TreeSelect;
 
 
@@ -30,28 +29,6 @@ class Filters extends React.Component {
 
     return (
       <>
-        {/* {enumValues.map((value,index) => (
-          <Select
-            key={index}
-            mode="multiple"
-            allowClear
-            placeholder={value[0]}
-            style={{ width: "100%" }}
-            onChange={this.props.handleChange}
-            rules={[
-              {
-                type: "array",
-                max: 15,
-              },
-            ]}>
-            {value[1].map((el, index) => (
-              <Option key={index} value={el}>
-                {el}
-              </Option>
-            ))}
-          </Select>
-        ))}  */}
-
         <TreeSelect
           showSearch
           style={{ width: "100%" }}
@@ -63,9 +40,9 @@ class Filters extends React.Component {
           treeDefaultExpandAll
           onChange={this.props.handleChange}>
           {enumValues.map((value, index) => (
-            <TreeNode value={value[0]} title={value[0]}>
+            <TreeNode value={value[0]} title={value[0]} key={value[0]}>
               {value[1].map((el, index) => (
-                <TreeNode value={el} title={el} />
+                <TreeNode value={el} title={el} key={el} />
               ))}
             </TreeNode>
           ))}

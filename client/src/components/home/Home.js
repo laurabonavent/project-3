@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { getRessources } from "../auth/auth-service";
 import Card from "../card/Card";
-import Filters from "../filters/Filters";
+import Filters from "../Filters";
+import SearchBar from "../SearchBar";
+
 
 export default class Home extends Component {
   state = {
@@ -83,9 +85,8 @@ export default class Home extends Component {
       <>
         {this.state.ressources ? (
           <>
-            <div>NAVBAR</div>
             <div>Le texte de présentation qui vend du rêve</div>
-            <input onChange={this.handleChange}></input>
+            <SearchBar handleChange={this.handleChange} />
             <button onClick={this.getRandomRessources}>Random button</button>
             <div>{this.state.randomRessource.title}</div>
             <Filters handleChange={this.getFilterValues} />

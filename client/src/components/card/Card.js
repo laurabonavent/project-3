@@ -22,7 +22,7 @@ export default class Card extends Component {
               </ul>
             </div>
           )
-        })};
+        })}
       </div>
     );
   }
