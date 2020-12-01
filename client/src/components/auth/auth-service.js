@@ -93,3 +93,69 @@ function getEnumValues() {
   return service.get("/enumvalues").then((response) => response.data);
 }
 export { getEnumValues };
+
+// CREATE RESSOURCE
+function createRessource(
+  title,
+  description,
+  //image,
+  link,
+  language,
+  technology,
+  type,
+  level,
+  price
+) {
+  return service
+    .post("/ressources", {
+      title,
+      description,
+      //image,
+      link,
+      language,
+      technology,
+      type,
+      level,
+      price,
+    })
+    .then((response) => {
+      console.log("create response", response);
+      return response.data;
+    })
+    .catch((error) => console.log(error));
+}
+
+export { createRessource };
+
+// CREATE RESSOURCE
+function editRessource(
+  title,
+  description,
+  //image,
+  link,
+  language,
+  technology,
+  type,
+  level,
+  price
+) {
+  return service
+    .put("/ressources", {
+      title,
+      description,
+      //image,
+      link,
+      language,
+      technology,
+      type,
+      level,
+      price,
+    })
+    .then((response) => {
+      console.log("create response", response);
+      return response.data;
+    })
+    .catch((error) => console.log(error));
+}
+
+export { editRessource };

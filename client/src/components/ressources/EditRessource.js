@@ -3,8 +3,8 @@ import "antd/dist/antd.css";
 import { Form, Input, Select, Button } from "antd";
 
 import { getEnumValues } from "../auth/auth-service";
-import { uploadImage } from "../auth/auth-service";
-import { createRessource } from "../auth/auth-service";
+import { editRessource } from "../auth/auth-service";
+import { getOneRessource } from "../auth/auth-service";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -23,7 +23,7 @@ const selectAfter = (
   </Select>
 );
 
-export default class CreateRessource extends Component {
+export default class EditRessource extends Component {
   state = {
     // title: "",
     // description: "",
@@ -35,6 +35,7 @@ export default class CreateRessource extends Component {
     // price: "",
     // image: "",
     enumValues: [],
+    ressource: {},
   };
 
   onChange = ({ target: { value } }) => {
@@ -50,20 +51,11 @@ export default class CreateRessource extends Component {
       .catch((error) => console.log(error));
   };
 
-  fileChangedHandler = (event) => {
-    console.log("event.target", event.target.files[0]);
-
-    //this.setState({ avatar: event.target.files[0] });
-    const uploadData = new FormData();
-    uploadData.append("image", event.target.files[0]);
-    console.log(uploadData);
-
-    uploadImage(uploadData)
+  findRessource = (id) => {
+    getOneRessource(id)
       .then((response) => {
         console.log("response", response);
-        const image = response.secure_url;
-        this.setState({ image });
-        console.log("image: ", image);
+        this.setState({ ressource: response });
       })
       .catch((error) => console.log(error));
   };
@@ -82,7 +74,7 @@ export default class CreateRessource extends Component {
       price,
     } = event;
 
-    createRessource(
+    editRessource(
       title,
       description,
       //image,
@@ -109,25 +101,30 @@ export default class CreateRessource extends Component {
 
   componentDidMount() {
     this.findEnumValues();
+    const {
+      match: { params },
+    } = this.props;
+    this.findRessource(params.id);
   }
 
   render() {
     const enumValues = this.state.enumValues;
+    const ressource = this.state.ressource;
     return (
       <div>
         {enumValues.technologies &&
         enumValues.types &&
         enumValues.level &&
         enumValues.languages &&
-        enumValues.price ? (
+        enumValues.price &&
+        ressource ? (
           <div>
-            Create a new ressource
+            Edit ressource
             <Form name='create' onFinish={this.onFinish} scrollToFirstError>
               <Form.Item
                 onChange={this.onChange}
                 name='title'
                 label='Title'
-                value={this.state.title}
                 rules={[
                   {
                     required: true,
@@ -277,9 +274,7 @@ export default class CreateRessource extends Component {
                   })}
                 </Select>
               </Form.Item>
-              {/* 
-              // TODO UPLOAD Image : https://ant.design/components/upload/
-              <Form.Item name='image' label='Image'>
+              {/* <Form.Item name='image' label='Image'>
                 <input
                   type='file'
                   value={this.state.image}
