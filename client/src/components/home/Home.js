@@ -51,14 +51,6 @@ export default class Home extends Component {
     });
   };
 
-  onShowSizeChange = (current, pageSize) => {
-    this.setState({
-      maxValue: pageSize,
-      pageSize: pageSize,
-    });
-    console.log("current, pagesize:", current, pageSize);
-  };
-
   changePage = (value) => {
     console.log("value: ", value);
 
@@ -135,8 +127,7 @@ export default class Home extends Component {
                 .slice(this.state.minValue, this.state.maxValue)
                 .map((val, index) => <Card data={val} key={index} />)}
             <Pagination
-              showSizeChanger
-              onShowSizeChange={this.onShowSizeChange}
+              showSizeChanger={false}
               responsive
               defaultCurrent={1}
               onChange={this.changePage}

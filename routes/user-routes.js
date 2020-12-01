@@ -56,7 +56,13 @@ userRouter.post("/ressources/:id/favorites", (req, res, next) => {
 
   User.findById(req.session.user._id)
     .then((user) => {
-      user.favorites.push(req.params.id);
+      user.favorites.map((favorite) => {
+        if (favorite.id === req.params.id) {
+          res.status(400).json({ message: "Favorite already saved" });
+        } else {
+          user.favorites.push(req.params.id);
+        }
+      });
 
       user
         .save()
