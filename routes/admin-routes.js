@@ -8,7 +8,7 @@ adminRoutes.post("/ressources", (req, res, next) => {
     const {
       title,
       description,
-      image,
+      //image,
       link,
       language,
       technology,
@@ -33,7 +33,7 @@ adminRoutes.post("/ressources", (req, res, next) => {
     Ressources.create({
       title,
       description,
-      image,
+      //image,
       link,
       language,
       technology,

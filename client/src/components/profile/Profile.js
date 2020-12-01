@@ -58,7 +58,7 @@ export default class Profile extends Component {
       //[...new Set([...this.state.filters, ...event])], // newSet pour éviter d'avoir des doubons d'event
     });
   };
-  
+
   onShowSizeChange = (current, pageSize) => {
     this.setState({
       maxValue: pageSize,
@@ -86,7 +86,7 @@ export default class Profile extends Component {
   render() {
     const user = this.state.user;
     //const options = this.state.favorites;
-    const showedfavorites = this.state.favorites.filter((item, index) => {
+    let showedfavorites = this.state.favorites.filter((item, index) => {
       return item.title.toLowerCase().includes(this.state.search.toLowerCase());
     });
 
@@ -124,7 +124,7 @@ export default class Profile extends Component {
       <div>
         {this.state.user && this.state.favorites ? (
           <div>
-            <img src={user.avatar} alt="" />
+            <img src={user.avatar} alt='' />
             <p>{user.username}'s dashboard</p>
             <p>Email : {user.email}</p>
             {/* <AutoComplete

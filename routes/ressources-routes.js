@@ -43,10 +43,9 @@ ressourcesRoutes.get("/enumvalues", (req, res, next) => {
   const enumValuesTechnologies = Ressources.schema.path("technology").caster
     .enumValues;
   const enumValuesTypes = Ressources.schema.path("type").caster.enumValues;
-  const enumValuesLevels = Ressources.schema.path("level").caster.enumValues;
-  const enumValuesPrices = Ressources.schema.path("price").caster.enumValues;
-  const enumValuesLanguages = Ressources.schema.path("language").caster
-    .enumValues;
+  const enumValuesLevels = Ressources.schema.path("level").enumValues;
+  const enumValuesPrices = Ressources.schema.path("price").enumValues;
+  const enumValuesLanguages = Ressources.schema.path("language").enumValues;
   // console.log(
   //   enumValuesTechnologies,
   //   enumValuesTypes,

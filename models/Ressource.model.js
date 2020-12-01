@@ -8,7 +8,7 @@ const ressourceSchema = new Schema(
     image: String,
     link: String,
     language: {
-      type: [String],
+      type: String,
       enum: ["french", "english"],
     },
     technology: {
@@ -49,11 +49,11 @@ const ressourceSchema = new Schema(
       ],
     },
     level: {
-      type: [String],
+      type: String,
       enum: ["every force", "padawan", "jedi", "master jedi"],
     },
     price: {
-      type: [String],
+      type: String,
       enum: ["free", "paid", "freemium"],
     },
     votes: [{ type: Schema.Types.ObjectId, ref: "User" }],

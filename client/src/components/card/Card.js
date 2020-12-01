@@ -12,7 +12,7 @@ export default class Card extends Component {
         {/* {data.map((data, index) => { */}
         {/* return ( */}
         <div>
-          <Link to={`/ressources/${data.id}`}>{data.title}</Link>
+          <Link to={`/ressources/${data._id}`}>{data.title}</Link>
 
           <p>{data.description}</p>
           <ul>
