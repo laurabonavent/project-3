@@ -1,28 +1,27 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 import "antd/dist/antd.css";
-import { Form, Input, Select, Button } from "antd";
-import { FormInstance } from "antd/lib/form";
+import { Form, Input, Select, Button, message } from "antd";
 
 import { getEnumValues } from "../auth/auth-service";
 import { editRessource } from "../auth/auth-service";
 import { getOneRessource } from "../auth/auth-service";
 
 const { TextArea } = Input;
-const { Option } = Select;
+//const { Option } = Select;
 
-const selectBefore = (
-  <Select initialvalues='http://' className='select-before'>
-    <Option value='https://'>https://</Option>
-    <Option value='http://'>http://</Option>
-  </Select>
-);
-const selectAfter = (
-  <Select initialvalues='.com' className='select-after'>
-    <Option value='.com'>.com</Option>
-    <Option value='.jp'>.fr</Option>
-    <Option value='.org'>.org</Option>
-  </Select>
-);
+// const selectBefore = (
+//   <Select initialvalues='http://' className='select-before'>
+//     <Option value='https://'>https://</Option>
+//     <Option value='http://'>http://</Option>
+//   </Select>
+// );
+// const selectAfter = (
+//   <Select initialvalues='.com' className='select-after'>
+//     <Option value='.com'>.com</Option>
+//     <Option value='.jp'>.fr</Option>
+//     <Option value='.org'>.org</Option>
+//   </Select>
+// );
 
 export default class EditRessource extends Component {
   state = {
@@ -32,8 +31,12 @@ export default class EditRessource extends Component {
 
   formRef = React.createRef();
 
-  onChange = (e) => {
-    console.log("event", e);
+  // onChange = (e) => {
+  //   console.log("event", e);
+  // };
+
+  success = () => {
+    message.success("This is a success message");
   };
 
   findEnumValues = () => {
@@ -54,8 +57,7 @@ export default class EditRessource extends Component {
       .catch((error) => console.log(error));
   };
 
-  onFinish = (event) => {
-    console.log(event);
+  onFinish = (event, id) => {
     const {
       title,
       description,
@@ -77,17 +79,14 @@ export default class EditRessource extends Component {
       technology,
       type,
       level,
-      price
+      price,
+      this.state.ressource._id
     )
       .then((response) => {
+        console.log("response edit", response);
         this.setState({
-          title: response.title,
-          description: response.description,
-          link: response.link,
-          level: response.level,
-          language: response.language,
-          type: response.type,
-          price: response.price,
+          ressource: response,
+          formStatus: "ok",
         });
       })
       .catch((error) => console.log(error));
@@ -99,7 +98,6 @@ export default class EditRessource extends Component {
       match: { params },
     } = this.props;
     this.findRessource(params.id);
-    console.log("formRef", this.formRef);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -111,8 +109,25 @@ export default class EditRessource extends Component {
       this.state.enumValues.price &&
       this.state.ressource
     ) {
+      const {
+        title,
+        description,
+        link,
+        technology,
+        type,
+        level,
+        language,
+        price,
+      } = this.state.ressource;
       this.formRef.current.setFieldsValue({
-        title: this.state.ressource.title,
+        title,
+        description,
+        link,
+        technology,
+        type,
+        level,
+        language,
+        price,
       });
     }
   }
@@ -120,8 +135,6 @@ export default class EditRessource extends Component {
   render() {
     const enumValues = this.state.enumValues;
     const ressource = this.state.ressource;
-    const ressourceTitle = this.state.ressource.title;
-    console.log(this.props.form);
     return (
       <div>
         <Form
@@ -138,7 +151,6 @@ export default class EditRessource extends Component {
             <div>
               Edit ressource
               <Form.Item
-                onChange={this.onChange}
                 name='title'
                 label='Title'
                 rules={[
@@ -147,12 +159,11 @@ export default class EditRessource extends Component {
                     message: "Please input your Title!",
                   },
                 ]}>
-                <Input value='title' />
+                <Input />
               </Form.Item>
               <Form.Item
                 name='description'
                 label='Description'
-                value={this.state.description}
                 rules={[
                   {
                     required: true,
@@ -162,8 +173,7 @@ export default class EditRessource extends Component {
                 ]}>
                 <TextArea
                   placeholder='Description'
-                  value={this.state.description}
-                  onChange={this.onChange}
+                  //onChange={this.onChange}
                   autoSize={{ minRows: 1, maxRows: 5 }}
                   showCount
                   maxLength={250}
@@ -172,7 +182,6 @@ export default class EditRessource extends Component {
               <Form.Item
                 name='link'
                 label='URL'
-                value={this.state.link}
                 rules={[
                   {
                     required: true,
@@ -180,16 +189,11 @@ export default class EditRessource extends Component {
                     whitespace: true,
                   },
                 ]}>
-                <Input
-                  addonBefore={selectBefore}
-                  addonAfter={selectAfter}
-                  value={this.state.link}
-                />
+                <Input />
               </Form.Item>
               <Form.Item
                 name='technology'
                 label='Technology'
-                value={this.state.technology}
                 rules={[
                   {
                     required: true,
@@ -211,7 +215,6 @@ export default class EditRessource extends Component {
               <Form.Item
                 name='type'
                 label='Type'
-                value={this.state.type}
                 rules={[
                   {
                     required: true,
@@ -233,7 +236,6 @@ export default class EditRessource extends Component {
               <Form.Item
                 name='level'
                 label='Level'
-                value={this.state.level}
                 rules={[
                   {
                     required: true,
@@ -242,18 +244,13 @@ export default class EditRessource extends Component {
                 ]}>
                 <Select>
                   {enumValues.level.map((level, index) => {
-                    return (
-                      <Select.Option value={level} key={index}>
-                        {level}
-                      </Select.Option>
-                    );
+                    return <Select.Option key={index}>{level}</Select.Option>;
                   })}
                 </Select>
               </Form.Item>
               <Form.Item
                 name='language'
                 label='Language'
-                value={this.state.language}
                 rules={[
                   {
                     required: true,
@@ -263,9 +260,7 @@ export default class EditRessource extends Component {
                 <Select>
                   {enumValues.languages.map((language, index) => {
                     return (
-                      <Select.Option value={language} key={index}>
-                        {language}
-                      </Select.Option>
+                      <Select.Option key={index}>{language}</Select.Option>
                     );
                   })}
                 </Select>
@@ -273,7 +268,6 @@ export default class EditRessource extends Component {
               <Form.Item
                 name='price'
                 label='Price'
-                value={this.state.price}
                 rules={[
                   {
                     required: true,
@@ -282,11 +276,7 @@ export default class EditRessource extends Component {
                 ]}>
                 <Select>
                   {enumValues.price.map((price, index) => {
-                    return (
-                      <Select.Option value={price} key={index}>
-                        {price}
-                      </Select.Option>
-                    );
+                    return <Select.Option key={index}>{price}</Select.Option>;
                   })}
                 </Select>
               </Form.Item>
@@ -299,7 +289,7 @@ export default class EditRessource extends Component {
               </Form.Item> */}
               <Form.Item>
                 <Button type='primary' htmlType='submit'>
-                  Register
+                  Edit
                 </Button>
               </Form.Item>
             </div>
