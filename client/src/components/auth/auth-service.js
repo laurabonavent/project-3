@@ -159,3 +159,13 @@ function editRessource(
 }
 
 export { editRessource };
+
+// // ADD FAVORITES
+function addFavorite(id) {
+  return service
+    .post(`/ressources/${id}/favorites`)
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+}
+
+export { addFavorite };

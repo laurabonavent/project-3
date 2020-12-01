@@ -30,10 +30,10 @@ export default class EditRessource extends Component {
     ressource: {},
   };
 
-  //formRef = React.createRef();
+  formRef = React.createRef();
 
-  onChange = ({ target: { value } }) => {
-    this.setState({ description: value });
+  onChange = (e) => {
+    console.log("event", e);
   };
 
   findEnumValues = () => {
@@ -99,30 +99,44 @@ export default class EditRessource extends Component {
       match: { params },
     } = this.props;
     this.findRessource(params.id);
-    // this.formRef.current.setFieldsValue({
-    //   title: "Bamboo",
-    // });
+    console.log("formRef", this.formRef);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.state.enumValues.technologies &&
+      this.state.enumValues.types &&
+      this.state.enumValues.level &&
+      this.state.enumValues.languages &&
+      this.state.enumValues.price &&
+      this.state.ressource
+    ) {
+      this.formRef.current.setFieldsValue({
+        title: this.state.ressource.title,
+      });
+    }
   }
 
   render() {
     const enumValues = this.state.enumValues;
     const ressource = this.state.ressource;
+    const ressourceTitle = this.state.ressource.title;
     console.log(this.props.form);
     return (
       <div>
-        {enumValues.technologies &&
-        enumValues.types &&
-        enumValues.level &&
-        enumValues.languages &&
-        enumValues.price &&
-        ressource ? (
-          <div>
-            Edit ressource
-            <Form
-              name='create'
-              onFinish={this.onFinish}
-              scrollToFirstError
-              ref={this.formRef}>
+        <Form
+          name='create'
+          onFinish={this.onFinish}
+          scrollToFirstError
+          ref={this.formRef}>
+          {enumValues.technologies &&
+          enumValues.types &&
+          enumValues.level &&
+          enumValues.languages &&
+          enumValues.price &&
+          ressource ? (
+            <div>
+              Edit ressource
               <Form.Item
                 onChange={this.onChange}
                 name='title'
@@ -133,7 +147,7 @@ export default class EditRessource extends Component {
                     message: "Please input your Title!",
                   },
                 ]}>
-                <Input />
+                <Input value='title' />
               </Form.Item>
               <Form.Item
                 name='description'
@@ -288,11 +302,11 @@ export default class EditRessource extends Component {
                   Register
                 </Button>
               </Form.Item>
-            </Form>
-          </div>
-        ) : (
-          "Loading.."
-        )}
+            </div>
+          ) : (
+            "Loading.."
+          )}
+        </Form>
       </div>
     );
   }

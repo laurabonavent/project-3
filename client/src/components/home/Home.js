@@ -89,7 +89,6 @@ export default class Home extends Component {
     //console.log("showedRessources: ", showedRessources);
     // [{...}, {...}, ...]
 
-  
     let filteredRessources = [];
     showedRessources.map((ressource) => {
       const valuesRess = [

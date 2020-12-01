@@ -3,6 +3,9 @@ import React, { Component } from "react";
 import BackButton from "../BackButton";
 
 import { getOneRessource } from "../auth/auth-service";
+import { addFavorite } from "../auth/auth-service";
+
+import { Link } from "react-router-dom";
 
 export default class RessourceDetail extends Component {
   state = { ressource: {} };
@@ -10,8 +13,16 @@ export default class RessourceDetail extends Component {
   findRessource = (id) => {
     getOneRessource(id)
       .then((response) => {
-        console.log("response", response);
+        //console.log("response", response);
         this.setState({ ressource: response });
+      })
+      .catch((error) => console.log(error));
+  };
+
+  addAFavorite = (id) => {
+    addFavorite(this.state.ressource._id)
+      .then((response) => {
+        console.log("addFav", response);
       })
       .catch((error) => console.log(error));
   };
@@ -34,6 +45,7 @@ export default class RessourceDetail extends Component {
         this.state.ressource.comments ? (
           <div>
             <h1>{ressource.title}</h1>
+            <Link to={this.addAFavorite}>Favorite</Link>
             <p>
               Technologies :
               {ressource.technology.map((technology, index) => {
