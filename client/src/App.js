@@ -70,8 +70,8 @@ class App extends React.Component {
           <Route exact path='/profile' render={() => <Profile />} />
           {/* <Route exact path='/edit-profile' component={EditProfile} />*/}
           <Route exact path='/ressources/create' component={CreateRessource} />
-          <Route exact path='/ressources/:id' component={Ressource} />
           <Route exact path='/ressources/edit/:id' component={EditRessource} />
+          <Route exact path='/ressources/:id' component={Ressource} />
         </Switch>
         <Footer userInSession={this.state.loggedInUser} />
       </div>

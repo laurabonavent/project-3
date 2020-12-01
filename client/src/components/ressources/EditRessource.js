@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import "antd/dist/antd.css";
 import { Form, Input, Select, Button } from "antd";
+import { FormInstance } from "antd/lib/form";
 
 import { getEnumValues } from "../auth/auth-service";
 import { editRessource } from "../auth/auth-service";
@@ -25,18 +26,11 @@ const selectAfter = (
 
 export default class EditRessource extends Component {
   state = {
-    // title: "",
-    // description: "",
-    // link: "",
-    // technology: "",
-    // type: "",
-    // level: "",
-    // language: "",
-    // price: "",
-    // image: "",
     enumValues: [],
     ressource: {},
   };
+
+  //formRef = React.createRef();
 
   onChange = ({ target: { value } }) => {
     this.setState({ description: value });
@@ -105,11 +99,15 @@ export default class EditRessource extends Component {
       match: { params },
     } = this.props;
     this.findRessource(params.id);
+    // this.formRef.current.setFieldsValue({
+    //   title: "Bamboo",
+    // });
   }
 
   render() {
     const enumValues = this.state.enumValues;
     const ressource = this.state.ressource;
+    console.log(this.props.form);
     return (
       <div>
         {enumValues.technologies &&
@@ -120,7 +118,11 @@ export default class EditRessource extends Component {
         ressource ? (
           <div>
             Edit ressource
-            <Form name='create' onFinish={this.onFinish} scrollToFirstError>
+            <Form
+              name='create'
+              onFinish={this.onFinish}
+              scrollToFirstError
+              ref={this.formRef}>
               <Form.Item
                 onChange={this.onChange}
                 name='title'

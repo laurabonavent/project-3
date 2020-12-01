@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { Link } from "react-router-dom";
+
 export default class Card extends Component {
   state = { data: this.props.data };
 
@@ -8,19 +10,17 @@ export default class Card extends Component {
     return (
       <div>
         {/* {data.map((data, index) => { */}
-          {/* return ( */}
-            <div>
-              <a href={data.link} rel="noreferrer" target="_blank">
-                {data.title}
-              </a>
+        {/* return ( */}
+        <div>
+          <Link to={`/ressources/${data.id}`}>{data.title}</Link>
 
-              <p>{data.description}</p>
-              <ul>
-                {data.type.map((type, index) => (
-                  <li key={index}>{type}</li>
-                ))}
-              </ul>
-            </div>
+          <p>{data.description}</p>
+          <ul>
+            {data.type.map((type, index) => (
+              <li key={index}>{type}</li>
+            ))}
+          </ul>
+        </div>
         {/* )})} */}
       </div>
     );
