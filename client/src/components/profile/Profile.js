@@ -3,9 +3,18 @@ import { getUser, getFavorites } from "../auth/auth-service";
 import Card from "../card/Card";
 import Filters from "../Filters";
 import SearchBar from "../SearchBar";
+import { Pagination } from "antd";
 
 export default class Profile extends Component {
-  state = { user: {}, favorites: [], search: "", filters: [] };
+  state = {
+    user: {},
+    favorites: [],
+    search: "",
+    filters: [],
+    minValue: 0,
+    pageSize: 10,
+    maxValue: 10,
+  };
 
   findUserInfo = () => {
     getUser()
@@ -48,6 +57,30 @@ export default class Profile extends Component {
       filters: event,
       //[...new Set([...this.state.filters, ...event])], // newSet pour éviter d'avoir des doubons d'event
     });
+  };
+  
+  onShowSizeChange = (current, pageSize) => {
+    this.setState({
+      maxValue: pageSize,
+      pageSize: pageSize,
+    });
+    console.log("current, pagesize:", current, pageSize);
+  };
+
+  changePage = (value) => {
+    console.log("value: ", value);
+
+    if (value <= 1) {
+      this.setState({
+        minValue: 0,
+        maxValue: this.state.pageSize,
+      });
+    } else {
+      this.setState({
+        minValue: this.state.maxValue,
+        maxValue: value * this.state.pageSize,
+      });
+    }
   };
 
   render() {
@@ -107,7 +140,7 @@ export default class Profile extends Component {
                 return <Option key={index} value={option.value} />;
               })}
             </AutoComplete> */}
-            <SearchBar handleChange={this.handleChange}/>
+            <SearchBar handleChange={this.handleChange} />
             {/* <form action="">
               <input
                 type="search"
@@ -121,10 +154,20 @@ export default class Profile extends Component {
             <h3>Filtres</h3>
             <Filters handleChange={this.getFilterValues} />
             <h3>My favorites</h3>
-            <Card data={showedfavorites} />
-            {/* {user.favorites.map((favorite, index) => (
-              <Favorites favorite={favorite} />
-            ))} */}
+            {showedfavorites &&
+              showedfavorites.length > 0 &&
+              showedfavorites
+                .slice(this.state.minValue, this.state.maxValue)
+                .map((val, index) => <Card data={val} key={index} />)}
+            <Pagination
+              showSizeChanger
+              onShowSizeChange={this.onShowSizeChange}
+              responsive
+              defaultCurrent={1}
+              onChange={this.changePage}
+              total={showedfavorites.length}
+            />
+            {/* <Card data={showedfavorites} /> */}
           </div>
         ) : (
           "Loading..."
