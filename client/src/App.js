@@ -13,6 +13,7 @@ import Signup from "./components/auth/Signup";
 import Profile from "./components/profile/Profile";
 import Ressource from "./components/ressources/RessourceDetail";
 import CreateRessource from "./components/ressources/CreateRessource";
+import EditRessource from "./components/ressources/EditRessource";
 
 class App extends React.Component {
   state = { loggedInUser: null };
@@ -66,7 +67,7 @@ class App extends React.Component {
           {/* <Route exact path='/edit-profile' component={EditProfile} />*/}
           <Route exact path='/ressources/create' component={CreateRessource} />
           <Route exact path='/ressources/:id' component={Ressource} />
-          {/*<Route exact path='/ressources/edit/:id' component={EditRessource} /> */}
+          <Route exact path='/ressources/edit/:id' component={EditRessource} />
         </Switch>
       </div>
     );
