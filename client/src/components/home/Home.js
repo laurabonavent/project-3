@@ -53,7 +53,7 @@ export default class Home extends Component {
 
   onShowSizeChange = (current, pageSize) => {
     this.setState({
-      maxValue:pageSize,
+      maxValue: pageSize,
       pageSize: pageSize,
     });
     console.log("current, pagesize:", current, pageSize);
@@ -89,6 +89,7 @@ export default class Home extends Component {
     //console.log("showedRessources: ", showedRessources);
     // [{...}, {...}, ...]
 
+  
     let filteredRessources = [];
     showedRessources.map((ressource) => {
       const valuesRess = [

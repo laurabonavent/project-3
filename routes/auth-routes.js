@@ -57,8 +57,8 @@ authRoutes.post("/signup", (req, res, next) => {
           res.status(200).json(aNewUser);
         })
         .catch((err) => {
-          console.log('err: ', err);
-          
+          console.log("err: ", err);
+
           res
             .status(400)
             .json({ message: "Saving user to database went wrong." });
@@ -133,7 +133,6 @@ authRoutes.post("/signup", (req, res, next) => {
 //     });
 // });
 
-
 // POST LOGIN
 authRoutes.post("/login", (req, res, next) => {
   const { email, password } = req.body;
@@ -182,5 +181,15 @@ authRoutes.post("/upload", uploader.single("avatar"), (req, res, next) => {
   res.json({ secure_url: req.file.path });
 });
 
+authRoutes.post("/upload/image", uploader.single("image"), (req, res, next) => {
+  console.log("file is: ", req.file);
+  if (!req.file) {
+    next(new Error("No file uploaded!"));
+    return;
+  }
+  // get secure_url from the file object and save it in the
+  // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
+  res.json({ secure_url: req.file.path });
+});
 
 module.exports = authRoutes;

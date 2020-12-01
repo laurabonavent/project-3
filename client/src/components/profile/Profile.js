@@ -124,7 +124,7 @@ export default class Profile extends Component {
       <div>
         {this.state.user && this.state.favorites ? (
           <div>
-            <img src={user.avatar} alt="" />
+            <img src={user.avatar} alt='' />
             <p>{user.username}'s dashboard</p>
             <p>Email : {user.email}</p>
             {/* <AutoComplete
