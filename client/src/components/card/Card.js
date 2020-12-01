@@ -7,9 +7,9 @@ export default class Card extends Component {
     const data = this.props.data;
     return (
       <div>
-        {data.map((data, index) => {
-          return (
-            <>
+        {/* {data.map((data, index) => { */}
+          {/* return ( */}
+            <div>
               <a href={data.link} rel="noreferrer" target="_blank">
                 {data.title}
               </a>
@@ -20,9 +20,8 @@ export default class Card extends Component {
                   <li key={index}>{type}</li>
                 ))}
               </ul>
-            </>
-          );
-        })};
+            </div>
+        {/* )})} */}
       </div>
     );
   }

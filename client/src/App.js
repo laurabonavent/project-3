@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
 
@@ -14,25 +13,28 @@ import Profile from "./components/profile/Profile";
 import Ressource from "./components/ressources/RessourceDetail";
 import CreateRessource from "./components/ressources/CreateRessource";
 import EditRessource from "./components/ressources/EditRessource";
+import Navbar from "./components/nav/Navbar";
+import Footer from "./components/nav/Footer";
+import BackButton from "./components/BackButton";
 
 class App extends React.Component {
   state = { loggedInUser: null };
 
-  // fetchUser() {
-  //   if (this.state.loggedInUser === null) {
-  //     loggedin()
-  //       .then((response) => {
-  //         this.setState({ loggedInUser: response });
-  //       })
-  //       .catch((err) => {
-  //         this.setState({ loggedInUser: false });
-  //       });
-  //   }
-  // }
+  fetchUser() {
+    if (this.state.loggedInUser === null) {
+      loggedin()
+        .then((data) => {
+          this.setState({ loggedInUser: data });
+        })
+        .catch((err) => {
+          this.setState({ loggedInUser: false });
+        });
+    }
+  }
 
-  // componentDidMount() {
-  //   this.fetchUser();
-  // }
+  componentDidMount() {
+    this.fetchUser();
+  }
 
   updateLoggedInUser = (userObj) => {
     this.setState({
@@ -43,6 +45,8 @@ class App extends React.Component {
   render() {
     return (
       <div className='App'>
+        <Navbar userInSession={this.state.loggedInUser} />
+        <BackButton />
         <Switch>
           <Route exact path='/' component={Home} />
           <Route
@@ -60,7 +64,7 @@ class App extends React.Component {
             path='/signup'
             render={(props) => <Signup history={props.history} />}
           />
-          {/* <Route exact path='/profile' component={Profile} />
+          {/* 
         <Route exact path='/edit-profile' component={EditProfile} />
           {/* <Route exact path='/signup' component={Signup} />*/}
           <Route exact path='/profile' render={() => <Profile />} />
@@ -69,6 +73,7 @@ class App extends React.Component {
           <Route exact path='/ressources/:id' component={Ressource} />
           <Route exact path='/ressources/edit/:id' component={EditRessource} />
         </Switch>
+        <Footer userInSession={this.state.loggedInUser} />
       </div>
     );
   }

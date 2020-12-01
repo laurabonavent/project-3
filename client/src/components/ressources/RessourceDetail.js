@@ -27,7 +27,6 @@ export default class RessourceDetail extends Component {
     const ressource = this.state.ressource;
     return (
       <div>
-        {/* <BackButton /> */}
         {this.state.ressource &&
         this.state.ressource.technology &&
         this.state.ressource.type &&

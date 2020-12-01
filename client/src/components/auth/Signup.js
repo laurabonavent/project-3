@@ -2,8 +2,8 @@ import React from "react";
 import { signup } from "./auth-service";
 import { Form, Input, Select, Button } from "antd";
 import { upload, saveAvatar } from "./auth-service";
-
 const { Option } = Select;
+
 
 class Signup extends React.Component {
   state = {
@@ -17,7 +17,7 @@ class Signup extends React.Component {
 
   fileChangedHandler = (event) => {
     console.log("event.target", event.target.files[0]);
-    
+
     //this.setState({ avatar: event.target.files[0] });
     const uploadData = new FormData();
     uploadData.append("avatar", event.target.files[0]);
@@ -26,18 +26,17 @@ class Signup extends React.Component {
       .then((response) => {
         console.log("response", response);
         const avatar = response.secure_url;
-        this.setState({ avatar});
-        console.log('avatar: ', avatar);
-
+        this.setState({ avatar });
+        console.log("avatar: ", avatar);
       })
       .catch((error) => console.log(error));
   };
 
   onFinish = (event) => {
     //event.preventDefault();
-    const { email, password, username, level, role } = event;
+    const { email, password, username, level } = event;
     const avatar = this.state.avatar;
-    
+    const role = this.state.role;
 
     signup(email, username, password, level, role, avatar)
       .then((response) => {
@@ -52,7 +51,6 @@ class Signup extends React.Component {
         this.props.history.push("/profile");
       })
       .catch((error) => console.log(error));
-
   };
 
   // uploadHandler = () => {
