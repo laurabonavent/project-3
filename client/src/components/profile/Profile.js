@@ -7,8 +7,6 @@ import { Pagination } from "antd";
 
 export default class Profile extends Component {
   state = {
-    user: {},
-    favorites: [],
     search: "",
     filters: [],
     minValue: 0,
@@ -46,8 +44,10 @@ export default class Profile extends Component {
   };
 
   componentDidMount() {
-    this.findUserInfo();
-    this.findUserFavorites();
+    //this.findUserInfo();
+    //this.findUserFavorites();
+    const user = this.props.userInSession;
+    console.log(user);
   }
 
   getFilterValues = (event) => {
@@ -76,11 +76,15 @@ export default class Profile extends Component {
   };
 
   render() {
-    const user = this.state.user;
-    //const options = this.state.favorites;
-    let showedfavorites = this.state.favorites.filter((item, index) => {
-      return item.title.toLowerCase().includes(this.state.search.toLowerCase());
-    });
+    console.log("userInSession", this.props.userInSession);
+    //const options = this.props.userInSession.favorites;
+    let showedfavorites = this.props.userInSession.favorites.filter(
+      (item, index) => {
+        return item.title
+          .toLowerCase()
+          .includes(this.state.search.toLowerCase());
+      }
+    );
 
     let filteredRessources = [];
     showedfavorites.map((ressource) => {
@@ -114,12 +118,10 @@ export default class Profile extends Component {
 
     return (
       <div>
-        {this.state.user && this.state.favorites ? (
-          <div>
-            <img src={user.avatar} alt='' />
-            <p>{user.username}'s dashboard</p>
-            <p>Email : {user.email}</p>
-            {/* <AutoComplete
+        <img src={this.props.userInSession.avatar} alt='' />
+        <p>{this.props.userInSession.username}'s dashboard</p>
+        <p>Email : {this.props.userInSession.email}</p>
+        {/* <AutoComplete
               //options={options}
               notFoundContent='Wait..'
               placeholder='Find a favorite'
@@ -132,8 +134,8 @@ export default class Profile extends Component {
                 return <Option key={index} value={option.value} />;
               })}
             </AutoComplete> */}
-            <SearchBar handleChange={this.handleChange} />
-            {/* <form action="">
+        <SearchBar handleChange={this.handleChange} />
+        {/* <form action="">
               <input
                 type="search"
                 name="search"
@@ -142,27 +144,23 @@ export default class Profile extends Component {
                 onChange={this.handleChange}
               />
             </form> */}
-            {/* TODO : Rendre dynamiques les filtres avec les valeurs des enum du model */}
-            <h3>Filtres</h3>
-            <Filters handleChange={this.getFilterValues} />
-            <h3>My favorites</h3>
-            {showedfavorites &&
-              showedfavorites.length > 0 &&
-              showedfavorites
-                .slice(this.state.minValue, this.state.maxValue)
-                .map((val, index) => <Card data={val} key={index} />)}
-            <Pagination
-              showSizeChanger = {false}
-              responsive
-              defaultCurrent={1}
-              onChange={this.changePage}
-              total={showedfavorites.length}
-            />
-            {/* <Card data={showedfavorites} /> */}
-          </div>
-        ) : (
-          "Loading..."
-        )}
+        {/* TODO : Rendre dynamiques les filtres avec les valeurs des enum du model */}
+        <h3>Filtres</h3>
+        <Filters handleChange={this.getFilterValues} />
+        <h3>My favorites</h3>
+        {showedfavorites &&
+          showedfavorites.length > 0 &&
+          showedfavorites
+            .slice(this.state.minValue, this.state.maxValue)
+            .map((val, index) => <Card data={val} key={index} />)}
+        <Pagination
+          showSizeChanger={false}
+          responsive
+          defaultCurrent={1}
+          onChange={this.changePage}
+          total={showedfavorites.length}
+        />
+        {/* <Card data={showedfavorites} /> */}
       </div>
     );
   }

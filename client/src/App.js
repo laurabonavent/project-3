@@ -22,6 +22,7 @@ class App extends React.Component {
 
   fetchUser() {
     if (this.state.loggedInUser === null) {
+      console.log("coucou");
       loggedin()
         .then((data) => {
           this.setState({ loggedInUser: data });
@@ -67,11 +68,27 @@ class App extends React.Component {
           {/* 
         <Route exact path='/edit-profile' component={EditProfile} />
           {/* <Route exact path='/signup' component={Signup} />*/}
-          <Route exact path='/profile' render={() => <Profile />} />
+          <Route
+            exact
+            path='/profile'
+            render={(props) => (
+              <Profile {...props} userInSession={this.state.loggedInUser} />
+            )}
+          />
           {/* <Route exact path='/edit-profile' component={EditProfile} />*/}
           <Route exact path='/ressources/create' component={CreateRessource} />
           <Route exact path='/ressources/edit/:id' component={EditRessource} />
-          <Route exact path='/ressources/:id' component={Ressource} />
+          <Route
+            exact
+            path='/ressources/:id'
+            render={(props) => (
+              <Ressource
+                {...props}
+                updateUser={this.updateLoggedInUser}
+                userInSession={this.state.loggedInUser}
+              />
+            )}
+          />
         </Switch>
         <Footer userInSession={this.state.loggedInUser} />
       </div>
