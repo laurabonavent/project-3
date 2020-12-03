@@ -137,10 +137,11 @@ function editRessource(
   technology,
   type,
   level,
-  price
+  price,
+  id
 ) {
   return service
-    .put("/ressources", {
+    .put(`/ressources/${id}`, {
       title,
       description,
       //image,
@@ -152,7 +153,6 @@ function editRessource(
       price,
     })
     .then((response) => {
-      console.log("create response", response);
       return response.data;
     })
     .catch((error) => console.log(error));
@@ -169,3 +169,13 @@ function addFavorite(id) {
 }
 
 export { addFavorite };
+
+// /DELETE FAVORITES
+function deleteFavorite(id) {
+  return service
+    .delete(`/favorites/${id}`)
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+}
+
+export { deleteFavorite };

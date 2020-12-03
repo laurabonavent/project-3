@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 
-import BackButton from "../BackButton";
-
 import { getOneRessource } from "../auth/auth-service";
 import { addFavorite } from "../auth/auth-service";
+import { deleteFavorite } from "../auth/auth-service";
 
-import { Link } from "react-router-dom";
+import { Button } from "antd";
 
 export default class RessourceDetail extends Component {
   state = { ressource: {} };
@@ -23,6 +22,16 @@ export default class RessourceDetail extends Component {
     addFavorite(this.state.ressource._id)
       .then((response) => {
         console.log("addFav", response);
+        this.setState({ fav: true });
+      })
+      .catch((error) => console.log(error));
+  };
+
+  deleteFavorite = (id) => {
+    deleteFavorite(this.state.ressource._id)
+      .then((response) => {
+        console.log("deletFav", response);
+        this.setState({ fav: false });
       })
       .catch((error) => console.log(error));
   };
@@ -45,7 +54,15 @@ export default class RessourceDetail extends Component {
         this.state.ressource.comments ? (
           <div>
             <h1>{ressource.title}</h1>
-            <Link to={this.addAFavorite}>Favorite</Link>
+            {this.state.fav === false ? (
+              <p>
+                <Button onClick={this.addAFavorite}>Add favorite</Button>
+              </p>
+            ) : (
+              <p>
+                <Button onClick={this.deleteFavorite}>Delete favorite</Button>
+              </p>
+            )}
             <p>
               Technologies :
               {ressource.technology.map((technology, index) => {
