@@ -133,6 +133,7 @@ export default class EditRessource extends Component {
   }
 
   render() {
+    console.log("ref:", React.createRef());
     const enumValues = this.state.enumValues;
     const ressource = this.state.ressource;
     return (

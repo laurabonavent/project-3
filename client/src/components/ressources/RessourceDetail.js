@@ -89,7 +89,7 @@ export default class RessourceDetail extends Component {
             <p>Level : {ressource.level}</p>
             <p>Price : {ressource.price}</p>
             <p>
-              <a href={ressource.link} rel='noreferrer' target='_blank'>
+              <a href={ressource.link} rel="noreferrer" target="_blank">
                 Find your way
               </a>
             </p>

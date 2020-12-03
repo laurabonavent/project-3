@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const Navbar = (props) => {
   return (
     <>
-      <Link to="/login">
+      <Link to="/">
         <h1>NAME SITE</h1>
       </Link>
       {props.userInSession ? (
