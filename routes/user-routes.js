@@ -56,22 +56,21 @@ userRouter.post("/ressources/:id/favorites", (req, res, next) => {
 
   User.findById(req.session.user._id)
     .then((user) => {
-      user.favorites.map((favorite) => {
-        if (favorite.id === req.params.id) {
-          res.status(400).json({ message: "Favorite already saved" });
-        } else {
-          user.favorites.push(req.params.id);
-        }
-      });
+      if (user.favorites.includes(req.params.id)) {
+        console.log("already saved");
+        res.status(300).json({ message: "Favorite Already save" });
+      } else {
+        user.favorites.push(req.params.id);
 
-      user
-        .save()
-        .then((user) => {
-          res.status(200).json({ message: "Favorite added" });
-        })
-        .catch((err) => {
-          res.status(400).json({ message: "Favorite not added" });
-        });
+        user
+          .save()
+          .then((user) => {
+            res.status(200).json({ message: "Favorite added" });
+          })
+          .catch((err) => {
+            res.status(400).json({ message: "Favorite not added" });
+          });
+      }
     })
     .catch((err) => {
       res.status(400).json({ message: "user not found" });
