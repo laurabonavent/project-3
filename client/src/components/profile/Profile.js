@@ -118,7 +118,7 @@ export default class Profile extends Component {
 
     return (
       <div>
-        <img src={this.props.userInSession.avatar} alt="" />
+        <img src={this.props.userInSession.avatar} alt='' />
         <p>{this.props.userInSession.username}'s dashboard</p>
         <p>Email : {this.props.userInSession.email}</p>
         {/* <AutoComplete

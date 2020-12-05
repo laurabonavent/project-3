@@ -1,12 +1,12 @@
 import React from "react";
-import {SuggestRessource} from "./Buttons";
+import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   return (
     <>
       {props.userInSession ? (
         <>
-          <SuggestRessource />
+          <Link to='/ressources/suggest'>Suggest a ressource</Link>
         </>
       ) : (
         <>
