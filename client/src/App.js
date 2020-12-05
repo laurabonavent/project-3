@@ -28,6 +28,7 @@ class App extends React.Component {
       loggedin()
         .then((data) => {
           this.setState({ loggedInUser: data });
+          console.log("user", this.state.loggedInUser);
         })
         .catch((err) => {
           this.setState({ loggedInUser: false });
@@ -46,60 +47,95 @@ class App extends React.Component {
   };
 
   render() {
-    if (isnull(this.state.loggedInUser)) return "..loading";
+    //if (isnull(this.state.loggedInUser)) return "..loading";
+
     return (
       <div className="App">
-        <Navbar userInSession={this.state.loggedInUser} />
-        <BackButton />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route
-            exact
-            path="/login"
-            render={(props) => (
-              <Login
-                history={props.history}
-                updateUser={this.updateLoggedInUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/signup"
-            render={(props) => <Signup history={props.history} />}
-          />
-          <Route
-            exact
-            path="/profile/edit"
-            render={(props) => (
-              <EditProfile
-                history={props.history}
-                updateUser={this.updateLoggedInUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/profile"
-            render={(props) => (
-              <Profile {...props} userInSession={this.state.loggedInUser} />
-            )}
-          />
-          <Route exact path="/ressources/create" component={CreateRessource} />
-          <Route exact path="/ressources/edit/:id" component={EditRessource} />
-          <Route
-            exact
-            path="/ressources/:id"
-            render={(props) => (
-              <Ressource
-                {...props}
-                updateUser={this.updateLoggedInUser}
+        <Route
+          render={(props) => (
+            <>
+              <Navbar
                 userInSession={this.state.loggedInUser}
+                updateUser={this.updateLoggedInUser}
+                {...props}
               />
-            )}
-          />
-        </Switch>
-        <Footer userInSession={this.state.loggedInUser} />
+
+              <BackButton />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route
+                  exact
+                  path="/login"
+                  render={(props) => (
+                    <Login
+                      userInSession={this.state.loggedInUser}
+                      history={props.history}
+                      updateUser={this.updateLoggedInUser}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/signup"
+                  render={(props) => (
+                    <Signup
+                      history={props.history}
+                      updateUser={this.updateLoggedInUser}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/profile/edit"
+                  render={(props) => (
+                    <EditProfile
+                      {...props}
+                      history={props.history}
+                      updateUser={this.updateLoggedInUser}
+                      userInSession={this.state.loggedInUser}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/profile"
+                  render={(props) => (
+                    <Profile
+                      {...props}
+                      userInSession={this.state.loggedInUser}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/ressources/create"
+                  component={CreateRessource}
+                />
+                <Route
+                  exact
+                  path="/ressources/edit/:id"
+                  render={(props) => (
+                    <EditRessource
+                      {...props}
+                      userInSession={this.state.loggedInUser}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/ressources/:id"
+                  render={(props) => (
+                    <Ressource
+                      {...props}
+                      updateUser={this.updateLoggedInUser}
+                      userInSession={this.state.loggedInUser}
+                    />
+                  )}
+                />
+              </Switch>
+              <Footer userInSession={this.state.loggedInUser} />
+            </>
+          )}></Route>
       </div>
     );
   }

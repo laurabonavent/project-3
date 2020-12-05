@@ -98,6 +98,12 @@ export default class EditRessource extends Component {
       match: { params },
     } = this.props;
     this.findRessource(params.id);
+
+    if (this.props.userInSession.role === "user") {
+      message.info("Sorry, only for admin here");
+      this.props.history.push("/");
+      return;
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -139,7 +145,7 @@ export default class EditRessource extends Component {
     return (
       <div>
         <Form
-          name='create'
+          name="create"
           onFinish={this.onFinish}
           scrollToFirstError
           ref={this.formRef}>
@@ -152,8 +158,8 @@ export default class EditRessource extends Component {
             <div>
               Edit ressource
               <Form.Item
-                name='title'
-                label='Title'
+                name="title"
+                label="Title"
                 rules={[
                   {
                     required: true,
@@ -163,8 +169,8 @@ export default class EditRessource extends Component {
                 <Input />
               </Form.Item>
               <Form.Item
-                name='description'
-                label='Description'
+                name="description"
+                label="Description"
                 rules={[
                   {
                     required: true,
@@ -173,7 +179,7 @@ export default class EditRessource extends Component {
                   },
                 ]}>
                 <TextArea
-                  placeholder='Description'
+                  placeholder="Description"
                   //onChange={this.onChange}
                   autoSize={{ minRows: 1, maxRows: 5 }}
                   showCount
@@ -181,8 +187,8 @@ export default class EditRessource extends Component {
                 />
               </Form.Item>
               <Form.Item
-                name='link'
-                label='URL'
+                name="link"
+                label="URL"
                 rules={[
                   {
                     required: true,
@@ -193,8 +199,8 @@ export default class EditRessource extends Component {
                 <Input />
               </Form.Item>
               <Form.Item
-                name='technology'
-                label='Technology'
+                name="technology"
+                label="Technology"
                 rules={[
                   {
                     required: true,
@@ -203,7 +209,7 @@ export default class EditRessource extends Component {
                     max: 4,
                   },
                 ]}>
-                <Select mode='multiple' allowClear>
+                <Select mode="multiple" allowClear>
                   {enumValues.technologies.map((technology, index) => {
                     return (
                       <Select.Option value={technology} key={index}>
@@ -214,8 +220,8 @@ export default class EditRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name='type'
-                label='Type'
+                name="type"
+                label="Type"
                 rules={[
                   {
                     required: true,
@@ -224,7 +230,7 @@ export default class EditRessource extends Component {
                     max: 3,
                   },
                 ]}>
-                <Select mode='multiple' allowClear>
+                <Select mode="multiple" allowClear>
                   {enumValues.types.map((type, index) => {
                     return (
                       <Select.Option value={type} key={index}>
@@ -235,8 +241,8 @@ export default class EditRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name='level'
-                label='Level'
+                name="level"
+                label="Level"
                 rules={[
                   {
                     required: true,
@@ -250,8 +256,8 @@ export default class EditRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name='language'
-                label='Language'
+                name="language"
+                label="Language"
                 rules={[
                   {
                     required: true,
@@ -267,8 +273,8 @@ export default class EditRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name='price'
-                label='Price'
+                name="price"
+                label="Price"
                 rules={[
                   {
                     required: true,
@@ -289,7 +295,7 @@ export default class EditRessource extends Component {
                 />
               </Form.Item> */}
               <Form.Item>
-                <Button type='primary' htmlType='submit'>
+                <Button type="primary" htmlType="submit">
                   Edit
                 </Button>
               </Form.Item>

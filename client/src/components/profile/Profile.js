@@ -3,7 +3,10 @@ import { getUser, getFavorites } from "../auth/auth-service";
 import Card from "../card/Card";
 import Filters from "../Filters";
 import SearchBar from "../SearchBar";
-import { Pagination } from "antd";
+import { Pagination, Button } from "antd";
+import isnull from "lodash.isnull";
+import { Link } from "react-router-dom";
+import { message } from "antd";
 
 export default class Profile extends Component {
   state = {
@@ -75,7 +78,12 @@ export default class Profile extends Component {
 
   render() {
     console.log("userInSession", this.props.userInSession);
+    // if (!this.props.userInSession) {
+    //   return;
+    // }
     //const options = this.props.userInSession.favorites;
+    if (isnull(this.props.userInSession)) return "..loading";
+
     let showedfavorites = this.props.userInSession.favorites.filter(
       (item, index) => {
         return item.title
@@ -121,6 +129,9 @@ export default class Profile extends Component {
         <img src={this.props.userInSession.avatar} alt="" />
         <p>{this.props.userInSession.username}'s dashboard</p>
         <p>Email : {this.props.userInSession.email}</p>
+        <Link to="/profile/edit">
+          <Button>Edit Profile</Button>
+        </Link>
         {/* <AutoComplete
               //options={options}
               notFoundContent='Wait..'

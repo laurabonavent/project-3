@@ -42,6 +42,7 @@ userRouter.put("/user", uploader.single("avatar"), (req, res, next) => {
   };
 
   User.findOneAndUpdate(req.session.user.id, updateUser, { new: true })
+    .populate("favorites")
     .then((user) => {
       res.status(200).json(user);
     })

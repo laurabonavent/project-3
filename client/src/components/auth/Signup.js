@@ -2,8 +2,9 @@ import React from "react";
 import { signup } from "./auth-service";
 import { Form, Input, Select, Button } from "antd";
 import { upload, saveAvatar } from "./auth-service";
+import { message } from "antd";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
 const { Option } = Select;
-
 
 class Signup extends React.Component {
   state = {
@@ -48,9 +49,14 @@ class Signup extends React.Component {
           avatar: "",
           role: "user",
         });
+        this.props.updateUser(response);
         this.props.history.push("/profile");
+        message.info(response.message);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        message.info(error.message);
+        console.log(error);
+      });
   };
 
   // uploadHandler = () => {
@@ -63,7 +69,8 @@ class Signup extends React.Component {
         <Form name="signup" onFinish={this.onFinish} scrollToFirstError>
           <Form.Item
             name="email"
-            label="E-mail"
+            //label="E-mail"
+
             value={this.state.email}
             rules={[
               {
@@ -75,11 +82,14 @@ class Signup extends React.Component {
                 message: "Please input your E-mail!",
               },
             ]}>
-            <Input />
+            <Input
+              placeholder="Email"
+              prefix={<UserOutlined className="site-form-item-icon" />}
+            />
           </Form.Item>
           <Form.Item
             name="password"
-            label="Password"
+            //label="Password"
             value={this.state.password}
             rules={[
               {
@@ -88,11 +98,14 @@ class Signup extends React.Component {
               },
             ]}
             hasFeedback>
-            <Input.Password />
+            <Input.Password
+              placeholder="Password"
+              prefix={<LockOutlined className="site-form-item-icon" />}
+            />
           </Form.Item>
           <Form.Item
             name="username"
-            label="Name"
+            //label="Name"
             value={this.state.username}
             rules={[
               {
@@ -101,11 +114,12 @@ class Signup extends React.Component {
                 whitespace: true,
               },
             ]}>
-            <Input />
+            <Input placeholder="Name" />
           </Form.Item>
           <Form.Item
             name="level"
-            label="Level"
+            //label="Level"
+
             value={this.state.level}
             rules={[
               {
@@ -114,14 +128,18 @@ class Signup extends React.Component {
                 whitespace: true,
               },
             ]}>
-            <Select>
+            <Select placeholder="Level">
               <Select.Option value="padawan">Padawan</Select.Option>
               <Select.Option value="jedi">Jedi</Select.Option>
               <Select.Option value="master jedi">Master Jedi</Select.Option>
             </Select>
           </Form.Item>
           <Form.Item name="avatar" label="Avatar">
-            <input type="file" onChange={this.fileChangedHandler} />
+            <input
+              type="file"
+              onChange={this.fileChangedHandler}
+              placeholder="Avatar"
+            />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">

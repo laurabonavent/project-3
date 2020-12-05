@@ -5,6 +5,9 @@ import { addFavorite } from "../auth/auth-service";
 import { deleteFavorite } from "../auth/auth-service";
 
 import { Button } from "antd";
+import { message } from "antd";
+import isnull from "lodash.isnull";
+import { Redirect } from "react-router-dom";
 
 export default class RessourceDetail extends Component {
   state = { ressource: {} };
@@ -25,8 +28,12 @@ export default class RessourceDetail extends Component {
         const user = response.user;
         this.props.updateUser({ user });
         this.setState({ fav: true });
+        message.info(response.message);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        message.info(error.message);
+        console.log(error);
+      });
   };
 
   deleteFavorite = (id) => {
@@ -37,8 +44,12 @@ export default class RessourceDetail extends Component {
         console.log(user);
         this.props.updateUser({ user });
         this.setState({ fav: false });
+        message.info(response.message);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        message.info(error.message);
+        console.log(error);
+      });
   };
 
   // TODO : récupérer le user de l'APP + vérifier si l'ID de la ressource existe déjà dans le user pour setter le state
@@ -49,6 +60,16 @@ export default class RessourceDetail extends Component {
     } = this.props;
     this.findRessource(params.id);
     //console.log("userInSession", this.props.userInSession);
+
+    if (isnull(this.props.userInSession)) return "..loading";
+
+    if (this.props.userInSession === false) {
+      message.info("You need to log in before access this page");
+      this.props.history.push("/");
+      //return <Redirect to="/" />;
+      return;
+    }
+
     if (this.props.userInSession.favorites.includes(params.id)) {
       this.setState({ fav: true });
     } else {

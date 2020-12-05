@@ -2,6 +2,8 @@ import React from "react";
 import { editSignup } from "../auth/auth-service";
 import { Form, Input, Select, Button } from "antd";
 import { upload, saveAvatar } from "../auth/auth-service";
+import isnull from "lodash.isnull";
+import { message } from "antd";
 
 export default class EditProfile extends React.Component {
   state = {
@@ -24,7 +26,7 @@ export default class EditProfile extends React.Component {
     }
 
     let avatar = this.state.avatar;
-    if (event.avatar === "") {
+    if (event.avatar === null) {
       avatar = this.props.userInSession.avatar;
     } else {
       avatar = event.avatar;
@@ -43,10 +45,9 @@ export default class EditProfile extends React.Component {
         //   role: "user",
         // });
         this.props.history.push("/profile");
+        this.props.updateUser(response);
       })
       .catch((error) => console.log(error));
-
-    //this.props.updateUser({ user });
   };
 
   fileChangedHandler = (event) => {
@@ -67,12 +68,16 @@ export default class EditProfile extends React.Component {
   };
 
   componentDidMount() {
-    console.log("this.formRef", this.formRef);
-  }
+    //   if (isnull(this.props.userInSession)) return "..loading";
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.userInSession === null && this.props.userInSession) {
-      // console.log("coucou user", this.formRef);
+    //   if (this.props.userInSession === false) {
+    //     message.info("You need to log in before access this page");
+    //     this.props.history.push("/");
+    //     //return <Redirect to="/" />;
+    //     return;
+    //   }
+    console.log("helloooo");
+    if (this.props.userInSession) {
       const { email, username, level } = this.props.userInSession;
 
       this.formRef.current.setFieldsValue({
@@ -84,7 +89,22 @@ export default class EditProfile extends React.Component {
     }
   }
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevProps.userInSession === null && this.props.userInSession) {
+  //     console.log("coucou user", this.formRef);
+  //     const { email, username, level } = this.props.userInSession;
+
+  //     this.formRef.current.setFieldsValue({
+  //       email,
+  //       username,
+  //       password: "",
+  //       level,
+  //     });
+  //   }
+  // }
+
   render() {
+    //if (isnull(this.state.loggedInUser)) return "..loading";
     console.log("user", this.props.userInSession);
     return (
       <>
@@ -123,7 +143,7 @@ export default class EditProfile extends React.Component {
                 //   },
                 // ]}
                 hasFeedback>
-                <Input.Password placeholder="Don't touch if you want to keep the same password #obvious" />
+                <Input.Password placeholder="Don't touch if you want to keep the same password" />
               </Form.Item>
               <Form.Item
                 name="username"
@@ -150,11 +170,9 @@ export default class EditProfile extends React.Component {
                   },
                 ]}>
                 <Select>
-                  <Select.Option /*value="padawan"*/>Padawan</Select.Option>
-                  <Select.Option /*value="jedi"*/>Jedi</Select.Option>
-                  <Select.Option /*value="master jedi"*/>
-                    Master Jedi
-                  </Select.Option>
+                  <Select.Option value="padawan">Padawan</Select.Option>
+                  <Select.Option value="jedi">Jedi</Select.Option>
+                  <Select.Option value="master jedi">Master Jedi</Select.Option>
                 </Select>
               </Form.Item>
               <p>Your actual magnificient avatar</p>
@@ -164,7 +182,7 @@ export default class EditProfile extends React.Component {
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
-                  Editttt
+                  Edit
                 </Button>
               </Form.Item>
             </>
