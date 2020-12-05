@@ -22,6 +22,8 @@ export default class RessourceDetail extends Component {
     addFavorite(this.state.ressource._id)
       .then((response) => {
         console.log("addFav", response);
+        const user = response.user;
+        this.props.updateUser({ user });
         this.setState({ fav: true });
       })
       .catch((error) => console.log(error));
@@ -30,21 +32,32 @@ export default class RessourceDetail extends Component {
   deleteFavorite = (id) => {
     deleteFavorite(this.state.ressource._id)
       .then((response) => {
-        console.log("deletFav", response);
+        console.log("deletFav", response.data);
         this.setState({ fav: false });
       })
       .catch((error) => console.log(error));
   };
+
+  // TODO : récupérer le user de l'APP + vérifier si l'ID de la ressource existe déjà dans le user pour setter le state
 
   componentDidMount() {
     const {
       match: { params },
     } = this.props;
     this.findRessource(params.id);
+    console.log("userInSession", this.props.userInSession);
+    if (this.props.userInSession) {
+      if (this.props.userInSession.favorites.includes(params.id)) {
+        this.setState({ fav: true });
+      } else {
+        this.setState({ fav: false });
+      }
+    }
   }
 
   render() {
     const ressource = this.state.ressource;
+    console.log(this.props);
     return (
       <div>
         {this.state.ressource &&
@@ -54,13 +67,13 @@ export default class RessourceDetail extends Component {
         this.state.ressource.comments ? (
           <div>
             <h1>{ressource.title}</h1>
-            {this.state.fav === false ? (
+            {this.state.fav === true ? (
               <p>
-                <Button onClick={this.addAFavorite}>Add favorite</Button>
+                <Button onClick={this.deleteFavorite}>Delete favorite</Button>
               </p>
             ) : (
               <p>
-                <Button onClick={this.deleteFavorite}>Delete favorite</Button>
+                <Button onClick={this.addAFavorite}>Add favorite</Button>
               </p>
             )}
             <p>
@@ -89,7 +102,7 @@ export default class RessourceDetail extends Component {
             <p>Level : {ressource.level}</p>
             <p>Price : {ressource.price}</p>
             <p>
-              <a href={ressource.link} rel="noreferrer" target="_blank">
+              <a href={ressource.link} rel='noreferrer' target='_blank'>
                 Find your way
               </a>
             </p>

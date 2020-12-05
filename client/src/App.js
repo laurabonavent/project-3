@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import isnull from "lodash.isnull";
 
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { Redirect } from "react-router-dom";
@@ -23,6 +24,7 @@ class App extends React.Component {
 
   fetchUser() {
     if (this.state.loggedInUser === null) {
+      console.log("coucou");
       loggedin()
         .then((data) => {
           this.setState({ loggedInUser: data });
@@ -44,6 +46,7 @@ class App extends React.Component {
   };
 
   render() {
+    if (isnull(this.state.loggedInUser)) return "..loading";
     return (
       <div className="App">
         <Navbar userInSession={this.state.loggedInUser} />
@@ -74,15 +77,33 @@ class App extends React.Component {
             render={(props) => (
               <EditProfile
                 history={props.history}
+            path='/profile'
+            render={(props) => (
+              <Profile {...props} userInSession={this.state.loggedInUser} />
+            )}
+          />
+         
+          <Route exact path='/ressources/create' component={CreateRessource} />
+    
+          <Route
+            exact
+            path='/ressources/:id'
+            render={(props) => (
+              <Ressource
+                {...props}
+                updateUser={this.updateLoggedInUser}
                 userInSession={this.state.loggedInUser}
               />
             )}
           />
+<<<<<<< HEAD
           <Route exact path="/profile" render={() => <Profile />} />
 
           <Route exact path="/ressources/create" component={CreateRessource} />
           <Route exact path="/ressources/edit/:id" component={EditRessource} />
           <Route exact path="/ressources/:id" component={Ressource} />
+=======
+>>>>>>> 89dedcbecf391e99c7eef95861bc74d7e0d9e9be
         </Switch>
         <Footer userInSession={this.state.loggedInUser} />
       </div>

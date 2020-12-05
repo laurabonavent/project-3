@@ -138,6 +138,7 @@ authRoutes.post("/login", (req, res, next) => {
   const { email, password } = req.body;
 
   User.findOne({ email })
+    .populate("favorites")
     .then((user) => {
       if (!user) {
         return next(new Error("No user with that email"));
