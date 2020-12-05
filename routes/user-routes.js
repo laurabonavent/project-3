@@ -6,6 +6,12 @@ const uploader = require("../configs/cloudinary-setup.config");
 
 // PUT SESSION
 userRouter.put("/user", uploader.single("avatar"), (req, res, next) => {
+  if (!req.session.user) {
+    res.status(400).json({
+      message: "Please login before access the user profile",
+    });
+    return;
+  }
   const { email, password, username, level } = req.body;
   let avatarUser;
 
@@ -35,9 +41,9 @@ userRouter.put("/user", uploader.single("avatar"), (req, res, next) => {
     role: "user",
   };
 
-  User.findByIdAndUpdate(req.session.user.id, updateUser, { new: true })
+  User.findOneAndUpdate(req.session.user.id, updateUser, { new: true })
     .then((user) => {
-      res.status(200).json(updateUser);
+      res.status(200).json(user);
     })
     .catch((error) => {
       res.json(error);
