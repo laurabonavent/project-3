@@ -8,7 +8,7 @@ adminRoutes.post("/ressources", (req, res, next) => {
     const {
       title,
       description,
-      //image,
+      image,
       link,
       language,
       technology,
@@ -16,6 +16,18 @@ adminRoutes.post("/ressources", (req, res, next) => {
       level,
       price,
     } = req.body;
+
+    console.log({
+      title,
+      description,
+      image,
+      link,
+      language,
+      technology,
+      type,
+      level,
+      price,
+    });
 
     if (
       !title ||
@@ -33,7 +45,7 @@ adminRoutes.post("/ressources", (req, res, next) => {
     Ressources.create({
       title,
       description,
-      //image,
+      image,
       link,
       language,
       technology,

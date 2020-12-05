@@ -4,7 +4,6 @@ import { Form, Input, Select, Button } from "antd";
 import { upload, saveAvatar } from "./auth-service";
 const { Option } = Select;
 
-
 class Signup extends React.Component {
   state = {
     email: "",
@@ -60,10 +59,10 @@ class Signup extends React.Component {
   render() {
     return (
       <>
-        <Form name="signup" onFinish={this.onFinish} scrollToFirstError>
+        <Form name='signup' onFinish={this.onFinish} scrollToFirstError>
           <Form.Item
-            name="email"
-            label="E-mail"
+            name='email'
+            label='E-mail'
             value={this.state.email}
             rules={[
               {
@@ -78,8 +77,8 @@ class Signup extends React.Component {
             <Input />
           </Form.Item>
           <Form.Item
-            name="password"
-            label="Password"
+            name='password'
+            label='Password'
             value={this.state.password}
             rules={[
               {
@@ -91,8 +90,8 @@ class Signup extends React.Component {
             <Input.Password />
           </Form.Item>
           <Form.Item
-            name="username"
-            label="Name"
+            name='username'
+            label='Name'
             value={this.state.username}
             rules={[
               {
@@ -104,8 +103,8 @@ class Signup extends React.Component {
             <Input />
           </Form.Item>
           <Form.Item
-            name="level"
-            label="Level"
+            name='level'
+            label='Level'
             value={this.state.level}
             rules={[
               {
@@ -115,16 +114,16 @@ class Signup extends React.Component {
               },
             ]}>
             <Select>
-              <Select.Option value="padawan">Padawan</Select.Option>
-              <Select.Option value="jedi">Jedi</Select.Option>
-              <Select.Option value="master jedi">Master Jedi</Select.Option>
+              <Select.Option value='padawan'>Padawan</Select.Option>
+              <Select.Option value='jedi'>Jedi</Select.Option>
+              <Select.Option value='master jedi'>Master Jedi</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item name="avatar" label="Avatar">
-            <input type="file" onChange={this.fileChangedHandler} />
+          <Form.Item name='avatar' label='Avatar'>
+            <input type='file' onChange={this.fileChangedHandler} />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button type='primary' htmlType='submit'>
               Register
             </Button>
           </Form.Item>

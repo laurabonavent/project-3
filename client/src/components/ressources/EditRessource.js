@@ -5,6 +5,7 @@ import { Form, Input, Select, Button, message } from "antd";
 import { getEnumValues } from "../auth/auth-service";
 import { editRessource } from "../auth/auth-service";
 import { getOneRessource } from "../auth/auth-service";
+import { uploadImage } from "../auth/auth-service";
 
 const { TextArea } = Input;
 //const { Option } = Select;
@@ -35,10 +36,6 @@ export default class EditRessource extends Component {
   //   console.log("event", e);
   // };
 
-  success = () => {
-    message.success("This is a success message");
-  };
-
   findEnumValues = () => {
     getEnumValues()
       .then((response) => {
@@ -57,11 +54,26 @@ export default class EditRessource extends Component {
       .catch((error) => console.log(error));
   };
 
+  fileChangedHandler = (event) => {
+    console.log("event.target", event.target.files[0]);
+
+    //this.setState({ avatar: event.target.files[0] });
+    const uploadData = new FormData();
+    uploadData.append("image", event.target.files[0]);
+
+    uploadImage(uploadData)
+      .then((response) => {
+        const image = response.secure_url;
+        this.setState({ image });
+        console.log("image: ", image);
+      })
+      .catch((error) => console.log(error));
+  };
+
   onFinish = (event, id) => {
     const {
       title,
       description,
-      //image,
       link,
       language,
       technology,
@@ -70,10 +82,12 @@ export default class EditRessource extends Component {
       price,
     } = event;
 
+    const image = this.state.image;
+
     editRessource(
       title,
       description,
-      //image,
+      image,
       link,
       language,
       technology,
@@ -88,8 +102,12 @@ export default class EditRessource extends Component {
           ressource: response,
           formStatus: "ok",
         });
+        message.success("Ressource updated");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        message.error("Ressource not updated");
+        console.log(error);
+      });
   };
 
   componentDidMount() {
@@ -281,13 +299,17 @@ export default class EditRessource extends Component {
                   })}
                 </Select>
               </Form.Item>
-              {/* <Form.Item name='image' label='Image'>
+              <img
+                src={this.state.ressource.image}
+                alt={this.state.ressource.title}
+              />
+              <Form.Item name='image' label='Image'>
                 <input
                   type='file'
-                  value={this.state.image}
+                  value={this.state.ressource.image}
                   onChange={this.fileChangedHandler}
                 />
-              </Form.Item> */}
+              </Form.Item>
               <Form.Item>
                 <Button type='primary' htmlType='submit'>
                   Edit

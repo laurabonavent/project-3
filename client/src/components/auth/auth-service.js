@@ -73,7 +73,13 @@ function getFavorites() {
 }
 export { getFavorites };
 
-// UPLOAD Image
+// UPLOAD PHOTO
+function upload(formdata) {
+  return service.post("/upload", formdata).then((response) => response.data);
+}
+export { upload };
+
+// UPLOAD Image ressource
 function uploadImage(formdata) {
   return service
     .post("/upload/image", formdata)
@@ -81,18 +87,13 @@ function uploadImage(formdata) {
 }
 export { uploadImage };
 
-// UPLOAD PHOTO
-function upload(formdata) {
-  return service.post("/upload", formdata).then((response) => response.data);
-}
-export { upload };
-
-function saveAvatar(data) {
-  return service.post("/upload", data).then((response) => response.data);
-}
-export { saveAvatar };
+// function saveAvatar(data) {
+//   return service.post("/upload", data).then((response) => response.data);
+// }
+// export { saveAvatar };
 
 // RESSOURCES
+
 function getRessources() {
   return service.get("/ressources").then((response) => response.data);
 }
@@ -113,7 +114,7 @@ export { getEnumValues };
 function createRessource(
   title,
   description,
-  //image,
+  image,
   link,
   language,
   technology,
@@ -125,7 +126,7 @@ function createRessource(
     .post("/ressources", {
       title,
       description,
-      //image,
+      image,
       link,
       language,
       technology,
@@ -146,7 +147,7 @@ export { createRessource };
 function editRessource(
   title,
   description,
-  //image,
+  image,
   link,
   language,
   technology,
@@ -159,7 +160,7 @@ function editRessource(
     .put(`/ressources/${id}`, {
       title,
       description,
-      //image,
+      image,
       link,
       language,
       technology,

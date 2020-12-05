@@ -9,31 +9,31 @@ import { createRessource } from "../auth/auth-service";
 const { TextArea } = Input;
 const { Option } = Select;
 
-const selectBefore = (
-  <Select initialvalues='http://' className='select-before'>
-    <Option value='https://'>https://</Option>
-    <Option value='http://'>http://</Option>
-  </Select>
-);
-const selectAfter = (
-  <Select initialvalues='.com' className='select-after'>
-    <Option value='.com'>.com</Option>
-    <Option value='.jp'>.fr</Option>
-    <Option value='.org'>.org</Option>
-  </Select>
-);
+// const selectBefore = (
+//   <Select initialvalues='http://' className='select-before'>
+//     <Option value='https://'>https://</Option>
+//     <Option value='http://'>http://</Option>
+//   </Select>
+// );
+// const selectAfter = (
+//   <Select initialvalues='.com' className='select-after'>
+//     <Option value='.com'>.com</Option>
+//     <Option value='.jp'>.fr</Option>
+//     <Option value='.org'>.org</Option>
+//   </Select>
+// );
 
 export default class CreateRessource extends Component {
   state = {
-    // title: "",
-    // description: "",
-    // link: "",
-    // technology: "",
-    // type: "",
-    // level: "",
-    // language: "",
-    // price: "",
-    // image: "",
+    title: "",
+    description: "",
+    link: "",
+    technology: "",
+    type: "",
+    level: "",
+    language: "",
+    price: "",
+    image: "",
     enumValues: [],
   };
 
@@ -56,11 +56,9 @@ export default class CreateRessource extends Component {
     //this.setState({ avatar: event.target.files[0] });
     const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
-    console.log(uploadData);
 
     uploadImage(uploadData)
       .then((response) => {
-        console.log("response", response);
         const image = response.secure_url;
         this.setState({ image });
         console.log("image: ", image);
@@ -73,7 +71,6 @@ export default class CreateRessource extends Component {
     const {
       title,
       description,
-      //image,
       link,
       language,
       technology,
@@ -82,10 +79,12 @@ export default class CreateRessource extends Component {
       price,
     } = event;
 
+    const image = this.state.image;
+
     createRessource(
       title,
       description,
-      //image,
+      image,
       link,
       language,
       technology,
@@ -94,15 +93,8 @@ export default class CreateRessource extends Component {
       price
     )
       .then((response) => {
-        this.setState({
-          title: response.title,
-          description: response.description,
-          link: response.link,
-          level: response.level,
-          language: response.language,
-          type: response.type,
-          price: response.price,
-        });
+        console.log("createResponse", response);
+        this.props.history.push(`/ressources/${response._id}`);
       })
       .catch((error) => console.log(error));
   };
@@ -168,8 +160,8 @@ export default class CreateRessource extends Component {
                   },
                 ]}>
                 <Input
-                  addonBefore={selectBefore}
-                  addonAfter={selectAfter}
+                  // addonBefore={selectBefore}
+                  // addonAfter={selectAfter}
                   value={this.state.link}
                 />
               </Form.Item>
@@ -277,15 +269,14 @@ export default class CreateRessource extends Component {
                   })}
                 </Select>
               </Form.Item>
-              {/* 
-              // TODO UPLOAD Image : https://ant.design/components/upload/
+              {/* TODO UPLOAD Image : https://ant.design/components/upload/ */}
               <Form.Item name='image' label='Image'>
                 <input
                   type='file'
                   value={this.state.image}
                   onChange={this.fileChangedHandler}
                 />
-              </Form.Item> */}
+              </Form.Item>
               <Form.Item>
                 <Button type='primary' htmlType='submit'>
                   Register
