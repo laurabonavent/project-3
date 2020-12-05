@@ -68,26 +68,28 @@ class App extends React.Component {
             path="/signup"
             render={(props) => <Signup history={props.history} />}
           />
-          {/* 
-        <Route exact path='/edit-profile' component={EditProfile} />
-          {/* <Route exact path='/signup' component={Signup} />*/}
           <Route
             exact
             path="/profile/edit"
             render={(props) => (
               <EditProfile
                 history={props.history}
-            path='/profile'
+                updateUser={this.updateLoggedInUser}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/profile"
             render={(props) => (
               <Profile {...props} userInSession={this.state.loggedInUser} />
             )}
           />
-         
-          <Route exact path='/ressources/create' component={CreateRessource} />
-    
+          <Route exact path="/ressources/create" component={CreateRessource} />
+          <Route exact path="/ressources/edit/:id" component={EditRessource} />
           <Route
             exact
-            path='/ressources/:id'
+            path="/ressources/:id"
             render={(props) => (
               <Ressource
                 {...props}
@@ -96,14 +98,6 @@ class App extends React.Component {
               />
             )}
           />
-<<<<<<< HEAD
-          <Route exact path="/profile" render={() => <Profile />} />
-
-          <Route exact path="/ressources/create" component={CreateRessource} />
-          <Route exact path="/ressources/edit/:id" component={EditRessource} />
-          <Route exact path="/ressources/:id" component={Ressource} />
-=======
->>>>>>> 89dedcbecf391e99c7eef95861bc74d7e0d9e9be
         </Switch>
         <Footer userInSession={this.state.loggedInUser} />
       </div>

@@ -45,6 +45,8 @@ export default class EditProfile extends React.Component {
         this.props.history.push("/profile");
       })
       .catch((error) => console.log(error));
+
+    //this.props.updateUser({ user });
   };
 
   fileChangedHandler = (event) => {

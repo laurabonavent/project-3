@@ -26,14 +26,13 @@ function signup(email, username, password, level, role, avatar) {
 export { signup };
 
 // EDIT SIGNUP
-function editSignup(email, username, password, level, role, avatar) {
+function editSignup(email, username, password, level, avatar) {
   return service
     .put("/user", {
       email: email,
       username: username,
       password: password,
       level: level,
-      role: role,
       avatar: avatar,
     })
     .then((response) => {
