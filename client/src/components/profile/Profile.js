@@ -46,8 +46,6 @@ export default class Profile extends Component {
   componentDidMount() {
     //this.findUserInfo();
     //this.findUserFavorites();
-    const user = this.props.userInSession;
-    console.log(user);
   }
 
   getFilterValues = (event) => {

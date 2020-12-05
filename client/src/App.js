@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import isnull from "lodash.isnull";
 
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { Redirect } from "react-router-dom";
@@ -44,6 +45,7 @@ class App extends React.Component {
   };
 
   render() {
+    if (isnull(this.state.loggedInUser)) return "..loading";
     return (
       <div className='App'>
         <Navbar userInSession={this.state.loggedInUser} />
