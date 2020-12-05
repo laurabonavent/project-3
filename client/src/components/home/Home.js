@@ -68,12 +68,6 @@ export default class Home extends Component {
   };
 
   render() {
-    console.log("this.state.pageSize: ", this.state.pageSize);
-    console.log("this.state.maxValue: ", this.state.maxValue);
-
-    console.log("filters:", this.state.filters);
-    // ["book", "documentation"]
-
     // filtrer les réponses en fonction de la search bar
     let showedRessources = this.state.ressources.filter((el) => {
       return el.title.toLowerCase().includes(this.state.search.toLowerCase());

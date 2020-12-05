@@ -19,12 +19,28 @@ function signup(email, username, password, level, role, avatar) {
       avatar: avatar,
     })
     .then((response) => {
-      console.log("coucou");
       return response.data;
     });
 }
 
 export { signup };
+
+// EDIT SIGNUP
+function editSignup(email, username, password, level, role, avatar) {
+  return service
+    .put("/user", {
+      email: email,
+      username: username,
+      password: password,
+      level: level,
+      role: role,
+      avatar: avatar,
+    })
+    .then((response) => {
+      return response.data;
+    });
+}
+export { editSignup };
 
 // LOGIN
 function login(email, password) {
@@ -127,7 +143,7 @@ function createRessource(
 
 export { createRessource };
 
-// CREATE RESSOURCE
+// EDIT RESSOURCE
 function editRessource(
   title,
   description,

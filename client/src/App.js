@@ -16,6 +16,7 @@ import EditRessource from "./components/ressources/EditRessource";
 import Navbar from "./components/nav/Navbar";
 import Footer from "./components/nav/Footer";
 import BackButton from "./components/BackButton";
+import EditProfile from "./components/profile/EditProfile";
 
 class App extends React.Component {
   state = { loggedInUser: null };
@@ -44,14 +45,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         <Navbar userInSession={this.state.loggedInUser} />
         <BackButton />
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route exact path="/" component={Home} />
           <Route
             exact
-            path='/login'
+            path="/login"
             render={(props) => (
               <Login
                 history={props.history}
@@ -61,17 +62,27 @@ class App extends React.Component {
           />
           <Route
             exact
-            path='/signup'
+            path="/signup"
             render={(props) => <Signup history={props.history} />}
           />
           {/* 
         <Route exact path='/edit-profile' component={EditProfile} />
           {/* <Route exact path='/signup' component={Signup} />*/}
-          <Route exact path='/profile' render={() => <Profile />} />
-          {/* <Route exact path='/edit-profile' component={EditProfile} />*/}
-          <Route exact path='/ressources/create' component={CreateRessource} />
-          <Route exact path='/ressources/edit/:id' component={EditRessource} />
-          <Route exact path='/ressources/:id' component={Ressource} />
+          <Route
+            exact
+            path="/profile/edit"
+            render={(props) => (
+              <EditProfile
+                history={props.history}
+                userInSession={this.state.loggedInUser}
+              />
+            )}
+          />
+          <Route exact path="/profile" render={() => <Profile />} />
+
+          <Route exact path="/ressources/create" component={CreateRessource} />
+          <Route exact path="/ressources/edit/:id" component={EditRessource} />
+          <Route exact path="/ressources/:id" component={Ressource} />
         </Switch>
         <Footer userInSession={this.state.loggedInUser} />
       </div>

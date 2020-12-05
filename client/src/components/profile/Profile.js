@@ -106,6 +106,8 @@ export default class Profile extends Component {
         showedfavorites = filteredRessources; // méthode brutus
       }
 
+      return ressource;
+
       // showedRessources.filter((ress) => {
       //   return ress._id === ressource._id;
       // });
@@ -116,7 +118,7 @@ export default class Profile extends Component {
       <div>
         {this.state.user && this.state.favorites ? (
           <div>
-            <img src={user.avatar} alt='' />
+            <img src={user.avatar} alt="" />
             <p>{user.username}'s dashboard</p>
             <p>Email : {user.email}</p>
             {/* <AutoComplete
@@ -152,7 +154,7 @@ export default class Profile extends Component {
                 .slice(this.state.minValue, this.state.maxValue)
                 .map((val, index) => <Card data={val} key={index} />)}
             <Pagination
-              showSizeChanger = {false}
+              showSizeChanger={false}
               responsive
               defaultCurrent={1}
               onChange={this.changePage}
