@@ -14,28 +14,28 @@ export default class Profile extends Component {
     maxValue: 10,
   };
 
-  findUserInfo = () => {
-    getUser()
-      .then((response) => {
-        console.log("response", response);
-        this.setState({ user: response.user });
-      })
-      .catch((error) => console.log(error));
-  };
+  // findUserInfo = () => {
+  //   getUser()
+  //     .then((response) => {
+  //       console.log("response", response);
+  //       this.setState({ user: response.user });
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
 
-  findUserFavorites = () => {
-    getFavorites()
-      .then((response) => {
-        console.log("favorites", response);
-        // const autocompleteFavorite = response.favorites.map((favorite) => {
-        //   return { value: favorite.title };
-        // });
-        // console.log(autocompleteFavorite);
-        // this.setState({ favorites: autocompleteFavorite });
-        this.setState({ favorites: response });
-      })
-      .catch((error) => console.log(error));
-  };
+  // findUserFavorites = () => {
+  //   getFavorites()
+  //     .then((response) => {
+  //       console.log("favorites", response);
+  //       // const autocompleteFavorite = response.favorites.map((favorite) => {
+  //       //   return { value: favorite.title };
+  //       // });
+  //       // console.log(autocompleteFavorite);
+  //       // this.setState({ favorites: autocompleteFavorite });
+  //       this.setState({ favorites: response });
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
 
   handleChange = (event) => {
     this.setState({

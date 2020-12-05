@@ -88,7 +88,7 @@ userRouter.delete("/favorites/:id", (req, res, next) => {
       user
         .save()
         .then((user) => {
-          res.status(200).json({ message: "Favorite deleted" });
+          res.status(200).json({ message: "Favorite deleted", user });
         })
         .catch((err) => {
           res.status(400).json({ message: "Favorite not deleted" });

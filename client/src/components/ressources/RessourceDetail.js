@@ -33,6 +33,9 @@ export default class RessourceDetail extends Component {
     deleteFavorite(this.state.ressource._id)
       .then((response) => {
         console.log("deletFav", response.data);
+        const user = response.user;
+        console.log(user);
+        this.props.updateUser({ user });
         this.setState({ fav: false });
       })
       .catch((error) => console.log(error));
@@ -45,19 +48,17 @@ export default class RessourceDetail extends Component {
       match: { params },
     } = this.props;
     this.findRessource(params.id);
-    console.log("userInSession", this.props.userInSession);
-    if (this.props.userInSession) {
-      if (this.props.userInSession.favorites.includes(params.id)) {
-        this.setState({ fav: true });
-      } else {
-        this.setState({ fav: false });
-      }
+    //console.log("userInSession", this.props.userInSession);
+    if (this.props.userInSession.favorites.includes(params.id)) {
+      this.setState({ fav: true });
+    } else {
+      this.setState({ fav: false });
     }
   }
 
   render() {
     const ressource = this.state.ressource;
-    console.log(this.props);
+    //console.log(this.props);
     return (
       <div>
         {this.state.ressource &&
