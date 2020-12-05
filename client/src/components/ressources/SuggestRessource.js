@@ -4,42 +4,20 @@ import { Form, Input, Select, Button } from "antd";
 
 import { getEnumValues } from "../auth/auth-service";
 import { uploadImage } from "../auth/auth-service";
-import { createRessource } from "../auth/auth-service";
 
 const { TextArea } = Input;
-const { Option } = Select;
 
-<<<<<<< HEAD
-const selectBefore = (
-  <Select initialvalues="http://" className="select-before">
-    <Option value="https://">https://</Option>
-    <Option value="http://">http://</Option>
-  </Select>
-);
-const selectAfter = (
-  <Select initialvalues=".com" className="select-after">
-    <Option value=".com">.com</Option>
-    <Option value=".jp">.fr</Option>
-    <Option value=".org">.org</Option>
-  </Select>
-);
-=======
-// const selectBefore = (
-//   <Select initialvalues='http://' className='select-before'>
-//     <Option value='https://'>https://</Option>
-//     <Option value='http://'>http://</Option>
-//   </Select>
-// );
-// const selectAfter = (
-//   <Select initialvalues='.com' className='select-after'>
-//     <Option value='.com'>.com</Option>
-//     <Option value='.jp'>.fr</Option>
-//     <Option value='.org'>.org</Option>
-//   </Select>
-// );
->>>>>>> 45d92058b9c2ad2b3c1f6734383922f9041921e5
+const Mailto = ({ email, subject = "", body = "", children }) => {
+  let params = subject || body ? "?" : "";
+  if (subject) params += `subject=${encodeURIComponent(subject)}`;
+  if (body) params += `${subject ? "&" : ""}body=${encodeURIComponent(body)}`;
 
-export default class CreateRessource extends Component {
+  return <a href={`mailto:${email}${params}`}>{children}</a>;
+};
+
+let arrValue = [];
+
+export default class SuggestRessource extends Component {
   state = {
     title: "",
     description: "",
@@ -53,8 +31,25 @@ export default class CreateRessource extends Component {
     enumValues: [],
   };
 
-  onChange = ({ target: { value } }) => {
-    this.setState({ description: value });
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log("event target", { [name]: value });
+    this.setState({ [name]: value });
+  };
+
+  handleSelect = (value, LabeledValue) => {
+    let name = LabeledValue.name;
+    // console.log({ name, value });
+    // console.log("selected value", LabeledValue)
+    this.setState({ [name]: value });
+  };
+
+  handleMultipleSelect = (value, LabeledValue) => {
+    let name = LabeledValue.name;
+    arrValue.push(value);
+    let newValue = Object.values(arrValue);
+    console.log("each value", Object.values(arrValue));
+    this.setState({ [name]: newValue });
   };
 
   findEnumValues = () => {
@@ -72,45 +67,14 @@ export default class CreateRessource extends Component {
     //this.setState({ avatar: event.target.files[0] });
     const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
+    console.log(uploadData);
 
     uploadImage(uploadData)
       .then((response) => {
+        console.log("response", response);
         const image = response.secure_url;
         this.setState({ image });
         console.log("image: ", image);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  onFinish = (event) => {
-    console.log(event);
-    const {
-      title,
-      description,
-      link,
-      language,
-      technology,
-      type,
-      level,
-      price,
-    } = event;
-
-    const image = this.state.image;
-
-    createRessource(
-      title,
-      description,
-      image,
-      link,
-      language,
-      technology,
-      type,
-      level,
-      price
-    )
-      .then((response) => {
-        console.log("createResponse", response);
-        this.props.history.push(`/ressources/${response._id}`);
       })
       .catch((error) => console.log(error));
   };
@@ -129,24 +93,24 @@ export default class CreateRessource extends Component {
         enumValues.languages &&
         enumValues.price ? (
           <div>
-            Create a new ressource
-            <Form name="create" onFinish={this.onFinish} scrollToFirstError>
+            Suggest a ressource
+            <Form name='suggest' scrollToFirstError>
               <Form.Item
-                onChange={this.onChange}
-                name="title"
-                label="Title"
-                value={this.state.title}
+                onChange={(e) => this.handleChange(e)}
+                name='title'
+                label='Title'
                 rules={[
                   {
                     required: true,
                     message: "Please input your Title!",
                   },
                 ]}>
-                <Input />
+                <Input name='title' />
               </Form.Item>
               <Form.Item
-                name="description"
-                label="Description"
+                name='description'
+                label='Description'
+                onChange={this.handleChange}
                 value={this.state.description}
                 rules={[
                   {
@@ -156,17 +120,18 @@ export default class CreateRessource extends Component {
                   },
                 ]}>
                 <TextArea
-                  placeholder="Description"
+                  placeholder='Description'
                   value={this.state.description}
-                  onChange={this.onChange}
+                  name='description'
                   autoSize={{ minRows: 1, maxRows: 5 }}
                   showCount
                   maxLength={250}
                 />
               </Form.Item>
               <Form.Item
-                name="link"
-                label="URL"
+                name='link'
+                label='URL'
+                onChange={this.handleChange}
                 value={this.state.link}
                 rules={[
                   {
@@ -175,15 +140,11 @@ export default class CreateRessource extends Component {
                     whitespace: true,
                   },
                 ]}>
-                <Input
-                  // addonBefore={selectBefore}
-                  // addonAfter={selectAfter}
-                  value={this.state.link}
-                />
+                <Input name='link' type='url' value={this.state.link} />
               </Form.Item>
               <Form.Item
-                name="technology"
-                label="Technology"
+                name='technology'
+                label='Technology'
                 value={this.state.technology}
                 rules={[
                   {
@@ -193,10 +154,17 @@ export default class CreateRessource extends Component {
                     max: 4,
                   },
                 ]}>
-                <Select mode="multiple" allowClear>
+                <Select
+                  name='technology'
+                  mode='multiple'
+                  allowClear
+                  onSelect={this.handleMultipleSelect}>
                   {enumValues.technologies.map((technology, index) => {
                     return (
-                      <Select.Option value={technology} key={index}>
+                      <Select.Option
+                        name='technology'
+                        value={technology}
+                        key={index}>
                         {technology}
                       </Select.Option>
                     );
@@ -204,8 +172,8 @@ export default class CreateRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name="type"
-                label="Type"
+                name='type'
+                label='Type'
                 value={this.state.type}
                 rules={[
                   {
@@ -215,10 +183,13 @@ export default class CreateRessource extends Component {
                     max: 3,
                   },
                 ]}>
-                <Select mode="multiple" allowClear>
+                <Select
+                  mode='multiple'
+                  allowClear
+                  onSelect={this.handleMultipleSelect}>
                   {enumValues.types.map((type, index) => {
                     return (
-                      <Select.Option value={type} key={index}>
+                      <Select.Option name='type' value={type} key={index}>
                         {type}
                       </Select.Option>
                     );
@@ -226,8 +197,8 @@ export default class CreateRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name="level"
-                label="Level"
+                name='level'
+                label='Level'
                 value={this.state.level}
                 rules={[
                   {
@@ -235,10 +206,10 @@ export default class CreateRessource extends Component {
                     message: "Please choose a level",
                   },
                 ]}>
-                <Select>
+                <Select onSelect={this.handleSelect}>
                   {enumValues.level.map((level, index) => {
                     return (
-                      <Select.Option value={level} key={index}>
+                      <Select.Option name='level' value={level} key={index}>
                         {level}
                       </Select.Option>
                     );
@@ -246,8 +217,8 @@ export default class CreateRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name="language"
-                label="Language"
+                name='language'
+                label='Language'
                 value={this.state.language}
                 rules={[
                   {
@@ -255,10 +226,13 @@ export default class CreateRessource extends Component {
                     message: "Please choose a language",
                   },
                 ]}>
-                <Select>
+                <Select onSelect={this.handleSelect}>
                   {enumValues.languages.map((language, index) => {
                     return (
-                      <Select.Option value={language} key={index}>
+                      <Select.Option
+                        name='language'
+                        value={language}
+                        key={index}>
                         {language}
                       </Select.Option>
                     );
@@ -266,8 +240,8 @@ export default class CreateRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name="price"
-                label="Price"
+                name='price'
+                label='Price'
                 value={this.state.price}
                 rules={[
                   {
@@ -275,28 +249,32 @@ export default class CreateRessource extends Component {
                     message: "Please choose a price",
                   },
                 ]}>
-                <Select>
+                <Select onSelect={this.handleSelect}>
                   {enumValues.price.map((price, index) => {
                     return (
-                      <Select.Option value={price} key={index}>
+                      <Select.Option name='price' value={price} key={index}>
                         {price}
                       </Select.Option>
                     );
                   })}
                 </Select>
               </Form.Item>
-              {/* TODO UPLOAD Image : https://ant.design/components/upload/ */}
+              {/* 
+              // TODO UPLOAD Image : https://ant.design/components/upload/
               <Form.Item name='image' label='Image'>
                 <input
                   type='file'
                   value={this.state.image}
                   onChange={this.fileChangedHandler}
                 />
-              </Form.Item>
+              </Form.Item> */}
               <Form.Item>
-                <Button type="primary" htmlType="submit">
-                  Register
-                </Button>
+                <Mailto
+                  email='contact@test.com'
+                  subject={`Suggest a new ressource called ${this.state.title}`}
+                  body={`Title : ${this.state.description} Description : ${this.state.description} URL : ${this.state.link} Technology : ${this.state.technology} Type : ${this.state.type} Level : ${this.state.level} Language : ${this.state.language} Price : ${this.state.price}`}>
+                  Mail me!
+                </Mailto>
               </Form.Item>
             </Form>
           </div>
