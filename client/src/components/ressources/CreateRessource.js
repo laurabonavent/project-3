@@ -9,21 +9,6 @@ import { createRessource } from "../auth/auth-service";
 const { TextArea } = Input;
 const { Option } = Select;
 
-<<<<<<< HEAD
-const selectBefore = (
-  <Select initialvalues="http://" className="select-before">
-    <Option value="https://">https://</Option>
-    <Option value="http://">http://</Option>
-  </Select>
-);
-const selectAfter = (
-  <Select initialvalues=".com" className="select-after">
-    <Option value=".com">.com</Option>
-    <Option value=".jp">.fr</Option>
-    <Option value=".org">.org</Option>
-  </Select>
-);
-=======
 // const selectBefore = (
 //   <Select initialvalues='http://' className='select-before'>
 //     <Option value='https://'>https://</Option>
@@ -37,7 +22,6 @@ const selectAfter = (
 //     <Option value='.org'>.org</Option>
 //   </Select>
 // );
->>>>>>> 45d92058b9c2ad2b3c1f6734383922f9041921e5
 
 export default class CreateRessource extends Component {
   state = {
@@ -286,9 +270,9 @@ export default class CreateRessource extends Component {
                 </Select>
               </Form.Item>
               {/* TODO UPLOAD Image : https://ant.design/components/upload/ */}
-              <Form.Item name='image' label='Image'>
+              <Form.Item name="image" label="Image">
                 <input
-                  type='file'
+                  type="file"
                   value={this.state.image}
                   onChange={this.fileChangedHandler}
                 />

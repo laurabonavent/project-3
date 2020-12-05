@@ -25,17 +25,18 @@ export default class EditProfile extends React.Component {
       password = event.password;
     }
 
-    let avatar = this.state.avatar;
-    if (event.avatar === null) {
+    let avatar;
+    if (!event.avatar) {
       avatar = this.props.userInSession.avatar;
     } else {
-      avatar = event.avatar;
+      avatar = this.state.avatar;
     }
 
     const { email, username, level } = event;
 
     editSignup(email, username, password, level, avatar)
       .then((response) => {
+        console.log(" avatar: ", avatar);
         // this.setState({
         //   email: "",
         //   password: "",
@@ -178,7 +179,11 @@ export default class EditProfile extends React.Component {
               <p>Your actual magnificient avatar</p>
               <img src={this.props.userInSession.avatar} alt="avatar" />
               <Form.Item name="avatar" label="Change the avatar">
-                <input type="file" onChange={this.fileChangedHandler} />
+                <input
+                  value={this.props.userInSession.image}
+                  type="file"
+                  onChange={this.fileChangedHandler}
+                />
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">

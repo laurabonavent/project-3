@@ -51,7 +51,6 @@ class App extends React.Component {
     //if (isnull(this.state.loggedInUser)) return "..loading";
 
     return (
-<<<<<<< HEAD
       <div className="App">
         <Route
           render={(props) => (
@@ -59,57 +58,6 @@ class App extends React.Component {
               <Navbar
                 userInSession={this.state.loggedInUser}
                 updateUser={this.updateLoggedInUser}
-=======
-      <div className='App'>
-        <Navbar userInSession={this.state.loggedInUser} />
-        <BackButton />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route
-            exact
-            path='/login'
-            render={(props) => (
-              <Login
-                history={props.history}
-                updateUser={this.updateLoggedInUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path='/signup'
-            render={(props) => <Signup history={props.history} />}
-          />
-          <Route
-            exact
-            path='/profile/edit'
-            render={(props) => (
-              <EditProfile
-                history={props.history}
-                updateUser={this.updateLoggedInUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path='/profile'
-            render={(props) => (
-              <Profile {...props} userInSession={this.state.loggedInUser} />
-            )}
-          />
-          <Route exact path='/ressources/create' component={CreateRessource} />
-          <Route
-            exact
-            path='/ressources/suggest'
-            component={SuggestRessource}
-          />
-          <Route exact path='/ressources/edit/:id' component={EditRessource} />
-          <Route
-            exact
-            path='/ressources/:id'
-            render={(props) => (
-              <Ressource
->>>>>>> 45d92058b9c2ad2b3c1f6734383922f9041921e5
                 {...props}
               />
 

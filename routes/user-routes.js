@@ -12,8 +12,7 @@ userRouter.put("/user", uploader.single("avatar"), (req, res, next) => {
     });
     return;
   }
-  const { email, password, username, level } = req.body;
-  let avatarUser;
+  const { email, password, username, level, avatar } = req.body;
 
   if (password.length < 7) {
     res.status(400).json({
@@ -23,20 +22,22 @@ userRouter.put("/user", uploader.single("avatar"), (req, res, next) => {
     return;
   }
 
-  const salt = bcryptjs.genSaltSync(10);
-  const hashPass = bcryptjs.hashSync(password, salt);
+  let hashPass;
 
-  if (req.file) {
-    avatarUser = req.file.path;
+  if (password === req.session.user.password) {
+    hashPass = req.session.user.password;
+    console.log("hasPas2: ", hashPass);
   } else {
-    avatarUser = req.body.existingImage;
+    const salt = bcryptjs.genSaltSync(10);
+    hashPass = bcryptjs.hashSync(password, salt);
+    console.log("hasPas3: ", hashPass);
   }
 
   let updateUser = {
     email: email,
     password: hashPass,
     username: username,
-    avatar: avatarUser,
+    avatar: avatar,
     level: level,
     role: "user",
   };

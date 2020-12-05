@@ -66,16 +66,11 @@ class Signup extends React.Component {
   render() {
     return (
       <>
-        <Form name='signup' onFinish={this.onFinish} scrollToFirstError>
+        <Form name="signup" onFinish={this.onFinish} scrollToFirstError>
           <Form.Item
-<<<<<<< HEAD
             name="email"
             //label="E-mail"
 
-=======
-            name='email'
-            label='E-mail'
->>>>>>> 45d92058b9c2ad2b3c1f6734383922f9041921e5
             value={this.state.email}
             rules={[
               {
@@ -93,13 +88,8 @@ class Signup extends React.Component {
             />
           </Form.Item>
           <Form.Item
-<<<<<<< HEAD
             name="password"
             //label="Password"
-=======
-            name='password'
-            label='Password'
->>>>>>> 45d92058b9c2ad2b3c1f6734383922f9041921e5
             value={this.state.password}
             rules={[
               {
@@ -114,13 +104,8 @@ class Signup extends React.Component {
             />
           </Form.Item>
           <Form.Item
-<<<<<<< HEAD
             name="username"
             //label="Name"
-=======
-            name='username'
-            label='Name'
->>>>>>> 45d92058b9c2ad2b3c1f6734383922f9041921e5
             value={this.state.username}
             rules={[
               {
@@ -132,14 +117,9 @@ class Signup extends React.Component {
             <Input placeholder="Name" />
           </Form.Item>
           <Form.Item
-<<<<<<< HEAD
             name="level"
             //label="Level"
 
-=======
-            name='level'
-            label='Level'
->>>>>>> 45d92058b9c2ad2b3c1f6734383922f9041921e5
             value={this.state.level}
             rules={[
               {
@@ -148,7 +128,6 @@ class Signup extends React.Component {
                 whitespace: true,
               },
             ]}>
-<<<<<<< HEAD
             <Select placeholder="Level">
               <Select.Option value="padawan">Padawan</Select.Option>
               <Select.Option value="jedi">Jedi</Select.Option>
@@ -161,19 +140,9 @@ class Signup extends React.Component {
               onChange={this.fileChangedHandler}
               placeholder="Avatar"
             />
-=======
-            <Select>
-              <Select.Option value='padawan'>Padawan</Select.Option>
-              <Select.Option value='jedi'>Jedi</Select.Option>
-              <Select.Option value='master jedi'>Master Jedi</Select.Option>
-            </Select>
-          </Form.Item>
-          <Form.Item name='avatar' label='Avatar'>
-            <input type='file' onChange={this.fileChangedHandler} />
->>>>>>> 45d92058b9c2ad2b3c1f6734383922f9041921e5
           </Form.Item>
           <Form.Item>
-            <Button type='primary' htmlType='submit'>
+            <Button type="primary" htmlType="submit">
               Register
             </Button>
           </Form.Item>
