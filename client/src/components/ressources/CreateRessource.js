@@ -306,7 +306,15 @@ export default class CreateRessource extends Component {
                 </Select>
               </Form.Item>
               {/* TODO UPLOAD Image : https://ant.design/components/upload/ */}
-              <Form.Item name='image' label='Image'>
+              <Form.Item
+                name='image'
+                label='Image'
+                rules={[
+                  {
+                    required: true,
+                    message: "Please upload an image",
+                  },
+                ]}>
                 <input
                   type='file'
                   value={this.state.image}

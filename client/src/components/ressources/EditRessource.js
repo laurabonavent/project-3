@@ -120,6 +120,12 @@ export default class EditRessource extends Component {
       match: { params },
     } = this.props;
     this.findRessource(params.id);
+
+    if (this.props.userInSession.role === "user") {
+      message.info("Sorry, only for admin here");
+      this.props.history.push("/");
+      return;
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -307,7 +313,15 @@ export default class EditRessource extends Component {
                 src={this.state.ressource.image}
                 alt={this.state.ressource.title}
               />
-              <Form.Item name='image' label='Image'>
+              <Form.Item
+                name='image'
+                label='Image'
+                rules={[
+                  {
+                    required: true,
+                    message: "Please upload an image",
+                  },
+                ]}>
                 <input
                   type='file'
                   value={this.state.ressource.image}

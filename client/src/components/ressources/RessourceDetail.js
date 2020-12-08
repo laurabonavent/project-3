@@ -3,10 +3,12 @@ import React, { Component } from "react";
 import { getOneRessource } from "../auth/auth-service";
 import { addFavorite } from "../auth/auth-service";
 import { deleteFavorite } from "../auth/auth-service";
+import { deleteRessource } from "../auth/auth-service";
 
 import { Link } from "react-router-dom";
 
-import { Button } from "antd";
+import { Button, Popconfirm, message } from "antd";
+import isnull from "lodash.isnull";
 
 export default class RessourceDetail extends Component {
   state = { ressource: {} };
@@ -27,8 +29,12 @@ export default class RessourceDetail extends Component {
         const user = response.user;
         this.props.updateUser({ user });
         this.setState({ fav: true });
+        message.info(response.message);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        message.info(error.message);
+        console.log(error);
+      });
   };
 
   deleteFavorite = (id) => {
@@ -39,11 +45,31 @@ export default class RessourceDetail extends Component {
         console.log(user);
         this.props.updateUser({ user });
         this.setState({ fav: false });
+        message.info(response.message);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        message.info(error.message);
+        console.log(error);
+      });
   };
 
-  // TODO : récupérer le user de l'APP + vérifier si l'ID de la ressource existe déjà dans le user pour setter le state
+  deleteRessource = (id) => {
+    deleteRessource(this.state.ressource._id)
+      .then((response) => {
+        console.log("deleteRessource", response.data);
+        this.props.history.push("/");
+        console.log(this.props.history);
+      })
+      .catch((error) => {
+        message.info(error.message);
+        console.log(error);
+      });
+  };
+
+  cancel = (e) => {
+    console.log(e);
+    message.error("Change your mind ?");
+  };
 
   componentDidMount() {
     const {
@@ -51,6 +77,16 @@ export default class RessourceDetail extends Component {
     } = this.props;
     this.findRessource(params.id);
     //console.log("userInSession", this.props.userInSession);
+
+    if (isnull(this.props.userInSession)) return "..loading";
+
+    if (this.props.userInSession === false) {
+      message.info("You need to log in before access this page");
+      this.props.history.push("/");
+      //return <Redirect to="/" />;
+      return;
+    }
+
     if (this.props.userInSession.favorites.includes(params.id)) {
       this.setState({ fav: true });
     } else {
@@ -84,7 +120,17 @@ export default class RessourceDetail extends Component {
                 <Link to={`/ressources/edit/${this.state.ressource._id}`}>
                   Edit
                 </Link>
-                <Link to='#'>Delete</Link>
+                {/* <Button onClick={this.deleteRessource}>Delete</Button> */}
+                <Popconfirm
+                  title='Are you sure to delete this ressource?'
+                  onConfirm={this.deleteRessource}
+                  onCancel={this.cancel}
+                  okText='Yes I do'
+                  cancelText='Nope'>
+                  <a href='#' alt='delete'>
+                    Delete
+                  </a>
+                </Popconfirm>
               </div>
             ) : null}
             <p>

@@ -26,13 +26,11 @@ const SignupButton = () => {
 
 export { SignupButton };
 
-const LogoutButton = () => {
+const LogoutButton = (props) => {
   return (
-    <Link to="/">
-      <Button type="primary" shape="round">
-        Log out
-      </Button>
-    </Link>
+    <Button type="primary" shape="round" {...props}>
+      Log out
+    </Button>
   );
 };
 

@@ -196,3 +196,13 @@ function deleteFavorite(id) {
 }
 
 export { deleteFavorite };
+
+// DELETE RESSOURCES ADMIN
+function deleteRessource(id) {
+  return service
+    .delete(`/ressources/${id}`)
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+}
+
+export { deleteRessource };
