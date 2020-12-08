@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "antd/dist/antd.css";
+//import "antd/dist/antd.css";
 import { Form, Input, Select, Button, message, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 

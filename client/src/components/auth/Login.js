@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 //import ReactDOM from "react-dom";
 import { Form, Input, Button, Checkbox } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { login } from "./auth-service";
 import { Link } from "react-router-dom";
 import { message } from "antd";
+
+import { RiArrowRightSLine } from "react-icons/ri";
 
 export default class Login extends Component {
   state = { email: "", password: "" };
@@ -28,29 +29,28 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className='main login'>
+        <h1>
+          {`<h1> Welcome
+          Back 👋 </h1>`}
+        </h1>
         <Form
-          name="normal_login"
-          className="login-form"
           initialValues={{
             remember: true,
           }}
           onFinish={this.onFinish}>
           <Form.Item
-            name="email"
+            name='email'
             rules={[
               {
                 required: true,
                 message: "Please input your Email!",
               },
             ]}>
-            <Input
-              prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Email"
-            />
+            <Input placeholder='Email' />
           </Form.Item>
           <Form.Item
-            name="password"
+            name='password'
             rules={[
               {
                 required: true,
@@ -58,30 +58,28 @@ export default class Login extends Component {
               },
             ]}
             hasFeedback>
-            <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Password"
-            />
+            <Input type='password' placeholder='Password' />
           </Form.Item>
           <Form.Item>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
+            {/* <Form.Item name='remember' valuePropName='checked' noStyle>
               <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-            <Link className="login-form-forgot" to="">
+            </Form.Item> */}
+            {/* <Link className='login-form-forgot' to=''>
               Forgot password
-            </Link>
+            </Link> */}
           </Form.Item>
           <Form.Item>
             <Button
-              type="primary"
-              htmlType="submit"
-              className="login-form-button">
-              Log in
+              type='primary'
+              htmlType='submit'
+              className='login-form-button'>
+              <RiArrowRightSLine />
             </Button>
-            Or <Link to="/signup">register now!</Link>
           </Form.Item>
         </Form>
+        <div className='bottom-links'>
+          <Link to='/signup'>Signup</Link>
+        </div>
       </div>
     );
   }

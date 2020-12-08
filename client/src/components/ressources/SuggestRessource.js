@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "antd/dist/antd.css";
 import { Form, Input, Select, Button } from "antd";
 
 import { getEnumValues } from "../auth/auth-service";
