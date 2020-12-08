@@ -4,6 +4,8 @@ import { getOneRessource } from "../auth/auth-service";
 import { addFavorite } from "../auth/auth-service";
 import { deleteFavorite } from "../auth/auth-service";
 
+import { Link } from "react-router-dom";
+
 import { Button } from "antd";
 
 export default class RessourceDetail extends Component {
@@ -77,6 +79,14 @@ export default class RessourceDetail extends Component {
                 <Button onClick={this.addAFavorite}>Add favorite</Button>
               </p>
             )}
+            {this.props.userInSession.role === "admin" ? (
+              <div>
+                <Link to={`/ressources/edit/${this.state.ressource._id}`}>
+                  Edit
+                </Link>
+                <Link to='#'>Delete</Link>
+              </div>
+            ) : null}
             <p>
               Technologies :
               {ressource.technology.map((technology, index) => {
@@ -103,7 +113,7 @@ export default class RessourceDetail extends Component {
             <p>Level : {ressource.level}</p>
             <p>Price : {ressource.price}</p>
             <p>
-              <a href={ressource.link} rel="noreferrer" target="_blank">
+              <a href={ressource.link} rel='noreferrer' target='_blank'>
                 Find your way
               </a>
             </p>

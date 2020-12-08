@@ -1,6 +1,8 @@
 import "./App.css";
 import React from "react";
 
+import Background1 from "./images/background-img.svg";
+
 import isnull from "lodash.isnull";
 
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
@@ -56,9 +58,13 @@ class App extends React.Component {
           <Navbar userInSession={this.state.loggedInUser} />
         </nav>
         <main>
-          <img
+          {/* <img
             className='background-image1'
             src='%PUBLIC_URL%/images/background-image.svg'
+            alt='background-img'></img> */}
+          <img
+            className='background-image1'
+            src={Background1}
             alt='background-img'></img>
           <BackButton />
 
