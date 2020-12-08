@@ -60,12 +60,16 @@ export default class EditRessource extends Component {
     //this.setState({ avatar: event.target.files[0] });
     const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
+    const hide = message.loading("Action in progress..", 0);
+    // Dismiss manually and asynchronously
+    setTimeout(hide, 300);
 
     uploadImage(uploadData)
       .then((response) => {
         const image = response.secure_url;
         this.setState({ image });
         console.log("image: ", image);
+        message.success("Image uploaded");
       })
       .catch((error) => console.log(error));
   };

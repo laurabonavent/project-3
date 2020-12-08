@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
-import { Form, Input, Select, Button } from "antd";
+import { Form, Input, Select, Button, message, Upload } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 
 import { getEnumValues } from "../auth/auth-service";
 import { uploadImage } from "../auth/auth-service";
@@ -50,18 +51,53 @@ export default class CreateRessource extends Component {
       .catch((error) => console.log(error));
   };
 
-  fileChangedHandler = (event) => {
-    console.log("event.target", event.target.files[0]);
+  // onChangeUpload = (info) => {
+  //   if (info.file.status !== "uploading") {
+  //     console.log(info.file, info.fileList);
+  //   }
+  //   if (info.file.status === "done") {
+  //     message.success(`${info.file.name} file uploaded successfully`);
+  //   } else if (info.file.status === "error") {
+  //     message.error(`${info.file.name} file upload failed.`);
+  //   }
+  // };
 
-    //this.setState({ avatar: event.target.files[0] });
+  fileChangedHandler = (event, info, fileList, file) => {
+    // console.log("fileList", fileList);
+    // console.log("event", event);
+    // console.log("info", info);
+    // console.log("file", file);
+
+    // if (event.file.status !== "uploading") {
+    //   console.log(event.file, event.fileList);
+    // }
+
+    // if (event.file.status === "done") {
+    //   message.success(`${event.file.name} file uploaded successfully`);
+    // } else if (event.file.status === "error") {
+    //   message.error(`${event.file.name} file upload failed.`);
+    // }
+
+    // // // TEST
+    // this.setState({ image: event.file });
+    // const uploadData = new FormData();
+    // uploadData.append("image", event.file);
+
+    // CODE OK
+    console.log("event.target", event.target.files[0]);
+    this.setState({ image: event.target.files[0] });
     const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
+    const hide = message.loading("Action in progress..", 0);
+    // Dismiss manually and asynchronously
+    setTimeout(hide, 300);
 
     uploadImage(uploadData)
       .then((response) => {
         const image = response.secure_url;
         this.setState({ image });
         console.log("image: ", image);
+        message.success("Image uploaded");
       })
       .catch((error) => console.log(error));
   };
@@ -277,6 +313,13 @@ export default class CreateRessource extends Component {
                   onChange={this.fileChangedHandler}
                 />
               </Form.Item>
+              {/* TEST UPLOAD ANTD */}
+              {/*
+              <Upload
+                fileList={this.state.fileList}
+                onChange={this.fileChangedHandler}>
+                <Button icon={<UploadOutlined />}>Click to Upload</Button>
+              </Upload> */}
               <Form.Item>
                 <Button type='primary' htmlType='submit'>
                   Register

@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -5,6 +10,14 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.background-image1 {
+  position: absolute;
+  width: 319.42px;
+  height: 285.83px;
+  left: -45px;
+  top: 370px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

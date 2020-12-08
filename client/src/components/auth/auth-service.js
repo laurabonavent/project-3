@@ -81,6 +81,7 @@ export { upload };
 
 // UPLOAD Image ressource
 function uploadImage(formdata) {
+  console.log(formdata);
   return service
     .post("/upload/image", formdata)
     .then((response) => response.data);
