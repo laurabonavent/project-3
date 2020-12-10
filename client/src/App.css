@@ -89,6 +89,13 @@ button {
 ##   ### ##     ##   ## ##   ##     ## ##     ## ##    ##  
 ##    ## ##     ##    ###    ########  ##     ## ##     ##  */
 
+@media (min-width: 1024px) {
+  .navbar {
+    display: flex;
+    height: 65px;
+    width: 100%;
+  }
+}
 .navbar {
   display: flex;
   height: 65px;
@@ -234,6 +241,7 @@ button {
   border-radius: 50px;
   margin-bottom: 5%;
   padding-left: 5%;
+  padding-right: 5%;
   outline: none;
 }
 
