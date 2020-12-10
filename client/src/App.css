@@ -49,3 +49,12 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.slider-container {
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+}
+
+.slider {
+}

@@ -54,8 +54,8 @@ ressourcesRoutes.get("/enumvalues", (req, res, next) => {
   //   enumValuesLanguages
   // );
   res.json({
-    technologies: enumValuesTechnologies,
-    types: enumValuesTypes,
+    technology: enumValuesTechnologies,
+    type: enumValuesTypes,
     level: enumValuesLevels,
     price: enumValuesPrices,
     languages: enumValuesLanguages,

@@ -143,8 +143,8 @@ export default class CreateRessource extends Component {
     const enumValues = this.state.enumValues;
     return (
       <div>
-        {enumValues.technologies &&
-        enumValues.types &&
+        {enumValues.technology &&
+        enumValues.type &&
         enumValues.level &&
         enumValues.languages &&
         enumValues.price ? (
@@ -214,7 +214,7 @@ export default class CreateRessource extends Component {
                   },
                 ]}>
                 <Select mode="multiple" allowClear>
-                  {enumValues.technologies.map((technology, index) => {
+                  {enumValues.technology.map((technology, index) => {
                     return (
                       <Select.Option value={technology} key={index}>
                         {technology}
@@ -236,7 +236,7 @@ export default class CreateRessource extends Component {
                   },
                 ]}>
                 <Select mode="multiple" allowClear>
-                  {enumValues.types.map((type, index) => {
+                  {enumValues.type.map((type, index) => {
                     return (
                       <Select.Option value={type} key={index}>
                         {type}

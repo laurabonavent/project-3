@@ -7,6 +7,7 @@ import { Pagination, Button } from "antd";
 import isnull from "lodash.isnull";
 import { Link } from "react-router-dom";
 import { message } from "antd";
+import Carousel from "../card/Carousel";
 
 export default class Profile extends Component {
   state = {
@@ -15,6 +16,7 @@ export default class Profile extends Component {
     minValue: 0,
     pageSize: 10,
     maxValue: 10,
+    sortQuery: "",
   };
 
   // findUserInfo = () => {
@@ -76,12 +78,23 @@ export default class Profile extends Component {
     }
   };
 
+  sortBy = (event) => {
+    console.log("event.target.innerHTML: ", event.target.innerHTML);
+    if (
+      event.target.innerHTML === "technology" ||
+      event.target.innerHTML === "type"
+    ) {
+      this.setState({
+        sortQuery: event.target.innerHTML,
+      });
+    } else {
+      this.setState({
+        sortQuery: "",
+      });
+    }
+  };
+
   render() {
-    console.log("userInSession", this.props.userInSession);
-    // if (!this.props.userInSession) {
-    //   return;
-    // }
-    //const options = this.props.userInSession.favorites;
     if (isnull(this.props.userInSession)) return "..loading";
 
     let showedfavorites = this.props.userInSession.favorites.filter(
@@ -103,63 +116,35 @@ export default class Profile extends Component {
           ...ressource.level,
         ]),
       ];
-      // ["french", "free", "article", "", "javascript", "html", "css", "padawan"]
-
-      // checker si les tous filtres sont compris dans les valeurs de la ressource en question
       let checker = this.state.filters.every((filter) =>
         valuesRess.includes(filter)
-      ); // return true or false
-
-      // Si les tous les filters sont contenus dans les valeurs de la ressource, alors filtrer showed ressources.
+      );
       if (checker) {
         filteredRessources.push(ressource);
-        showedfavorites = filteredRessources; // méthode brutus
+        showedfavorites = filteredRessources;
       }
 
       return ressource;
-
-      // showedRessources.filter((ress) => {
-      //   return ress._id === ressource._id;
-      // });
-      //}
     });
 
     return (
       <div>
-        <img src={this.props.userInSession.avatar} alt='' />
+        <img src={this.props.userInSession.avatar} alt="" />
         <p>{this.props.userInSession.username}'s dashboard</p>
         <p>Email : {this.props.userInSession.email}</p>
         <Link to="/profile/edit">
           <Button>Edit Profile</Button>
         </Link>
-        {/* <AutoComplete
-              //options={options}
-              notFoundContent='Wait..'
-              placeholder='Find a favorite'
-              filterOption={(inputValue, option) =>
-                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
-                -1
-              }>
-              {options.map((option, index) => {
-                console.log("one option", option);
-                return <Option key={index} value={option.value} />;
-              })}
-            </AutoComplete> */}
         <SearchBar handleChange={this.handleChange} />
-        {/* <form action="">
-              <input
-                type="search"
-                name="search"
-                placeholder="Search"
-                //value={this.state.search}
-                onChange={this.handleChange}
-              />
-            </form> */}
-        {/* TODO : Rendre dynamiques les filtres avec les valeurs des enum du model */}
-        <h3>Filtres</h3>
-        <Filters handleChange={this.getFilterValues} />
-        <h3>My favorites</h3>
-        {showedfavorites &&
+        {this.state.sortQuery === "" && (
+          <Filters handleChange={this.getFilterValues} />
+        )}
+        <h2>Sort by</h2>
+        <Button onClick={this.sortBy}>technology</Button>
+        <Button onClick={this.sortBy}>type</Button>
+        <Button onClick={this.sortBy}>no sorting</Button>
+        <Carousel data={showedfavorites} sortQuery={this.state.sortQuery} />}
+        {/* {showedfavorites &&
           showedfavorites.length > 0 &&
           showedfavorites
             .slice(this.state.minValue, this.state.maxValue)
@@ -170,8 +155,7 @@ export default class Profile extends Component {
           defaultCurrent={1}
           onChange={this.changePage}
           total={showedfavorites.length}
-        />
-        {/* <Card data={showedfavorites} /> */}
+        /> */}
       </div>
     );
   }

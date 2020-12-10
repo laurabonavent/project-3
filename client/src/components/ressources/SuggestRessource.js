@@ -87,29 +87,29 @@ export default class SuggestRessource extends Component {
     const enumValues = this.state.enumValues;
     return (
       <div>
-        {enumValues.technologies &&
-        enumValues.types &&
+        {enumValues.technology &&
+        enumValues.type &&
         enumValues.level &&
         enumValues.languages &&
         enumValues.price ? (
           <div>
             Suggest a ressource
-            <Form name='suggest' scrollToFirstError>
+            <Form name="suggest" scrollToFirstError>
               <Form.Item
                 onChange={(e) => this.handleChange(e)}
-                name='title'
-                label='Title'
+                name="title"
+                label="Title"
                 rules={[
                   {
                     required: true,
                     message: "Please input your Title!",
                   },
                 ]}>
-                <Input name='title' />
+                <Input name="title" />
               </Form.Item>
               <Form.Item
-                name='description'
-                label='Description'
+                name="description"
+                label="Description"
                 onChange={this.handleChange}
                 value={this.state.description}
                 rules={[
@@ -120,17 +120,17 @@ export default class SuggestRessource extends Component {
                   },
                 ]}>
                 <TextArea
-                  placeholder='Description'
+                  placeholder="Description"
                   value={this.state.description}
-                  name='description'
+                  name="description"
                   autoSize={{ minRows: 1, maxRows: 5 }}
                   showCount
                   maxLength={250}
                 />
               </Form.Item>
               <Form.Item
-                name='link'
-                label='URL'
+                name="link"
+                label="URL"
                 onChange={this.handleChange}
                 value={this.state.link}
                 rules={[
@@ -140,11 +140,11 @@ export default class SuggestRessource extends Component {
                     whitespace: true,
                   },
                 ]}>
-                <Input name='link' type='url' value={this.state.link} />
+                <Input name="link" type="url" value={this.state.link} />
               </Form.Item>
               <Form.Item
-                name='technology'
-                label='Technology'
+                name="technology"
+                label="Technology"
                 value={this.state.technology}
                 rules={[
                   {
@@ -155,14 +155,14 @@ export default class SuggestRessource extends Component {
                   },
                 ]}>
                 <Select
-                  name='technology'
-                  mode='multiple'
+                  name="technology"
+                  mode="multiple"
                   allowClear
                   onSelect={this.handleMultipleSelect}>
-                  {enumValues.technologies.map((technology, index) => {
+                  {enumValues.technology.map((technology, index) => {
                     return (
                       <Select.Option
-                        name='technology'
+                        name="technology"
                         value={technology}
                         key={index}>
                         {technology}
@@ -172,8 +172,8 @@ export default class SuggestRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name='type'
-                label='Type'
+                name="type"
+                label="Type"
                 value={this.state.type}
                 rules={[
                   {
@@ -184,12 +184,12 @@ export default class SuggestRessource extends Component {
                   },
                 ]}>
                 <Select
-                  mode='multiple'
+                  mode="multiple"
                   allowClear
                   onSelect={this.handleMultipleSelect}>
-                  {enumValues.types.map((type, index) => {
+                  {enumValues.type.map((type, index) => {
                     return (
-                      <Select.Option name='type' value={type} key={index}>
+                      <Select.Option name="type" value={type} key={index}>
                         {type}
                       </Select.Option>
                     );
@@ -197,8 +197,8 @@ export default class SuggestRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name='level'
-                label='Level'
+                name="level"
+                label="Level"
                 value={this.state.level}
                 rules={[
                   {
@@ -209,7 +209,7 @@ export default class SuggestRessource extends Component {
                 <Select onSelect={this.handleSelect}>
                   {enumValues.level.map((level, index) => {
                     return (
-                      <Select.Option name='level' value={level} key={index}>
+                      <Select.Option name="level" value={level} key={index}>
                         {level}
                       </Select.Option>
                     );
@@ -217,8 +217,8 @@ export default class SuggestRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name='language'
-                label='Language'
+                name="language"
+                label="Language"
                 value={this.state.language}
                 rules={[
                   {
@@ -230,7 +230,7 @@ export default class SuggestRessource extends Component {
                   {enumValues.languages.map((language, index) => {
                     return (
                       <Select.Option
-                        name='language'
+                        name="language"
                         value={language}
                         key={index}>
                         {language}
@@ -240,8 +240,8 @@ export default class SuggestRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name='price'
-                label='Price'
+                name="price"
+                label="Price"
                 value={this.state.price}
                 rules={[
                   {
@@ -252,7 +252,7 @@ export default class SuggestRessource extends Component {
                 <Select onSelect={this.handleSelect}>
                   {enumValues.price.map((price, index) => {
                     return (
-                      <Select.Option name='price' value={price} key={index}>
+                      <Select.Option name="price" value={price} key={index}>
                         {price}
                       </Select.Option>
                     );
@@ -270,7 +270,7 @@ export default class SuggestRessource extends Component {
               </Form.Item> */}
               <Form.Item>
                 <Mailto
-                  email='contact@test.com'
+                  email="contact@test.com"
                   subject={`Suggest a new ressource called ${this.state.title}`}
                   body={`Title : ${this.state.description} Description : ${this.state.description} URL : ${this.state.link} Technology : ${this.state.technology} Type : ${this.state.type} Level : ${this.state.level} Language : ${this.state.language} Price : ${this.state.price}`}>
                   Mail me!

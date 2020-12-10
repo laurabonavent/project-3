@@ -130,8 +130,8 @@ export default class EditRessource extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
-      this.state.enumValues.technologies &&
-      this.state.enumValues.types &&
+      this.state.enumValues.technology &&
+      this.state.enumValues.type &&
       this.state.enumValues.level &&
       this.state.enumValues.languages &&
       this.state.enumValues.price &&
@@ -171,8 +171,8 @@ export default class EditRessource extends Component {
           onFinish={this.onFinish}
           scrollToFirstError
           ref={this.formRef}>
-          {enumValues.technologies &&
-          enumValues.types &&
+          {enumValues.technology &&
+          enumValues.type &&
           enumValues.level &&
           enumValues.languages &&
           enumValues.price &&
@@ -232,7 +232,7 @@ export default class EditRessource extends Component {
                   },
                 ]}>
                 <Select mode="multiple" allowClear>
-                  {enumValues.technologies.map((technology, index) => {
+                  {enumValues.technology.map((technology, index) => {
                     return (
                       <Select.Option value={technology} key={index}>
                         {technology}
@@ -253,7 +253,7 @@ export default class EditRessource extends Component {
                   },
                 ]}>
                 <Select mode="multiple" allowClear>
-                  {enumValues.types.map((type, index) => {
+                  {enumValues.type.map((type, index) => {
                     return (
                       <Select.Option value={type} key={index}>
                         {type}
@@ -313,9 +313,9 @@ export default class EditRessource extends Component {
                 src={this.state.ressource.image}
                 alt={this.state.ressource.title}
               />
-              <Form.Item name='image' label='Image'>
+              <Form.Item name="image" label="Image">
                 <input
-                  type='file'
+                  type="file"
                   value={this.state.ressource.image}
                   onChange={this.fileChangedHandler}
                 />
