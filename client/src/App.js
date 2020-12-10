@@ -111,21 +111,7 @@ class App extends React.Component {
               }}
             />
           </ParallaxLayer>
-
-          <ParallaxLayer offset={1} speed={0.2} style={{ opacity: 5 }}>
-            <img
-              alt=''
-              src={Yellow}
-              style={{ display: "block", width: "10%", marginLeft: "10%" }}
-            />
-            <img
-              alt=''
-              src={LightOrange}
-              style={{ display: "block", width: "20%", marginLeft: "75%" }}
-            />
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={1.2} speed={0.4} style={{ opacity: 10 }}>
+          <ParallaxLayer offset={1} speed={0.4} style={{ opacity: 10 }}>
             <img
               src={OrangeRed}
               alt=''
@@ -138,7 +124,7 @@ class App extends React.Component {
             />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={1.5} speed={-0.3} style={{ opacity: 10 }}>
+          <ParallaxLayer offset={1.4} speed={-0.3} style={{ opacity: 10 }}>
             <img
               alt=''
               src={Purple}
@@ -159,6 +145,19 @@ class App extends React.Component {
             />
           </ParallaxLayer>
 
+          <ParallaxLayer offset={0.9} speed={0.2} style={{ opacity: 5 }}>
+            <img
+              alt=''
+              src={Yellow}
+              style={{ display: "block", width: "10%", marginLeft: "10%" }}
+            />
+            <img
+              alt=''
+              src={LightOrange}
+              style={{ display: "block", width: "20%", marginLeft: "75%" }}
+            />
+          </ParallaxLayer>
+
           <ParallaxLayer
             offset={2.0}
             speed={0}
@@ -173,7 +172,7 @@ class App extends React.Component {
             <img className='orange-red' src={OrangeRed} alt='' />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0} speed={0} factor={1}>
+          <ParallaxLayer offset={0} speed={0} factor={1} className='content'>
             <Route
               render={(props) => (
                 <>
@@ -258,7 +257,7 @@ class App extends React.Component {
                       )}
                     />
                   </Switch>
-                  <Footer userInSession={this.state.loggedInUser} />
+                  {/* <Footer userInSession={this.state.loggedInUser} /> */}
                 </>
               )}></Route>
           </ParallaxLayer>
@@ -271,7 +270,10 @@ class App extends React.Component {
               justifyContent: "flex-end",
               margin: "-4% 0% 0% -3%",
             }}>
-            <img alt='' src={Rocket} style={{ width: "10%" }} />
+            <div className='footer'>
+              <p>Website created with love</p>
+              <img alt='' src={Rocket} style={{ width: "10%" }} />
+            </div>
           </ParallaxLayer>
         </Parallax>
       </div>

@@ -85,6 +85,11 @@ button {
   height: 35px;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
 /* ##    ##    ###    ##     ## ########     ###    ########  
 ###   ##   ## ##   ##     ## ##     ##   ## ##   ##     ## 
 ####  ##  ##   ##  ##     ## ##     ##  ##   ##  ##     ## 
@@ -94,12 +99,19 @@ button {
 ##    ## ##     ##    ###    ########  ##     ## ##     ##  */
 
 @media (min-width: 1024px) {
-  .navbar {
+  .links {
     display: flex;
-    height: 65px;
-    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 15%;
+    margin-left: 60%;
+  }
+  .navbar {
+    width: 90%;
+    margin: 0 auto;
   }
 }
+
 .navbar {
   display: flex;
   height: 65px;
@@ -116,7 +128,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  flex: 1;
   margin-left: 15%;
   font-size: 14px;
 }
@@ -128,7 +139,21 @@ button {
 
 .back-button {
   width: 35px;
-  margin: 10% 0 0 5%;
+  margin: 5% 0 0 5%;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  align-items: center;
+  justify-content: flex-end;
+  height: 20px;
+  font-family: "Nunito", sans-serif;
+}
+
+.footer img {
+  margin-left: 5%;
 }
 
 /* 
@@ -139,51 +164,6 @@ button {
 ##     ## ######### ##       ##  ##   ##    ##  ##   ##   ##     ## ##     ## ##  #### ##     ## 
 ##     ## ##     ## ##    ## ##   ##  ##    ##  ##    ##  ##     ## ##     ## ##   ### ##     ## 
 ########  ##     ##  ######  ##    ##  ######   ##     ##  #######   #######  ##    ## ########   */
-
-/* layout */
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-/* Parallax Styles */
-/* .parallax-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  perspective: 12px;
-  perspective-origin: 0%;
-  display: flex;
-} */
-
-.background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: translateZ(0px);
-}
-
-.foreground {
-  margin-top: auto;
-  margin-bottom: 50px;
-  width: 100%;
-  margin: auto;
-  min-height: 100vh;
-  margin: auto;
-
-  /* transform-origin: 0;
-  transform: translateZ(5px) scale(0.58); */
-
-  /* Uncomment the code below to see the difference the scale property makes! */
-  /* transform: translateZ(3px); */
-  transform: translateZ(0) scale(1);
-}
 
 /* DARK RED SVG BACKGROUND */
 .dark-red {
@@ -249,7 +229,10 @@ button {
 ##     ## ##     ## #### ##    ##  */
 
 .main {
-  margin: 0 5% 0 5%;
+  margin: auto;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ########  #######  ########  ##     ## 
@@ -286,6 +269,15 @@ button {
 ##       ##     ## ##    ##   ##  ##   ### 
 ########  #######   ######   #### ##    ##  */
 
+@media (min-width: 1024px) {
+  .login {
+    width: 50%;
+  }
+}
+.login form {
+  min-height: 50vh;
+}
+
 .ant-form-item-explain-error {
   background-color: white;
   color: var(--dark-red);
@@ -294,7 +286,7 @@ button {
 .login-form-button {
   width: 50px;
   height: 50px;
-  margin-left: 80%;
+  margin: auto 85%;
 }
 
 .login-form-button svg {
@@ -303,4 +295,5 @@ button {
 }
 
 .login .bottom-links {
+  flex: 1;
 }

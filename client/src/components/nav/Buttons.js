@@ -21,23 +21,13 @@ const SignupButton = () => {
 export { SignupButton };
 
 const LogoutButton = (props) => {
-  return (
-    <Button type='primary' shape='round' {...props}>
-      Log out
-    </Button>
-  );
+  return <Link {...props}>Log out</Link>;
 };
 
 export { LogoutButton };
 
 const ProfileButton = () => {
-  return (
-    <Link to='/profile'>
-      <Button type='primary' shape='round'>
-        Profile
-      </Button>
-    </Link>
-  );
+  return <Link to='/profile'>Profile</Link>;
 };
 
 export { ProfileButton };
