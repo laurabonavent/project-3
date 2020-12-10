@@ -17,6 +17,10 @@
   --dark-red: #9a1809;
 }
 
+.test {
+  color: wheat;
+}
+
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
@@ -182,7 +186,7 @@ button {
 }
 
 /* DARK RED SVG BACKGROUND */
-.vector1 {
+.dark-red {
   position: absolute;
   width: 319.42px;
   height: 285.83px;
@@ -191,7 +195,7 @@ button {
 }
 
 /* YELLOW SVG BACKGROUND */
-.vector2 {
+.yellow {
   position: absolute;
   width: 319.42px;
   height: 285.83px;
@@ -200,11 +204,40 @@ button {
 }
 
 /* RED SVG BACKGROUND */
-.vector3 {
+.orange-red {
   position: absolute;
   height: 185px;
   left: 169.07px;
   top: 455px;
+}
+
+/* LIGHT PINK SVG  */
+.light-pink {
+  position: absolute;
+  width: 273.86px;
+  height: 245.69px;
+  left: 20.86px;
+  top: 150px;
+  transform: rotate(82deg);
+}
+
+/* PURPLE SVG  */
+.purple {
+  position: absolute;
+  width: 499.85px;
+  height: 447.29px;
+  left: 54.12px;
+  transform: rotate(-177.23deg);
+}
+
+/* LIGHT ORANGE  */
+.light-orange {
+  position: absolute;
+  width: 499.85px;
+  height: 447.29px;
+  left: 128px;
+  top: 152px;
+  transform: rotate(-9.23deg);
 }
 
 /* ##     ##    ###    #### ##    ## 

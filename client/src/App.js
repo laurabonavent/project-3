@@ -1,9 +1,9 @@
 import "./App.css";
 import React from "react";
 
-import Vector1 from "./images/vector1.svg";
-import Vector2 from "./images/vector2.svg";
-import Vector3 from "./images/vector3.svg";
+// import Vector1 from "./images/vector1.svg";
+// import Vector2 from "./images/vector2.svg";
+// import Vector3 from "./images/vector3.svg";
 
 import isnull from "lodash.isnull";
 
