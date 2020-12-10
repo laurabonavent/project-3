@@ -1,23 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto&display=swap");
+
+/* ######   ##        #######  ########     ###    ##       
+##    ##  ##       ##     ## ##     ##   ## ##   ##       
+##        ##       ##     ## ##     ##  ##   ##  ##       
+##   #### ##       ##     ## ########  ##     ## ##       
+##    ##  ##       ##     ## ##     ## ######### ##       
+##    ##  ##       ##     ## ##     ## ##     ## ##       
+ ######   ########  #######  ########  ##     ## ########  */
+
+:root {
+  --orange: #ff9f1c;
+  --yellow: #fdca40;
+  --dark-grey: #303030;
+  --light-grey: #fafafa;
+  --black: #000000;
+  --dark-red: #9a1809;
+}
+
 body {
   margin: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .App {
-  text-align: center;
+  margin: auto;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-.background-image1 {
-  position: absolute;
-  width: 319.42px;
-  height: 285.83px;
-  left: -45px;
-  top: 370px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -56,5 +67,213 @@ body {
   margin: auto;
 }
 
-.slider {
+h1 {
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  color: var(--black);
+  font-size: 36px;
+}
+
+body a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+button {
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  height: 35px;
+}
+
+/* ##    ##    ###    ##     ## ########     ###    ########  
+###   ##   ## ##   ##     ## ##     ##   ## ##   ##     ## 
+####  ##  ##   ##  ##     ## ##     ##  ##   ##  ##     ## 
+## ## ## ##     ## ##     ## ########  ##     ## ########  
+##  #### #########  ##   ##  ##     ## ######### ##   ##   
+##   ### ##     ##   ## ##   ##     ## ##     ## ##    ##  
+##    ## ##     ##    ###    ########  ##     ## ##     ##  */
+
+@media (min-width: 1024px) {
+  .navbar {
+    display: flex;
+    height: 65px;
+    width: 100%;
+  }
+}
+.navbar {
+  display: flex;
+  height: 65px;
+}
+
+.logo {
+  margin: auto 5%;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex: 1;
+  margin-left: 15%;
+  font-size: 14px;
+}
+
+.links svg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.back-button {
+  width: 35px;
+  margin: 10% 0 0 5%;
+}
+
+/* 
+########     ###     ######  ##    ##  ######   ########   #######  ##     ## ##    ## ########  
+##     ##   ## ##   ##    ## ##   ##  ##    ##  ##     ## ##     ## ##     ## ###   ## ##     ## 
+##     ##  ##   ##  ##       ##  ##   ##        ##     ## ##     ## ##     ## ####  ## ##     ## 
+########  ##     ## ##       #####    ##   #### ########  ##     ## ##     ## ## ## ## ##     ## 
+##     ## ######### ##       ##  ##   ##    ##  ##   ##   ##     ## ##     ## ##  #### ##     ## 
+##     ## ##     ## ##    ## ##   ##  ##    ##  ##    ##  ##     ## ##     ## ##   ### ##     ## 
+########  ##     ##  ######  ##    ##  ######   ##     ##  #######   #######  ##    ## ########   */
+
+/* layout */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Parallax Styles */
+/* .parallax-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  perspective: 12px;
+  perspective-origin: 0%;
+  display: flex;
+} */
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(0px);
+}
+
+.foreground {
+  margin-top: auto;
+  margin-bottom: 50px;
+  width: 100%;
+  margin: auto;
+  min-height: 100vh;
+  margin: auto;
+
+  /* transform-origin: 0;
+  transform: translateZ(5px) scale(0.58); */
+
+  /* Uncomment the code below to see the difference the scale property makes! */
+  /* transform: translateZ(3px); */
+  transform: translateZ(0) scale(1);
+}
+
+/* DARK RED SVG BACKGROUND */
+.vector1 {
+  position: absolute;
+  width: 319.42px;
+  height: 285.83px;
+  left: -45px;
+  top: 363px;
+}
+
+/* YELLOW SVG BACKGROUND */
+.vector2 {
+  position: absolute;
+  width: 319.42px;
+  height: 285.83px;
+  left: -79px;
+  top: 529px;
+}
+
+/* RED SVG BACKGROUND */
+.vector3 {
+  position: absolute;
+  height: 185px;
+  left: 169.07px;
+  top: 455px;
+}
+
+/* ##     ##    ###    #### ##    ## 
+###   ###   ## ##    ##  ###   ## 
+#### ####  ##   ##   ##  ####  ## 
+## ### ## ##     ##  ##  ## ## ## 
+##     ## #########  ##  ##  #### 
+##     ## ##     ##  ##  ##   ### 
+##     ## ##     ## #### ##    ##  */
+
+.main {
+  margin: 0 5% 0 5%;
+}
+
+/* ########  #######  ########  ##     ## 
+##       ##     ## ##     ## ###   ### 
+##       ##     ## ##     ## #### #### 
+######   ##     ## ########  ## ### ## 
+##       ##     ## ##   ##   ##     ## 
+##       ##     ## ##    ##  ##     ## 
+##        #######  ##     ## ##     ##  */
+
+.ant-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ant-form input {
+  width: 90%;
+  border: none;
+  height: 40px;
+  background: var(--light-grey);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  margin-bottom: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  outline: none;
+}
+
+/* ##        #######   ######   #### ##    ## 
+##       ##     ## ##    ##   ##  ###   ## 
+##       ##     ## ##         ##  ####  ## 
+##       ##     ## ##   ####  ##  ## ## ## 
+##       ##     ## ##    ##   ##  ##  #### 
+##       ##     ## ##    ##   ##  ##   ### 
+########  #######   ######   #### ##    ##  */
+
+.ant-form-item-explain-error {
+  background-color: white;
+  color: var(--dark-red);
+}
+
+.login-form-button {
+  width: 50px;
+  height: 50px;
+  margin-left: 80%;
+}
+
+.login-form-button svg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.login .bottom-links {
 }

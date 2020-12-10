@@ -1,6 +1,10 @@
 import "./App.css";
 import React from "react";
 
+import Vector1 from "./images/vector1.svg";
+import Vector2 from "./images/vector2.svg";
+import Vector3 from "./images/vector3.svg";
+
 import isnull from "lodash.isnull";
 
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
@@ -16,9 +20,9 @@ import CreateRessource from "./components/ressources/CreateRessource";
 import EditRessource from "./components/ressources/EditRessource";
 import Navbar from "./components/nav/Navbar";
 import Footer from "./components/nav/Footer";
-import BackButton from "./components/BackButton";
-import SuggestRessource from "./components/ressources/SuggestRessource";
+import BackButton from "./components/nav/BackButton";
 import EditProfile from "./components/profile/EditProfile";
+import Parallax from "./components/Parallax";
 
 class App extends React.Component {
   state = { loggedInUser: null };
@@ -51,7 +55,15 @@ class App extends React.Component {
     //if (isnull(this.state.loggedInUser)) return "..loading";
 
     return (
-      <div className="App">
+      <div className='App'>
+        {/* <div className='wrapper'>
+          <div className='parallax-container'>
+            <div className='background'>
+              <img className='vector1' src={Vector1} alt='' />
+              <img className='vector2' src={Vector2} alt='' />
+              <img className='vector3' src={Vector3} alt='' />
+            </div>
+            <div className='foreground'> */}
         <Route
           render={(props) => (
             <>
@@ -63,10 +75,12 @@ class App extends React.Component {
 
               <BackButton />
               <Switch>
-                <Route exact path="/" component={Home} />
+                <Route exact path='/' component={Home} />
+                <Route exact path='/parallax' component={Parallax} />
+
                 <Route
                   exact
-                  path="/login"
+                  path='/login'
                   render={(props) => (
                     <Login
                       userInSession={this.state.loggedInUser}
@@ -77,7 +91,7 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path="/signup"
+                  path='/signup'
                   render={(props) => (
                     <Signup
                       history={props.history}
@@ -87,7 +101,7 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path="/profile/edit"
+                  path='/profile/edit'
                   render={(props) => (
                     <EditProfile
                       {...props}
@@ -99,7 +113,7 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path="/profile"
+                  path='/profile'
                   render={(props) => (
                     <Profile
                       {...props}
@@ -109,12 +123,12 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path="/ressources/create"
+                  path='/ressources/create'
                   component={CreateRessource}
                 />
                 <Route
                   exact
-                  path="/ressources/edit/:id"
+                  path='/ressources/edit/:id'
                   render={(props) => (
                     <EditRessource
                       {...props}
@@ -124,7 +138,7 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path="/ressources/:id"
+                  path='/ressources/:id'
                   render={(props) => (
                     <Ressource
                       {...props}
@@ -137,6 +151,9 @@ class App extends React.Component {
               <Footer userInSession={this.state.loggedInUser} />
             </>
           )}></Route>
+        {/* </div>
+          </div>
+        </div> */}
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "antd/dist/antd.css";
+//import "antd/dist/antd.css";
 import { Form, Input, Select, Button, message } from "antd";
 
 import { getEnumValues } from "../auth/auth-service";
@@ -313,7 +313,15 @@ export default class EditRessource extends Component {
                 src={this.state.ressource.image}
                 alt={this.state.ressource.title}
               />
-              <Form.Item name="image" label="Image">
+              <Form.Item
+                name="image"
+                label="Image"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please upload an image",
+                  },
+                ]}>
                 <input
                   type="file"
                   value={this.state.ressource.image}

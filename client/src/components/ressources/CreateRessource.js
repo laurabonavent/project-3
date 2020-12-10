@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "antd/dist/antd.css";
+//import "antd/dist/antd.css";
 import { Form, Input, Select, Button, message, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
@@ -306,7 +306,15 @@ export default class CreateRessource extends Component {
                 </Select>
               </Form.Item>
               {/* TODO UPLOAD Image : https://ant.design/components/upload/ */}
-              <Form.Item name="image" label="Image">
+              <Form.Item
+                name="image"
+                label="Image"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please upload an image",
+                  },
+                ]}>
                 <input
                   type="file"
                   value={this.state.image}

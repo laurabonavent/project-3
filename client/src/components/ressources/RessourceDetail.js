@@ -3,11 +3,12 @@ import React, { Component } from "react";
 import { getOneRessource } from "../auth/auth-service";
 import { addFavorite } from "../auth/auth-service";
 import { deleteFavorite } from "../auth/auth-service";
+import { deleteRessource } from "../auth/auth-service";
 
-import { Button } from "antd";
-import { message } from "antd";
+import { Link } from "react-router-dom";
+
+import { Button, Popconfirm, message } from "antd";
 import isnull from "lodash.isnull";
-import { Redirect } from "react-router-dom";
 
 export default class RessourceDetail extends Component {
   state = { ressource: {} };
@@ -52,7 +53,23 @@ export default class RessourceDetail extends Component {
       });
   };
 
-  // TODO : récupérer le user de l'APP + vérifier si l'ID de la ressource existe déjà dans le user pour setter le state
+  deleteRessource = (id) => {
+    deleteRessource(this.state.ressource._id)
+      .then((response) => {
+        console.log("deleteRessource", response.data);
+        this.props.history.push("/");
+        console.log(this.props.history);
+      })
+      .catch((error) => {
+        message.info(error.message);
+        console.log(error);
+      });
+  };
+
+  cancel = (e) => {
+    console.log(e);
+    message.error("Change your mind ?");
+  };
 
   componentDidMount() {
     const {
@@ -98,6 +115,24 @@ export default class RessourceDetail extends Component {
                 <Button onClick={this.addAFavorite}>Add favorite</Button>
               </p>
             )}
+            {this.props.userInSession.role === "admin" ? (
+              <div>
+                <Link to={`/ressources/edit/${this.state.ressource._id}`}>
+                  Edit
+                </Link>
+                {/* <Button onClick={this.deleteRessource}>Delete</Button> */}
+                <Popconfirm
+                  title='Are you sure to delete this ressource?'
+                  onConfirm={this.deleteRessource}
+                  onCancel={this.cancel}
+                  okText='Yes I do'
+                  cancelText='Nope'>
+                  <a href='#' alt='delete'>
+                    Delete
+                  </a>
+                </Popconfirm>
+              </div>
+            ) : null}
             <p>
               Technologies :
               {ressource.technology.map((technology, index) => {
@@ -124,7 +159,7 @@ export default class RessourceDetail extends Component {
             <p>Level : {ressource.level}</p>
             <p>Price : {ressource.price}</p>
             <p>
-              <a href={ressource.link} rel="noreferrer" target="_blank">
+              <a href={ressource.link} rel='noreferrer' target='_blank'>
                 Find your way
               </a>
             </p>

@@ -143,7 +143,7 @@ export default class Profile extends Component {
         <Button onClick={this.sortBy}>technology</Button>
         <Button onClick={this.sortBy}>type</Button>
         <Button onClick={this.sortBy}>no sorting</Button>
-        <Carousel data={showedfavorites} sortQuery={this.state.sortQuery} />}
+        <Carousel data={showedfavorites} sortQuery={this.state.sortQuery} />
         {/* {showedfavorites &&
           showedfavorites.length > 0 &&
           showedfavorites
