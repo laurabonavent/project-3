@@ -26,7 +26,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "REACT_APP_APIURL=http://localhost:5000 craco start",
+    "start": "nodemon -w craco.config.js -w ./antd.customize.less --exec 'REACT_APP_APIURL=http://localhost:5000 craco start'",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject"
