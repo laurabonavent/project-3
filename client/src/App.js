@@ -38,7 +38,6 @@ class App extends React.Component {
 
   fetchUser() {
     if (this.state.loggedInUser === null) {
-      console.log("coucou");
       loggedin()
         .then((data) => {
           this.setState({ loggedInUser: data });

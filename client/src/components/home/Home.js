@@ -36,14 +36,14 @@ export default class Home extends Component {
 
   getRandomRessources = () => {
     let index = Math.floor(Math.random() * this.state.ressources.length);
-    console.log(index);
+    //console.log(index);
     return this.setState({
       randomRessource: this.state.ressources[index],
     });
   };
 
   getFilterValues = (event) => {
-    console.log("event: ", event);
+    //console.log("event: ", event);
 
     this.setState({
       filters: event,
@@ -52,7 +52,7 @@ export default class Home extends Component {
   };
 
   changePage = (value) => {
-    console.log("value: ", value);
+    //console.log("value: ", value);
 
     if (value <= 1) {
       this.setState({

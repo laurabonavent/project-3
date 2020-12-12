@@ -48,14 +48,14 @@ export default class EditRessource extends Component {
   findRessource = (id) => {
     getOneRessource(id)
       .then((response) => {
-        console.log("response", response);
+        //console.log("response", response);
         this.setState({ ressource: response });
       })
       .catch((error) => console.log(error));
   };
 
   fileChangedHandler = (event) => {
-    console.log("event.target", event.target.files[0]);
+    //console.log("event.target", event.target.files[0]);
 
     //this.setState({ avatar: event.target.files[0] });
     const uploadData = new FormData();
@@ -68,7 +68,7 @@ export default class EditRessource extends Component {
       .then((response) => {
         const image = response.secure_url;
         this.setState({ image });
-        console.log("image: ", image);
+        //console.log("image: ", image);
         message.success("Image uploaded");
       })
       .catch((error) => console.log(error));
@@ -101,7 +101,7 @@ export default class EditRessource extends Component {
       this.state.ressource._id
     )
       .then((response) => {
-        console.log("response edit", response);
+        //console.log("response edit", response);
         this.setState({
           ressource: response,
           formStatus: "ok",
@@ -161,7 +161,7 @@ export default class EditRessource extends Component {
   }
 
   render() {
-    console.log("ref:", React.createRef());
+    //console.log("ref:", React.createRef());
     const enumValues = this.state.enumValues;
     const ressource = this.state.ressource;
     return (

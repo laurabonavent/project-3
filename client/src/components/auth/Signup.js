@@ -18,7 +18,7 @@ class Signup extends React.Component {
   };
 
   fileChangedHandler = (event) => {
-    console.log("event.target", event.target.files[0]);
+    //console.log("event.target", event.target.files[0]);
 
     //this.setState({ avatar: event.target.files[0] });
     const uploadData = new FormData();
@@ -26,10 +26,10 @@ class Signup extends React.Component {
 
     upload(uploadData)
       .then((response) => {
-        console.log("response", response);
+        //console.log("response", response);
         const avatar = response.secure_url;
         this.setState({ avatar });
-        console.log("avatar: ", avatar);
+        //console.log("avatar: ", avatar);
       })
       .catch((error) => console.log(error));
   };
@@ -67,9 +67,9 @@ class Signup extends React.Component {
   render() {
     return (
       <>
-        <Form name='signup' onFinish={this.onFinish} scrollToFirstError>
+        <Form name="signup" onFinish={this.onFinish} scrollToFirstError>
           <Form.Item
-            name='email'
+            name="email"
             //label="E-mail"
 
             value={this.state.email}
@@ -84,12 +84,12 @@ class Signup extends React.Component {
               },
             ]}>
             <Input
-              placeholder='Email'
-              prefix={<UserOutlined className='site-form-item-icon' />}
+              placeholder="Email"
+              prefix={<UserOutlined className="site-form-item-icon" />}
             />
           </Form.Item>
           <Form.Item
-            name='password'
+            name="password"
             //label="Password"
             value={this.state.password}
             rules={[
@@ -100,12 +100,12 @@ class Signup extends React.Component {
             ]}
             hasFeedback>
             <Input.Password
-              placeholder='Password'
-              prefix={<LockOutlined className='site-form-item-icon' />}
+              placeholder="Password"
+              prefix={<LockOutlined className="site-form-item-icon" />}
             />
           </Form.Item>
           <Form.Item
-            name='username'
+            name="username"
             //label="Name"
             value={this.state.username}
             rules={[
@@ -115,10 +115,10 @@ class Signup extends React.Component {
                 whitespace: true,
               },
             ]}>
-            <Input placeholder='Name' />
+            <Input placeholder="Name" />
           </Form.Item>
           <Form.Item
-            name='level'
+            name="level"
             //label="Level"
 
             value={this.state.level}
@@ -129,21 +129,21 @@ class Signup extends React.Component {
                 whitespace: true,
               },
             ]}>
-            <Select placeholder='Level' className='select-test'>
-              <Select.Option value='padawan'>Padawan</Select.Option>
-              <Select.Option value='jedi'>Jedi</Select.Option>
-              <Select.Option value='master jedi'>Master Jedi</Select.Option>
+            <Select placeholder="Level" className="select-test">
+              <Select.Option value="padawan">Padawan</Select.Option>
+              <Select.Option value="jedi">Jedi</Select.Option>
+              <Select.Option value="master jedi">Master Jedi</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item name='avatar' label='Avatar'>
+          <Form.Item name="avatar" label="Avatar">
             <input
-              type='file'
+              type="file"
               onChange={this.fileChangedHandler}
-              placeholder='Avatar'
+              placeholder="Avatar"
             />
           </Form.Item>
           <Form.Item>
-            <Button type='primary' htmlType='submit'>
+            <Button type="primary" htmlType="submit">
               Register
             </Button>
           </Form.Item>

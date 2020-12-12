@@ -54,7 +54,7 @@ export default class Profile extends Component {
   }
 
   getFilterValues = (event) => {
-    console.log("event: ", event);
+    //console.log("event: ", event);
 
     this.setState({
       filters: event,
@@ -63,7 +63,7 @@ export default class Profile extends Component {
   };
 
   changePage = (value) => {
-    console.log("value: ", value);
+    //console.log("value: ", value);
 
     if (value <= 1) {
       this.setState({
@@ -79,7 +79,7 @@ export default class Profile extends Component {
   };
 
   sortBy = (event) => {
-    console.log("event.target.innerHTML: ", event.target.innerHTML);
+    //console.log("event.target.innerHTML: ", event.target.innerHTML);
     if (
       event.target.innerHTML === "technology" ||
       event.target.innerHTML === "type"
@@ -99,6 +99,7 @@ export default class Profile extends Component {
 
     let showedfavorites = this.props.userInSession.favorites.filter(
       (item, index) => {
+        console.log("item", item);
         return item.title
           .toLowerCase()
           .includes(this.state.search.toLowerCase());

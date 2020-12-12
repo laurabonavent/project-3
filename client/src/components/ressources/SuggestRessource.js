@@ -32,7 +32,7 @@ export default class SuggestRessource extends Component {
 
   handleChange = (event) => {
     const { name, value } = event.target;
-    console.log("event target", { [name]: value });
+    //console.log("event target", { [name]: value });
     this.setState({ [name]: value });
   };
 
@@ -47,7 +47,7 @@ export default class SuggestRessource extends Component {
     let name = LabeledValue.name;
     arrValue.push(value);
     let newValue = Object.values(arrValue);
-    console.log("each value", Object.values(arrValue));
+    //console.log("each value", Object.values(arrValue));
     this.setState({ [name]: newValue });
   };
 
@@ -61,19 +61,19 @@ export default class SuggestRessource extends Component {
   };
 
   fileChangedHandler = (event) => {
-    console.log("event.target", event.target.files[0]);
+    //console.log("event.target", event.target.files[0]);
 
     //this.setState({ avatar: event.target.files[0] });
     const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
-    console.log(uploadData);
+    //console.log(uploadData);
 
     uploadImage(uploadData)
       .then((response) => {
-        console.log("response", response);
+        //console.log("response", response);
         const image = response.secure_url;
         this.setState({ image });
-        console.log("image: ", image);
+        //console.log("image: ", image);
       })
       .catch((error) => console.log(error));
   };

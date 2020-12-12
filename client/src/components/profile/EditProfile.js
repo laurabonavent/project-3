@@ -36,7 +36,7 @@ export default class EditProfile extends React.Component {
 
     editSignup(email, username, password, level, avatar)
       .then((response) => {
-        console.log(" avatar: ", avatar);
+        //console.log(" avatar: ", avatar);
         // this.setState({
         //   email: "",
         //   password: "",
@@ -52,7 +52,7 @@ export default class EditProfile extends React.Component {
   };
 
   fileChangedHandler = (event) => {
-    console.log("event.target", event.target.files[0]);
+    //console.log("event.target", event.target.files[0]);
 
     //this.setState({ avatar: event.target.files[0] });
     const uploadData = new FormData();
@@ -60,10 +60,10 @@ export default class EditProfile extends React.Component {
 
     upload(uploadData)
       .then((response) => {
-        console.log("response", response);
+        //console.log("response", response);
         const avatar = response.secure_url;
         this.setState({ avatar });
-        console.log("avatar: ", avatar);
+        //console.log("avatar: ", avatar);
       })
       .catch((error) => console.log(error));
   };
@@ -77,7 +77,7 @@ export default class EditProfile extends React.Component {
     //     //return <Redirect to="/" />;
     //     return;
     //   }
-    console.log("helloooo");
+    //console.log("helloooo");
     if (this.props.userInSession) {
       const { email, username, level } = this.props.userInSession;
 
@@ -106,7 +106,7 @@ export default class EditProfile extends React.Component {
 
   render() {
     //if (isnull(this.state.loggedInUser)) return "..loading";
-    console.log("user", this.props.userInSession);
+    //console.log("user", this.props.userInSession);
     return (
       <>
         <h1>Edit profile page</h1>

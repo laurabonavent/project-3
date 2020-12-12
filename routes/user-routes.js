@@ -3,6 +3,7 @@ const userRouter = express.Router();
 const bcryptjs = require("bcryptjs");
 const User = require("../models/User.model");
 const uploader = require("../configs/cloudinary-setup.config");
+const Ressource = require("../models/Ressource.model");
 
 // PUT SESSION
 userRouter.put("/user", uploader.single("avatar"), (req, res, next) => {
@@ -63,21 +64,29 @@ userRouter.post("/ressources/:id/favorites", (req, res, next) => {
   }
 
   User.findById(req.session.user._id)
+    .populate("favorites")
     .then((user) => {
       // if (user.favorites.includes(req.params.id)) {
       //   console.log("already saved");
       //   res.status(300).json({ message: "Favorite Already save" });
       // } else {
-      user.favorites.push(req.params.id);
+      Ressource.findById(req.params.id)
+        .then((ressource) => {
+          user.favorites.push(ressource);
 
-      user
-        .save()
-        .then((user) => {
-          res.status(200).json({ message: "Favorite added", user });
+          user
+            .save()
+            .then((user) => {
+              res.status(200).json({ message: "Favorite added", user });
+            })
+            .catch((err) => {
+              res.status(400).json({ message: "Favorite not added" });
+            });
         })
         .catch((err) => {
-          res.status(400).json({ message: "Favorite not added" });
+          res.status(400).json({ message: "Ressource not found" });
         });
+
       // }
     })
     .catch((err) => {

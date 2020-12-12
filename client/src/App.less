@@ -341,15 +341,53 @@ button {
 ##    ## ##     ## ##    ##  ##     ## 
  ######  ##     ## ##     ## ########   */
 
+/* HOME CARD CONTAINER */
+.home-card-container {
+  width: 768;
+  margin: 20px auto;
+  columns: 2;
+  column-gap: 40px;
+}
+
+@media (max-width: 1600px) {
+  .home-card-container {
+    columns: 4;
+    width: calc(100%-40px);
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 1200px) {
+  .home-card-container {
+    columns: 3;
+    width: calc(100%-40px);
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-card-container {
+    columns: 2;
+  }
+}
+
+@media (max-width: 425px) {
+  .home-card-container {
+    columns: 1;
+  }
+}
+
 /* GLOBAL CONTAINER */
 .card-container {
-  width: 80%;
+  width: 350px;
   max-width: 300px;
-
-  background: rgba(250, 250, 250, 0.94);
+  background: rgba(250, 250, 250, 0.9);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
-  margin: 20px;
+  margin: 0 0 20px;
+  ppadding: 10px;
+  overflow: hidden;
+  break-inside: avoid;
 }
 
 .card-container li {
@@ -366,7 +404,7 @@ button {
   justify-content: space-between;
   align-items: flex-start;
   padding-left: 15px;
-  height: 60px;
+  hheight: 100px;
 }
 
 .card-technology {
@@ -388,11 +426,13 @@ button {
   font-size: 25px;
   width: 70%;
   margin: 0;
+  line-height: normal;
+  font-weight: bold;
 }
 
 /* BOTTOM OF THE CARD */
 .card-bottom {
-  padding: 15px;
+  padding: 15px 15px 5px 15px;
 }
 
 .card-type {
@@ -401,20 +441,24 @@ button {
   flex-wrap: wrap;
 }
 
+.card-type ul {
+  margin-bottom: 0;
+}
+
 .card-type li {
   background: rgba(0, 0, 0, 0.69);
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 15px;
   color: white;
   padding: 3px 10px;
-  margin: 4px;
+  margin: 4px 4px 0 0;
 }
 
 .card p {
-  font-size: 14px;
+  font-size: 13px;
   border-top: 1px solid black;
-  padding-top: 10px;
-  height: 80px;
+  padding: 10px 0;
+  hheight: 105px;
 }
 
 /* 
@@ -425,9 +469,3 @@ button {
 ##     ## ##     ## ##     ## ##       
 ##     ## ##     ## ##     ## ##       
 ##     ##  #######  ##     ## ########  */
-
-.home-card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}

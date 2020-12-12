@@ -25,9 +25,10 @@ export default class RessourceDetail extends Component {
   addAFavorite = (id) => {
     addFavorite(this.state.ressource._id)
       .then((response) => {
-        console.log("addFav", response);
+        //console.log("response", response);
+        //console.log("addFav", response);
         const user = response.user;
-        this.props.updateUser({ user });
+        this.props.updateUser(user);
         this.setState({ fav: true });
         message.info(response.message);
       })
@@ -40,9 +41,9 @@ export default class RessourceDetail extends Component {
   deleteFavorite = (id) => {
     deleteFavorite(this.state.ressource._id)
       .then((response) => {
-        console.log("deletFav", response.data);
+        //console.log("deletFav", response.data);
         const user = response.user;
-        console.log(user);
+        //console.log(user);
         this.props.updateUser({ user });
         this.setState({ fav: false });
         message.info(response.message);
@@ -56,7 +57,7 @@ export default class RessourceDetail extends Component {
   deleteRessource = (id) => {
     deleteRessource(this.state.ressource._id)
       .then((response) => {
-        console.log("deleteRessource", response.data);
+        //console.log("deleteRessource", response.data);
         this.props.history.push("/");
         console.log(this.props.history);
       })
@@ -122,12 +123,12 @@ export default class RessourceDetail extends Component {
                 </Link>
                 {/* <Button onClick={this.deleteRessource}>Delete</Button> */}
                 <Popconfirm
-                  title='Are you sure to delete this ressource?'
+                  title="Are you sure to delete this ressource?"
                   onConfirm={this.deleteRessource}
                   onCancel={this.cancel}
-                  okText='Yes I do'
-                  cancelText='Nope'>
-                  <a href='#' alt='delete'>
+                  okText="Yes I do"
+                  cancelText="Nope">
+                  <a href="#" alt="delete">
                     Delete
                   </a>
                 </Popconfirm>
@@ -159,7 +160,7 @@ export default class RessourceDetail extends Component {
             <p>Level : {ressource.level}</p>
             <p>Price : {ressource.price}</p>
             <p>
-              <a href={ressource.link} rel='noreferrer' target='_blank'>
+              <a href={ressource.link} rel="noreferrer" target="_blank">
                 Find your way
               </a>
             </p>

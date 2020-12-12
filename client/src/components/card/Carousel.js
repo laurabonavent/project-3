@@ -31,7 +31,7 @@ class Carousel extends React.Component {
 
   render() {
     const enumValues = Object.entries(this.state.enumValues);
-    console.log("enumValues: ", enumValues);
+    //console.log("enumValues: ", enumValues);
 
     let categoriesToShow = [];
     if (
@@ -50,7 +50,7 @@ class Carousel extends React.Component {
       categoriesToShow = [];
     }
 
-    console.log("this.props.data", this.props.data);
+    //console.log("this.props.data", this.props.data);
     return (
       <div>
         {this.props.sortQuery ? (
@@ -83,7 +83,7 @@ class Carousel extends React.Component {
                           {this.props.data.map((ressource, index) => {
                             if (this.props.sortQuery === "technology") {
                               if (ressource.technology.includes(category)) {
-                                console.log("coucou");
+                                //console.log("coucou");
                                 return (
                                   <Slide index={index}>
                                     <Card data={ressource} key={index} />
@@ -93,7 +93,7 @@ class Carousel extends React.Component {
                             }
                             if (this.props.sortQuery === "type") {
                               if (ressource.type.includes(category)) {
-                                console.log("coucou2");
+                                //console.log("coucou2");
                                 return (
                                   <Slide index={index}>
                                     <Card data={ressource} key={index} />

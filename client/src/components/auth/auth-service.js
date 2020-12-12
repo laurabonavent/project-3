@@ -81,7 +81,7 @@ export { upload };
 
 // UPLOAD Image ressource
 function uploadImage(formdata) {
-  console.log(formdata);
+  //console.log(formdata);
   return service
     .post("/upload/image", formdata)
     .then((response) => response.data);
@@ -136,7 +136,7 @@ function createRessource(
       price,
     })
     .then((response) => {
-      console.log("create response", response);
+      //console.log("create response", response);
       return response.data;
     })
     .catch((error) => console.log(error));
