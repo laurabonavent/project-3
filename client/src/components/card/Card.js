@@ -21,14 +21,16 @@ export default class Card extends Component {
                 })}
               </ul>
             </div>
-            <p>{data.description}</p>
-            <ul className="card-type">
-              {data.type.map((type, index) => {
-                if (type !== "") {
-                  return <li key={index}>{type}</li>;
-                }
-              })}
-            </ul>
+            <div className="card-bottom">
+              <p>{data.description}</p>
+              <ul className="card-type">
+                {data.type.map((type, index) => {
+                  if (type !== "") {
+                    return <li key={index}>{type}</li>;
+                  }
+                })}
+              </ul>
+            </div>
           </div>
         </Link>
       </div>

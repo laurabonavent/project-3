@@ -14,8 +14,8 @@ export default class Profile extends Component {
     search: "",
     filters: [],
     minValue: 0,
-    pageSize: 10,
-    maxValue: 10,
+    pageSize: 20,
+    maxValue: 20,
     sortQuery: "",
   };
 

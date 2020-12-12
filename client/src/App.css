@@ -322,6 +322,7 @@ button {
 ##    ## ##     ## ##    ##  ##     ## 
  ######  ##     ## ##     ## ########   */
 
+/* GLOBAL CONTAINER */
 .card-container {
   width: 80%;
   max-width: 300px;
@@ -339,6 +340,42 @@ button {
   margin: 0;
 }
 
+/* TOP OF THE CARD */
+.card-top {
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 15px;
+  height: 60px;
+}
+
+.card-technology {
+  text-transform: uppercase;
+  padding-left: 0;
+  text-align: right;
+  margin: 0;
+}
+
+.card-technology li {
+  font-size: 12px;
+  background-color: grey;
+  ddisplay: inline-block;
+  margin-bottom: 3px;
+  padding: 1px 3px;
+}
+
+.card h2 {
+  font-size: 25px;
+  width: 70%;
+  margin: 0;
+}
+
+/* BOTTOM OF THE CARD */
+.card-bottom {
+  padding: 15px;
+}
+
 .card-type {
   display: flex;
   padding-left: 0;
@@ -354,25 +391,11 @@ button {
   margin: 4px;
 }
 
-.card-technology {
-  text-transform: uppercase;
-  padding-left: 0;
-  text-align: right;
-}
-
-.card h2 {
-  font-size: 30px;
-  width: 70%;
-  margin: 0;
-}
-
 .card p {
   font-size: 14px;
-}
-
-.card-top {
-  display: flex;
-  justify-content: space-between;
+  border-top: 1px solid black;
+  padding-top: 10px;
+  height: 80px;
 }
 
 /* 

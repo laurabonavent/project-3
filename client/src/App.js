@@ -41,7 +41,7 @@ class App extends React.Component {
       loggedin()
         .then((data) => {
           this.setState({ loggedInUser: data });
-          console.log("user", this.state.loggedInUser);
+          //console.log("user", this.state.loggedInUser);
         })
         .catch((err) => {
           this.setState({ loggedInUser: false });
@@ -63,13 +63,13 @@ class App extends React.Component {
     //if (isnull(this.state.loggedInUser)) return "..loading";
 
     return (
-      <div className='App'>
+      <div className="App">
         <Parallax ref={(ref) => (this.parallax = ref)} pages={3}>
           <ParallaxLayer
             offset={0}
             speed={0}
             factor={3}
-            className='background'
+            className="background"
             style={{
               //   backgroundImage: url("stars", true),
               backgroundSize: "cover",
@@ -79,10 +79,10 @@ class App extends React.Component {
             offset={0.5}
             speed={0.5}
             style={{ opacity: 15 }}
-            className='background'>
+            className="background">
             <img
               src={DarkRed}
-              alt=''
+              alt=""
               style={{
                 display: "block",
                 width: "20%",
@@ -91,7 +91,7 @@ class App extends React.Component {
               }}
             />
             <img
-              alt=''
+              alt=""
               src={LightPink}
               style={{
                 display: "block",
@@ -101,7 +101,7 @@ class App extends React.Component {
               }}
             />
             <img
-              alt=''
+              alt=""
               src={Purple}
               style={{
                 display: "block",
@@ -114,7 +114,7 @@ class App extends React.Component {
           <ParallaxLayer offset={1} speed={0.4} style={{ opacity: 10 }}>
             <img
               src={OrangeRed}
-              alt=''
+              alt=""
               style={{
                 display: "block",
                 width: "70%",
@@ -126,33 +126,33 @@ class App extends React.Component {
 
           <ParallaxLayer offset={1.4} speed={-0.3} style={{ opacity: 10 }}>
             <img
-              alt=''
+              alt=""
               src={Purple}
-              className='purple'
+              className="purple"
               style={{ display: "block", width: "100%", marginLeft: "0%" }}
             />
             <img
-              alt=''
+              alt=""
               src={LightOrange}
-              className='light-orange'
+              className="light-orange"
               style={{ display: "block", width: "100%", marginLeft: "0%" }}
             />
             <img
-              alt=''
+              alt=""
               src={LightPink}
-              className='light-pink'
+              className="light-pink"
               style={{ display: "block", width: "100%", marginLeft: "0%" }}
             />
           </ParallaxLayer>
 
           <ParallaxLayer offset={0.9} speed={0.2} style={{ opacity: 5 }}>
             <img
-              alt=''
+              alt=""
               src={Yellow}
               style={{ display: "block", width: "10%", marginLeft: "10%" }}
             />
             <img
-              alt=''
+              alt=""
               src={LightOrange}
               style={{ display: "block", width: "20%", marginLeft: "75%" }}
             />
@@ -167,12 +167,12 @@ class App extends React.Component {
               justifyContent: "center",
               pointerEvents: "none",
             }}>
-            <img className='dark-red' src={DarkRed} alt='' />
-            <img className='yellow' src={Yellow} alt='' />
-            <img className='orange-red' src={OrangeRed} alt='' />
+            <img className="dark-red" src={DarkRed} alt="" />
+            <img className="yellow" src={Yellow} alt="" />
+            <img className="orange-red" src={OrangeRed} alt="" />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0} speed={0} factor={1} className='content'>
+          <ParallaxLayer offset={0} speed={0} factor={1} className="content">
             <Route
               render={(props) => (
                 <>
@@ -184,12 +184,12 @@ class App extends React.Component {
 
                   <BackButton />
                   <Switch>
-                    <Route exact path='/' component={Home} />
-                    <Route exact path='/parallax' component={Parallax} />
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/parallax" component={Parallax} />
 
                     <Route
                       exact
-                      path='/login'
+                      path="/login"
                       render={(props) => (
                         <Login
                           userInSession={this.state.loggedInUser}
@@ -200,7 +200,7 @@ class App extends React.Component {
                     />
                     <Route
                       exact
-                      path='/signup'
+                      path="/signup"
                       render={(props) => (
                         <Signup
                           history={props.history}
@@ -210,7 +210,7 @@ class App extends React.Component {
                     />
                     <Route
                       exact
-                      path='/profile/edit'
+                      path="/profile/edit"
                       render={(props) => (
                         <EditProfile
                           {...props}
@@ -222,7 +222,7 @@ class App extends React.Component {
                     />
                     <Route
                       exact
-                      path='/profile'
+                      path="/profile"
                       render={(props) => (
                         <Profile
                           {...props}
@@ -232,12 +232,12 @@ class App extends React.Component {
                     />
                     <Route
                       exact
-                      path='/ressources/create'
+                      path="/ressources/create"
                       component={CreateRessource}
                     />
                     <Route
                       exact
-                      path='/ressources/edit/:id'
+                      path="/ressources/edit/:id"
                       render={(props) => (
                         <EditRessource
                           {...props}
@@ -247,7 +247,7 @@ class App extends React.Component {
                     />
                     <Route
                       exact
-                      path='/ressources/:id'
+                      path="/ressources/:id"
                       render={(props) => (
                         <Ressource
                           {...props}
@@ -270,9 +270,9 @@ class App extends React.Component {
               justifyContent: "flex-end",
               margin: "-4% 0% 0% -3%",
             }}>
-            <div className='footer'>
+            <div className="footer">
               <p>Website created with love</p>
-              <img alt='' src={Rocket} style={{ width: "10%" }} />
+              <img alt="" src={Rocket} style={{ width: "10%" }} />
             </div>
           </ParallaxLayer>
         </Parallax>
