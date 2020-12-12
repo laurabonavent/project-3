@@ -1,5 +1,427 @@
 @import "~antd/dist/antd.less";
 
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto&display=swap");
+
+/* ######   ##        #######  ########     ###    ##       
+##    ##  ##       ##     ## ##     ##   ## ##   ##       
+##        ##       ##     ## ##     ##  ##   ##  ##       
+##   #### ##       ##     ## ########  ##     ## ##       
+##    ##  ##       ##     ## ##     ## ######### ##       
+##    ##  ##       ##     ## ##     ## ##     ## ##       
+ ######   ########  #######  ########  ##     ## ########  */
+
+:root {
+  --orange: #ff9f1c;
+  --yellow: #fdca40;
+  --dark-grey: #303030;
+  --light-grey: #fafafa;
+  --black: #000000;
+  --dark-red: #9a1809;
+}
+
+.test {
+  color: wheat;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.App {
+  margin: auto;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 h1 {
-  color: red;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  color: var(--black);
+  font-size: 36px;
+}
+
+body a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+button {
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  height: 35px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ##    ##    ###    ##     ## ########     ###    ########  
+###   ##   ## ##   ##     ## ##     ##   ## ##   ##     ## 
+####  ##  ##   ##  ##     ## ##     ##  ##   ##  ##     ## 
+## ## ## ##     ## ##     ## ########  ##     ## ########  
+##  #### #########  ##   ##  ##     ## ######### ##   ##   
+##   ### ##     ##   ## ##   ##     ## ##     ## ##    ##  
+##    ## ##     ##    ###    ########  ##     ## ##     ##  */
+
+@media (min-width: 1024px) {
+  .links {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 15%;
+    margin-left: 60%;
+  }
+  .navbar {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.navbar {
+  display: flex;
+  height: 65px;
+}
+
+.logo {
+  margin: auto 5%;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: 15%;
+  font-size: 14px;
+}
+
+.links svg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.back-button {
+  width: 35px;
+  margin: 5% 0 0 5%;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  align-items: center;
+  justify-content: flex-end;
+  height: 20px;
+  font-family: "Nunito", sans-serif;
+}
+
+.footer img {
+  margin-left: 5%;
+}
+
+/* 
+########     ###     ######  ##    ##  ######   ########   #######  ##     ## ##    ## ########  
+##     ##   ## ##   ##    ## ##   ##  ##    ##  ##     ## ##     ## ##     ## ###   ## ##     ## 
+##     ##  ##   ##  ##       ##  ##   ##        ##     ## ##     ## ##     ## ####  ## ##     ## 
+########  ##     ## ##       #####    ##   #### ########  ##     ## ##     ## ## ## ## ##     ## 
+##     ## ######### ##       ##  ##   ##    ##  ##   ##   ##     ## ##     ## ##  #### ##     ## 
+##     ## ##     ## ##    ## ##   ##  ##    ##  ##    ##  ##     ## ##     ## ##   ### ##     ## 
+########  ##     ##  ######  ##    ##  ######   ##     ##  #######   #######  ##    ## ########   */
+
+/* DARK RED SVG BACKGROUND */
+.dark-red {
+  position: absolute;
+  width: 319.42px;
+  height: 285.83px;
+  left: -45px;
+  top: 363px;
+}
+
+/* YELLOW SVG BACKGROUND */
+.yellow {
+  position: absolute;
+  width: 319.42px;
+  height: 285.83px;
+  left: -79px;
+  top: 529px;
+}
+
+/* RED SVG BACKGROUND */
+.orange-red {
+  position: absolute;
+  height: 185px;
+  left: 169.07px;
+  top: 455px;
+}
+
+/* LIGHT PINK SVG  */
+.light-pink {
+  position: absolute;
+  width: 273.86px;
+  height: 245.69px;
+  left: 20.86px;
+  top: 150px;
+  transform: rotate(82deg);
+}
+
+/* PURPLE SVG  */
+.purple {
+  position: absolute;
+  width: 499.85px;
+  height: 447.29px;
+  left: 54.12px;
+  transform: rotate(-177.23deg);
+}
+
+/* LIGHT ORANGE  */
+.light-orange {
+  position: absolute;
+  width: 499.85px;
+  height: 447.29px;
+  left: 128px;
+  top: 152px;
+  transform: rotate(-9.23deg);
+}
+
+/* ##     ##    ###    #### ##    ## 
+###   ###   ## ##    ##  ###   ## 
+#### ####  ##   ##   ##  ####  ## 
+## ### ## ##     ##  ##  ## ## ## 
+##     ## #########  ##  ##  #### 
+##     ## ##     ##  ##  ##   ### 
+##     ## ##     ## #### ##    ##  */
+
+.main {
+  margin: auto;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ########  #######  ########  ##     ## 
+##       ##     ## ##     ## ###   ### 
+##       ##     ## ##     ## #### #### 
+######   ##     ## ########  ## ### ## 
+##       ##     ## ##   ##   ##     ## 
+##       ##     ## ##    ##  ##     ## 
+##        #######  ##     ## ##     ##  */
+
+.ant-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ant-form input {
+  width: 90%;
+  border: none;
+  height: 40px;
+  background: var(--light-grey);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  margin-bottom: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  outline: none;
+}
+
+.select-test input {
+  background: red;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  appearance: none;
+}
+
+/* ##        #######   ######   #### ##    ## 
+##       ##     ## ##    ##   ##  ###   ## 
+##       ##     ## ##         ##  ####  ## 
+##       ##     ## ##   ####  ##  ## ## ## 
+##       ##     ## ##    ##   ##  ##  #### 
+##       ##     ## ##    ##   ##  ##   ### 
+########  #######   ######   #### ##    ##  */
+
+@media (min-width: 1024px) {
+  .login {
+    width: 50%;
+  }
+}
+.login form {
+  min-height: 50vh;
+}
+
+.ant-form-item-explain-error {
+  background-color: white;
+  color: var(--dark-red);
+}
+
+.login-form-button {
+  width: 50px;
+  height: 50px;
+  margin: auto 85%;
+}
+
+.login-form-button svg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.login .bottom-links {
+  flex: 1;
+}
+
+/*
+ ######  ##       #### ########  ######## ########  
+##    ## ##        ##  ##     ## ##       ##     ## 
+##       ##        ##  ##     ## ##       ##     ## 
+ ######  ##        ##  ##     ## ######   ########  
+      ## ##        ##  ##     ## ##       ##   ##   
+##    ## ##        ##  ##     ## ##       ##    ##  
+ ######  ######## #### ########  ######## ##     ## */
+
+.slider-container {
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* 
+ ######     ###    ########  ########  
+##    ##   ## ##   ##     ## ##     ## 
+##        ##   ##  ##     ## ##     ## 
+##       ##     ## ########  ##     ## 
+##       ######### ##   ##   ##     ## 
+##    ## ##     ## ##    ##  ##     ## 
+ ######  ##     ## ##     ## ########   */
+
+/* GLOBAL CONTAINER */
+.card-container {
+  width: 80%;
+  max-width: 300px;
+
+  background: rgba(250, 250, 250, 0.94);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  margin: 20px;
+}
+
+.card-container li {
+  list-style: none;
+  padding: 0 10px 0 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* TOP OF THE CARD */
+.card-top {
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 15px;
+  height: 60px;
+}
+
+.card-technology {
+  text-transform: uppercase;
+  padding-left: 0;
+  text-align: right;
+  margin: 0;
+}
+
+.card-technology li {
+  font-size: 12px;
+  background-color: grey;
+  ddisplay: inline-block;
+  margin-bottom: 3px;
+  padding: 1px 3px;
+}
+
+.card h2 {
+  font-size: 25px;
+  width: 70%;
+  margin: 0;
+}
+
+/* BOTTOM OF THE CARD */
+.card-bottom {
+  padding: 15px;
+}
+
+.card-type {
+  display: flex;
+  padding-left: 0;
+  flex-wrap: wrap;
+}
+
+.card-type li {
+  background: rgba(0, 0, 0, 0.69);
+  font-size: 14px;
+  border-radius: 15px;
+  color: white;
+  padding: 3px 10px;
+  margin: 4px;
+}
+
+.card p {
+  font-size: 14px;
+  border-top: 1px solid black;
+  padding-top: 10px;
+  height: 80px;
+}
+
+/* 
+##     ##  #######  ##     ## ######## 
+##     ## ##     ## ###   ### ##       
+##     ## ##     ## #### #### ##       
+######### ##     ## ## ### ## ######   
+##     ## ##     ## ##     ## ##       
+##     ## ##     ## ##     ## ##       
+##     ##  #######  ##     ## ########  */
+
+.home-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
