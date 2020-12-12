@@ -10,6 +10,7 @@
     "axios": "^0.21.0",
     "lodash.isnull": "^3.0.0",
     "prop-types": "^15.7.2",
+    "pure-react-carousel": "^1.27.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.1.0",
