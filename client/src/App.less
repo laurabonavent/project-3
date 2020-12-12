@@ -9,18 +9,24 @@
 ##    ##  ##       ##     ## ##     ## ######### ##       
 ##    ##  ##       ##     ## ##     ## ##     ## ##       
  ######   ########  #######  ########  ##     ## ########  */
+@primary-color: black;
+@link-decoration: black;
+@link-active-color: black;
+@link-hover-color: black;
+@link-hover-decoration: black;
+@link-focus-decoration: black;
+@link-focus-outline: black;
+@text-color-inverse: black;
+@text-selection-bg: white;
 
 :root {
   --orange: #ff9f1c;
   --yellow: #fdca40;
   --dark-grey: #303030;
-  --light-grey: #fafafa;
+  --light-grey: #f5f5f5;
   --black: #000000;
   --dark-red: #9a1809;
-}
-
-.test {
-  color: wheat;
+  --primary-color: black;
 }
 
 body {
@@ -32,40 +38,40 @@ body {
   margin: auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+// .App-logo {
+//   height: 40vmin;
+//   pointer-events: none;
+// }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+// @media (prefers-reduced-motion: no-preference) {
+//   .App-logo {
+//     animation: App-logo-spin infinite 20s linear;
+//   }
+// }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+// .App-header {
+//   background-color: #282c34;
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: calc(10px + 2vmin);
+//   color: white;
+// }
 
-.App-link {
-  color: #61dafb;
-}
+// .App-link {
+//   color: #61dafb;
+// }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+// @keyframes App-logo-spin {
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
 
 h1 {
   font-family: "Nunito", sans-serif;
@@ -77,19 +83,41 @@ h1 {
 body a {
   text-decoration: none;
   color: var(--black);
+  transition: none;
+  outline: none;
 }
 
 button {
   border: none;
   border-radius: 50px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
   height: 35px;
 }
 
 .content {
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .content {
+    width: 80%;
+    margin: 0 4%;
+  }
+}
+::selection {
+  background: none;
+  color: black;
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: black !important;
+}
+
+html {
+  --antd-wave-shadow-color: black !important;
 }
 
 /* ##    ##    ###    ##     ## ########     ###    ########  
@@ -104,9 +132,7 @@ button {
   .links {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
     width: 15%;
-    margin-left: 60%;
   }
   .navbar {
     width: 90%;
@@ -116,28 +142,31 @@ button {
 
 .navbar {
   display: flex;
-  height: 65px;
+  height: 10%;
+  width: 100%;
+  align-items: center;
 }
 
 .logo {
-  margin: auto 5%;
   font-family: "Nunito", sans-serif;
   font-weight: 700;
   font-size: 24px;
+  width: 50%;
+  padding-left: 5%;
 }
 
 .links {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin-left: 15%;
+  width: 50%;
   font-size: 14px;
+  padding-left: 5%;
+  margin-right: 5%;
 }
 
 .links a {
   margin: auto;
-  padding-left: 40%;
-  padding-right: 40%;
 }
 
 .links svg {
@@ -147,7 +176,8 @@ button {
 
 .back-button {
   width: 35px;
-  margin: 5% 0 0 5%;
+  margin: 10% 0 5% 0;
+  background-color: var(--light-grey);
 }
 
 .footer {
@@ -257,27 +287,39 @@ button {
 }
 
 .ant-form input {
-  width: 90%;
+  width: 95%;
   border: none;
   height: 40px;
   background: var(--light-grey);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
-  margin-bottom: 5%;
+  margin: 2%;
   padding-left: 5%;
   padding-right: 5%;
   outline: none;
 }
 
-.select-test input {
-  background: red;
-  height: 30px;
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  border: none;
-  outline: none;
-  appearance: none;
+@media (min-width: 768px) {
+  .ant-form {
+    width: 65%;
+  }
+}
+// #     #
+// #     #  ####  #    # ######
+// #     # #    # ##  ## #
+// ####### #    # # ## # #####
+// #     # #    # #    # #
+// #     # #    # #    # #
+// #     #  ####  #    # ######
+
+.home-container .content {
+  padding: 0 5% 0 5%;
+}
+
+@media (min-height: 768px) {
+  .home-container .content {
+    padding: 0 5% 0 0;
+  }
 }
 
 /* ##        #######   ######   #### ##    ## 
@@ -291,30 +333,49 @@ button {
 @media (min-width: 1024px) {
   .login {
     width: 50%;
+    margin-left: 30%;
+    display: flex;
+    align-items: flex-start;
   }
 }
 .login form {
   min-height: 50vh;
 }
 
-.ant-form-item-explain-error {
-  background-color: white;
-  color: var(--dark-red);
-}
+// .ant-form-item-explain-error {
+//   background-color: white;
+//   color: var(--dark-red);
+// }
 
 .login-form-button {
   width: 50px;
   height: 50px;
-  margin: auto 85%;
+  margin-left: 80%;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: var(--light-grey);
 }
 
 .login-form-button svg {
+  color: black;
   width: 1.5em;
   height: 1.5em;
 }
 
 .login .bottom-links {
   flex: 1;
+}
+
+.login h1 {
+  padding-left: 5%;
+}
+
+@media (min-width: 768px) {
+  .login h1 {
+    text-align: center;
+    padding-left: 0%;
+  }
 }
 
 /*

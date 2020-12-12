@@ -5,11 +5,7 @@ import { Link } from "react-router-dom";
 import { RiAccountPinCircleLine } from "react-icons/ri";
 
 const LoginButton = () => {
-  return (
-    <Link to="/login">
-      <RiAccountPinCircleLine />
-    </Link>
-  );
+  return <Link to="/login">Login</Link>;
 };
 
 export { LoginButton };

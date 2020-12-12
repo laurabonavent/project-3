@@ -5,6 +5,8 @@ import { login } from "./auth-service";
 import { Link } from "react-router-dom";
 import { message } from "antd";
 
+import BackButton from "../nav/BackButton";
+
 import { RiArrowRightSLine } from "react-icons/ri";
 
 export default class Login extends Component {
@@ -30,6 +32,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className='main login'>
+        <BackButton />
         <h1>
           {`<h1> Welcome
           Back 👋 </h1>`}
@@ -77,9 +80,9 @@ export default class Login extends Component {
             </Button>
           </Form.Item>
         </Form>
-        <div className='bottom-links'>
+        {/* <div className='bottom-links'>
           <Link to='/signup'>Signup</Link>
-        </div>
+        </div> */}
       </div>
     );
   }
