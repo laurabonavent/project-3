@@ -114,11 +114,15 @@ export default class Home extends Component {
             <button onClick={this.getRandomRessources}>Random button</button>
             <div>{this.state.randomRessource.title}</div>
             <Filters handleChange={this.getFilterValues} />
-            {showedRessources &&
-              showedRessources.length > 0 &&
-              showedRessources
-                .slice(this.state.minValue, this.state.maxValue)
-                .map((val, index) => <Card data={val} key={index} />)}
+
+            <div className="home-card-container">
+              {showedRessources &&
+                showedRessources.length > 0 &&
+                showedRessources
+                  .slice(this.state.minValue, this.state.maxValue)
+                  .map((val, index) => <Card data={val} key={index} />)}
+            </div>
+
             <Pagination
               showSizeChanger={false}
               responsive

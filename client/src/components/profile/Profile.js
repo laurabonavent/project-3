@@ -136,14 +136,15 @@ export default class Profile extends Component {
           <Button>Edit Profile</Button>
         </Link>
         <SearchBar handleChange={this.handleChange} />
-        {this.state.sortQuery === "" && (
-          <Filters handleChange={this.getFilterValues} />
-        )}
+
         <h2>Sort by</h2>
         <Button onClick={this.sortBy}>technology</Button>
         <Button onClick={this.sortBy}>type</Button>
         <Button onClick={this.sortBy}>no sorting</Button>
         <Carousel data={showedfavorites} sortQuery={this.state.sortQuery} />
+        {this.state.sortQuery === "" && (
+          <Filters handleChange={this.getFilterValues} />
+        )}
         {/* {showedfavorites &&
           showedfavorites.length > 0 &&
           showedfavorites
