@@ -8,6 +8,9 @@ import { message } from "antd";
 import BackButton from "../nav/BackButton";
 
 import { RiArrowRightSLine } from "react-icons/ri";
+import DarkRed from "../../images/dark-red.svg";
+import Yellow from "../../images/yellow.svg";
+import OrangeRed from "../../images/orange-red.svg";
 
 export default class Login extends Component {
   state = { email: "", password: "" };
@@ -32,6 +35,9 @@ export default class Login extends Component {
   render() {
     return (
       <div className='main login'>
+        <img className='dark-red' src={DarkRed} alt='' />
+        <img className='yellow' src={Yellow} alt='' />
+        <img className='orange-red' src={OrangeRed} alt='' />
         <BackButton />
         <h1>
           {`<h1> Welcome
@@ -61,7 +67,7 @@ export default class Login extends Component {
               },
             ]}
             hasFeedback>
-            <Input type='password' placeholder='Password' />
+            <Input.Password placeholder='Password' />
           </Form.Item>
           <Form.Item>
             {/* <Form.Item name='remember' valuePropName='checked' noStyle>
