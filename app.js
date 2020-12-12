@@ -13,7 +13,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
 mongoose
-  .connect("mongodb://localhost/project-3", { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -84,5 +84,15 @@ app.use("/", require("./routes/admin-routes"));
 app.use("/", require("./routes/auth-routes"));
 app.use("/", require("./routes/user-routes"));
 app.use("/", require("./routes/ressources-routes"));
+
+// Serve static files from client/build folder
+app.use(express.static(path.join(__dirname, "client/build")));
+
+// For any other routes: serve client/build/index.html SPA
+app.use((req, res, next) => {
+  res.sendFile(`${__dirname}/client/build/index.html`, (err) => {
+    if (err) next(err);
+  });
+});
 
 module.exports = app;
