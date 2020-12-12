@@ -1,4 +1,5 @@
-import "./App.css";
+//import "./App.css";
+import "./App.less";
 import React from "react";
 
 // import Vector1 from "./images/vector1.svg";
