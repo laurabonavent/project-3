@@ -8,6 +8,7 @@ import isnull from "lodash.isnull";
 import { Link } from "react-router-dom";
 import { message } from "antd";
 import Carousel from "../card/Carousel";
+import Carousel2 from "../card/Carousel2";
 
 import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons";
 import DarkRed from "../../images/dark-red.svg";
@@ -60,6 +61,7 @@ export default class Profile extends Component {
   componentDidMount() {
     //this.findUserInfo();
     //this.findUserFavorites();
+    console.log("WW PROFILE.JS", this.props.windowWidth);
   }
 
   getFilterValues = (event) => {
@@ -108,7 +110,6 @@ export default class Profile extends Component {
 
     let showedfavorites = this.props.userInSession.favorites.filter(
       (item, index) => {
-        console.log("item", item);
         return item.title
           .toLowerCase()
           .includes(this.state.search.toLowerCase());
@@ -136,18 +137,19 @@ export default class Profile extends Component {
 
       return ressource;
     });
+    console.log("showedFav", showedfavorites);
 
     return (
       <div>
         <Parallax
           ref={(ref) => (this.parallax = ref)}
           pages={4.55}
-          className='home-container'>
+          className="home-container">
           <ParallaxLayer
             offset={0}
             speed={0}
             factor={3}
-            className='background'
+            className="background"
             style={{
               //   backgroundImage: url("stars", true),
               backgroundSize: "cover",
@@ -157,10 +159,10 @@ export default class Profile extends Component {
             offset={0.5}
             speed={0.5}
             style={{ opacity: 15 }}
-            className='background'>
+            className="background">
             <img
               src={DarkRed}
-              alt=''
+              alt=""
               style={{
                 display: "block",
                 width: "20%",
@@ -169,7 +171,7 @@ export default class Profile extends Component {
               }}
             />
             <img
-              alt=''
+              alt=""
               src={LightPink}
               style={{
                 display: "block",
@@ -179,7 +181,7 @@ export default class Profile extends Component {
               }}
             />
             <img
-              alt=''
+              alt=""
               src={Purple}
               style={{
                 display: "block",
@@ -193,7 +195,7 @@ export default class Profile extends Component {
           <ParallaxLayer offset={1} speed={0.4} style={{ opacity: 10 }}>
             <img
               src={OrangeRed}
-              alt=''
+              alt=""
               style={{
                 display: "block",
                 width: "70%",
@@ -205,33 +207,33 @@ export default class Profile extends Component {
 
           <ParallaxLayer offset={1.4} speed={-0.3} style={{ opacity: 10 }}>
             <img
-              alt=''
+              alt=""
               src={Purple}
-              className='purple'
+              className="purple"
               style={{ display: "block", width: "100%", marginLeft: "0%" }}
             />
             <img
-              alt=''
+              alt=""
               src={LightOrange}
-              className='light-orange'
+              className="light-orange"
               style={{ display: "block", width: "100%", marginLeft: "0%" }}
             />
             <img
-              alt=''
+              alt=""
               src={LightPink}
-              className='light-pink'
+              className="light-pink"
               style={{ display: "block", width: "100%", marginLeft: "0%" }}
             />
           </ParallaxLayer>
 
           <ParallaxLayer offset={0.9} speed={0.2} style={{ opacity: 5 }}>
             <img
-              alt=''
+              alt=""
               src={Yellow}
               style={{ display: "block", width: "10%", marginLeft: "10%" }}
             />
             <img
-              alt=''
+              alt=""
               src={LightOrange}
               style={{ display: "block", width: "20%", marginLeft: "75%" }}
             />
@@ -246,9 +248,9 @@ export default class Profile extends Component {
               justifyContent: "center",
               pointerEvents: "none",
             }}>
-            <img className='dark-red' src={DarkRed} alt='' />
-            <img className='yellow' src={Yellow} alt='' />
-            <img className='orange-red' src={OrangeRed} alt='' />
+            <img className="dark-red" src={DarkRed} alt="" />
+            <img className="yellow" src={Yellow} alt="" />
+            <img className="orange-red" src={OrangeRed} alt="" />
           </ParallaxLayer>
 
           <ParallaxLayer
@@ -260,17 +262,17 @@ export default class Profile extends Component {
               justifyContent: "flex-end",
               margin: "-4% 0% 0% -3%",
             }}>
-            <div className='footer'>
+            <div className="footer">
               <p>Website created with love</p>
-              <img alt='' src={Rocket} style={{ width: "10%" }} />
+              <img alt="" src={Rocket} style={{ width: "10%" }} />
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0} speed={0} factor={3} className='content'>
-            <img src={this.props.userInSession.avatar} alt='' />
+          <ParallaxLayer offset={0} speed={0} factor={3} className="content">
+            <img src={this.props.userInSession.avatar} alt="" />
             <p>{this.props.userInSession.username}'s dashboard</p>
             <p>Email : {this.props.userInSession.email}</p>
-            <Link to='/profile/edit'>
+            <Link to="/profile/edit">
               <Button>Edit Profile</Button>
             </Link>
             <SearchBar handleChange={this.handleChange} />
@@ -279,10 +281,19 @@ export default class Profile extends Component {
             <Button onClick={this.sortBy}>technology</Button>
             <Button onClick={this.sortBy}>type</Button>
             <Button onClick={this.sortBy}>no sorting</Button>
-            <Carousel data={showedfavorites} sortQuery={this.state.sortQuery} />
             {this.state.sortQuery === "" && (
               <Filters handleChange={this.getFilterValues} />
             )}
+            {/* <Carousel
+              data={showedfavorites}
+              sortQuery={this.state.sortQuery}
+              windowWidth={this.props.windowWidth}
+            /> */}
+            <Carousel2
+              data={showedfavorites}
+              sortQuery={this.state.sortQuery}
+            />
+
             {/* {showedfavorites &&
           showedfavorites.length > 0 &&
           showedfavorites
