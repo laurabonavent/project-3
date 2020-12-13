@@ -21,12 +21,12 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <div className="navbar">
-        <div className="logo">
-          <Link to="/">Skyrocket 🚀</Link>
+      <div className='navbar'>
+        <div className='logo'>
+          <Link to='/'>Skyrocket 🚀</Link>
         </div>
         {this.props.userInSession ? (
-          <div className="links">
+          <div className='links'>
             <ProfileButton />
             <LogoutButton
               onClick={(event) => {
@@ -35,7 +35,7 @@ class Navbar extends React.Component {
             />
           </div>
         ) : (
-          <div className="links">
+          <div className='links'>
             <>
               <LoginButton />
               <SignupButton />

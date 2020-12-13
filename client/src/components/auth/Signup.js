@@ -6,9 +6,7 @@ import { upload, saveAvatar } from "./auth-service";
 import { message } from "antd";
 // import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
-import DarkRed from "../../images/dark-red.svg";
-import Yellow from "../../images/yellow.svg";
-import OrangeRed from "../../images/orange-red.svg";
+import BackGround from "../BackGround";
 
 import { RiArrowRightSLine } from "react-icons/ri";
 
@@ -73,10 +71,8 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className='main signup'>
-        <img className='dark-red' src={DarkRed} alt='' />
-        <img className='yellow' src={Yellow} alt='' />
-        <img className='orange-red' src={OrangeRed} alt='' />
+      <div className='main form create'>
+        <BackGround />
         <h1>Signup</h1>
         <h2>to access the next level 🤓</h2>
         <Form name='signup' onFinish={this.onFinish} scrollToFirstError>
@@ -147,7 +143,7 @@ class Signup extends React.Component {
               <Select.Option value='master jedi'>Master Jedi</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item name='avatar' label='Avatar'>
+          <Form.Item name='avatar' label='Your magnificent avatar 📸'>
             <input
               type='file'
               onChange={this.fileChangedHandler}
@@ -158,7 +154,7 @@ class Signup extends React.Component {
             <Button
               type='primary'
               htmlType='submit'
-              className='login-form-button'>
+              className='main-form-button'>
               <RiArrowRightSLine />
             </Button>
           </Form.Item>

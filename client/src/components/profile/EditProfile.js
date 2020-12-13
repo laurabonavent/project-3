@@ -5,6 +5,9 @@ import { upload, saveAvatar } from "../auth/auth-service";
 import isnull from "lodash.isnull";
 import { message } from "antd";
 
+import { RiArrowRightSLine } from "react-icons/ri";
+import BackGround from "../BackGround";
+
 export default class EditProfile extends React.Component {
   state = {
     // email: "",
@@ -108,18 +111,19 @@ export default class EditProfile extends React.Component {
     //if (isnull(this.state.loggedInUser)) return "..loading";
     //console.log("user", this.props.userInSession);
     return (
-      <>
+      <div className='main form'>
+        <BackGround />
         <h1>Edit profile page</h1>
         <Form
-          name="signup-edit"
+          name='signup-edit'
           onFinish={this.onFinish}
           scrollToFirstError
           ref={this.formRef}>
           {this.props.userInSession ? (
             <>
               <Form.Item
-                name="email"
-                label="E-mail"
+                name='email'
+                label='E-mail'
                 // value={this.state.email}
                 rules={[
                   {
@@ -134,8 +138,8 @@ export default class EditProfile extends React.Component {
                 <Input />
               </Form.Item>
               <Form.Item
-                name="password"
-                label="Password"
+                name='password'
+                label='Password'
                 // value={this.state.password}
                 // rules={[
                 //   {
@@ -147,8 +151,8 @@ export default class EditProfile extends React.Component {
                 <Input.Password placeholder="Don't touch if you want to keep the same password" />
               </Form.Item>
               <Form.Item
-                name="username"
-                label="Name"
+                name='username'
+                label='Name'
                 // value={this.state.username}
                 rules={[
                   {
@@ -160,8 +164,8 @@ export default class EditProfile extends React.Component {
                 <Input />
               </Form.Item>
               <Form.Item
-                name="level"
-                label="Level"
+                name='level'
+                label='Level'
                 // value={this.state.level}
                 rules={[
                   {
@@ -171,23 +175,30 @@ export default class EditProfile extends React.Component {
                   },
                 ]}>
                 <Select>
-                  <Select.Option value="padawan">Padawan</Select.Option>
-                  <Select.Option value="jedi">Jedi</Select.Option>
-                  <Select.Option value="master jedi">Master Jedi</Select.Option>
+                  <Select.Option value='padawan'>Padawan</Select.Option>
+                  <Select.Option value='jedi'>Jedi</Select.Option>
+                  <Select.Option value='master jedi'>Master Jedi</Select.Option>
                 </Select>
               </Form.Item>
               <p>Your actual magnificient avatar</p>
-              <img src={this.props.userInSession.avatar} alt="avatar" />
-              <Form.Item name="avatar" label="Change the avatar">
+              <img
+                className='preview'
+                src={this.props.userInSession.avatar}
+                alt='avatar'
+              />
+              <Form.Item name='avatar' label='Change the avatar'>
                 <input
                   value={this.props.userInSession.image}
-                  type="file"
+                  type='file'
                   onChange={this.fileChangedHandler}
                 />
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit">
-                  Edit
+                <Button
+                  type='primary'
+                  htmlType='submit'
+                  className='main-form-button'>
+                  <RiArrowRightSLine />
                 </Button>
               </Form.Item>
             </>
@@ -195,7 +206,7 @@ export default class EditProfile extends React.Component {
             "Loading.."
           )}
         </Form>
-      </>
+      </div>
     );
   }
 }

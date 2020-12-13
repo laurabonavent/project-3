@@ -136,13 +136,14 @@ export default class Home extends Component {
       <>
         <Parallax
           ref={(ref) => (this.parallax = ref)}
-          pages={4.55}
-          className="home-container">
+          pages={6}
+          scrolling={true}
+          className='home-container'>
           <ParallaxLayer
             offset={0}
             speed={0}
             factor={3}
-            className="background"
+            className='background'
             style={{
               //   backgroundImage: url("stars", true),
               backgroundSize: "cover",
@@ -152,10 +153,10 @@ export default class Home extends Component {
             offset={0.5}
             speed={0.5}
             style={{ opacity: 15 }}
-            className="background">
+            className='background'>
             <img
               src={DarkRed}
-              alt=""
+              alt=''
               style={{
                 display: "block",
                 width: "20%",
@@ -164,7 +165,7 @@ export default class Home extends Component {
               }}
             />
             <img
-              alt=""
+              alt=''
               src={LightPink}
               style={{
                 display: "block",
@@ -174,7 +175,7 @@ export default class Home extends Component {
               }}
             />
             <img
-              alt=""
+              alt=''
               src={Purple}
               style={{
                 display: "block",
@@ -188,7 +189,7 @@ export default class Home extends Component {
           <ParallaxLayer offset={1} speed={0.4} style={{ opacity: 10 }}>
             <img
               src={OrangeRed}
-              alt=""
+              alt=''
               style={{
                 display: "block",
                 width: "70%",
@@ -200,33 +201,33 @@ export default class Home extends Component {
 
           <ParallaxLayer offset={1.4} speed={-0.3} style={{ opacity: 10 }}>
             <img
-              alt=""
+              alt=''
               src={Purple}
-              className="purple"
+              className='purple'
               style={{ display: "block", width: "100%", marginLeft: "0%" }}
             />
             <img
-              alt=""
+              alt=''
               src={LightOrange}
-              className="light-orange"
+              className='light-orange'
               style={{ display: "block", width: "100%", marginLeft: "0%" }}
             />
             <img
-              alt=""
+              alt=''
               src={LightPink}
-              className="light-pink"
+              className='light-pink'
               style={{ display: "block", width: "100%", marginLeft: "0%" }}
             />
           </ParallaxLayer>
 
           <ParallaxLayer offset={0.9} speed={0.2} style={{ opacity: 5 }}>
             <img
-              alt=""
+              alt=''
               src={Yellow}
               style={{ display: "block", width: "10%", marginLeft: "10%" }}
             />
             <img
-              alt=""
+              alt=''
               src={LightOrange}
               style={{ display: "block", width: "20%", marginLeft: "75%" }}
             />
@@ -241,27 +242,12 @@ export default class Home extends Component {
               justifyContent: "center",
               pointerEvents: "none",
             }}>
-            <img className="dark-red" src={DarkRed} alt="" />
-            <img className="yellow" src={Yellow} alt="" />
-            <img className="orange-red" src={OrangeRed} alt="" />
+            <img className='dark-red' src={DarkRed} alt='' />
+            <img className='yellow' src={Yellow} alt='' />
+            <img className='orange-red' src={OrangeRed} alt='' />
           </ParallaxLayer>
 
-          <ParallaxLayer
-            offset={2}
-            speed={-0.5}
-            style={{
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "flex-end",
-              margin: "-4% 0% 0% -3%",
-            }}>
-            <div className="footer">
-              <p>Website created with love</p>
-              <img alt="" src={Rocket} style={{ width: "10%" }} />
-            </div>
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={0} speed={0} factor={3} className="content">
+          <ParallaxLayer offset={0} speed={0} factor={3} className='content'>
             {this.state.ressources ? (
               <>
                 <div>Le texte de présentation qui vend du rêve</div>
@@ -272,7 +258,7 @@ export default class Home extends Component {
                 <div>{this.state.randomRessource.title}</div>
                 <Filters handleChange={this.getFilterValues} />
 
-                <div className="home-card-container">
+                <div className='home-card-container'>
                   {showedRessources &&
                     showedRessources.length > 0 &&
                     showedRessources
@@ -293,6 +279,20 @@ export default class Home extends Component {
             ) : (
               "Loading"
             )}
+          </ParallaxLayer>
+          <ParallaxLayer
+            offset={2}
+            speed={-0.5}
+            style={{
+              display: "flex",
+              alignItems: "flex-end",
+              justifyContent: "flex-end",
+              margin: "-4% 0% 0% -3%",
+            }}>
+            <div className='footer'>
+              <p>Website created with love</p>
+              <img alt='' src={Rocket} style={{ width: "10%" }} />
+            </div>
           </ParallaxLayer>
         </Parallax>
       </>

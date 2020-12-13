@@ -8,9 +8,7 @@ import { message } from "antd";
 import BackButton from "../nav/BackButton";
 
 import { RiArrowRightSLine } from "react-icons/ri";
-import DarkRed from "../../images/dark-red.svg";
-import Yellow from "../../images/yellow.svg";
-import OrangeRed from "../../images/orange-red.svg";
+import BackGround from "../BackGround";
 
 export default class Login extends Component {
   state = { email: "", password: "" };
@@ -24,10 +22,10 @@ export default class Login extends Component {
         this.setState({ email: response.email, password: response.password });
         this.props.updateUser(response);
         this.props.history.push("/profile");
-        message.info("Yeaah you're in");
+        message.success("Yeaah you're in");
       })
       .catch((error, response) => {
-        message.info("Wrong credentials, try again !");
+        message.error("Wrong credentials, try again !");
         console.log(error);
       });
   };
@@ -35,9 +33,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className='main login'>
-        <img className='dark-red' src={DarkRed} alt='' />
-        <img className='yellow' src={Yellow} alt='' />
-        <img className='orange-red' src={OrangeRed} alt='' />
+        <BackGround />
         <BackButton />
         <h1>
           {`<h1> Welcome
@@ -81,7 +77,7 @@ export default class Login extends Component {
             <Button
               type='primary'
               htmlType='submit'
-              className='login-form-button'>
+              className='main-form-button'>
               <RiArrowRightSLine />
             </Button>
           </Form.Item>

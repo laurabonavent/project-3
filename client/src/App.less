@@ -1,6 +1,6 @@
 @import "~antd/dist/antd.less";
 
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto:wght@400;700&display=swap");
 
 /* ######   ##        #######  ########     ###    ##       
 ##    ##  ##       ##     ## ##     ##   ## ##   ##       
@@ -126,6 +126,19 @@ html {
   --antd-wave-shadow-color: black !important;
 }
 
+.ant-form-item-explain.ant-form-item-explain-error {
+  padding: 0 7%;
+  color: red;
+  background-color: rgb(255 255 255 0.5);
+}
+
+.ant-form-item-has-error.ant-form-item-has-feedback
+  .ant-form-item-children-icon,
+.ant-form-item-has-success.ant-form-item-has-feedback
+  .ant-form-item-children-icon {
+  padding-right: 14%;
+}
+
 /* ##    ##    ###    ##     ## ########     ###    ########  
 ###   ##   ## ##   ##     ## ##     ##   ## ##   ##     ## 
 ####  ##  ##   ##  ##     ## ##     ##  ##   ##  ##     ## 
@@ -134,15 +147,21 @@ html {
 ##   ### ##     ##   ## ##   ##     ## ##     ## ##    ##  
 ##    ## ##     ##    ###    ########  ##     ## ##     ##  */
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .links {
     display: flex;
     align-items: center;
     width: 15%;
+    justify-content: flex-end !important;
+    margin-right: none !important;
   }
   .navbar {
     width: 90%;
     margin: 0 auto;
+  }
+  .links a,
+  button {
+    margin-right: 10% !important;
   }
 }
 
@@ -306,13 +325,6 @@ html {
   outline: none;
 }
 
-@media (min-width: 768px) {
-  .ant-form {
-    width: 500px;
-    margin: auto;
-  }
-}
-
 .ant-input-affix-wrapper {
   border: none;
   padding: 0;
@@ -384,6 +396,64 @@ html {
   font-family: "Roboto", sans-serif;
 }
 
+.form {
+  height: 100%;
+  padding: 4%;
+}
+
+.form h1 {
+  margin-bottom: 0;
+  padding-left: 2%;
+}
+
+.form h2 {
+  padding-left: 2%;
+}
+
+.ant-form-item {
+  margin-bottom: 0;
+  font-family: "Nunito", sans-serif;
+}
+.ant-form-item-label {
+  padding: 0;
+}
+
+.ant-form-item-label > label {
+  padding-left: 3%;
+}
+.form .preview {
+  z-index: 2;
+  width: 50%;
+  margin: 0 25%;
+}
+
+.main-form-button {
+  width: 50px;
+  height: 50px;
+  margin-left: 80%;
+  margin-top: 10%;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: var(--light-grey);
+}
+
+@media (min-width: 768px) {
+  .ant-form {
+    width: 500px;
+    margin: 5% auto;
+  }
+  .ant-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3% !important;
+  }
+
+  .ant-form-item-label > label {
+    min-width: 100px;
+  }
+}
+
 // #     #
 // #     #  ####  #    # ######
 // #     # #    # ##  ## #
@@ -414,17 +484,7 @@ html {
   min-height: 50vh;
 }
 
-.login-form-button {
-  width: 50px;
-  height: 50px;
-  margin-left: 80%;
-  border: none;
-  border-radius: 50px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  background-color: var(--light-grey);
-}
-
-.login-form-button svg {
+.main-form-button svg {
   color: black;
   width: 1.5em;
   height: 1.5em;
@@ -470,17 +530,12 @@ html {
 // #     #  #  #     # #    ## #     # #
 //  #####  ###  #####  #     #  #####  #
 
-.signup {
-  height: 100%;
-  padding: 5%;
-}
-
 #signup {
   margin-top: 5%;
 }
 
-.signup h1 {
-  margin-bottom: 0;
+.create .ant-form-item {
+  margin-bottom: 5%;
 }
 
 .signup-button {
