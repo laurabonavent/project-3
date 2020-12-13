@@ -30,6 +30,26 @@ class Carousel extends React.Component {
   }
 
   render() {
+    let visibleSlides = 1;
+
+    if (this.props.windowWidth >= 0 && this.props.windowWidth <= 425) {
+      visibleSlides = 1;
+    } else if (this.props.windowWidth >= 426 && this.props.windowWidth <= 768) {
+      visibleSlides = 2;
+    } else if (
+      this.props.windowWidth >= 769 &&
+      this.props.windowWidth <= 1200
+    ) {
+      visibleSlides = 3;
+    } else if (
+      this.props.windowWidth >= 1201 &&
+      this.props.windowWidth <= 1600
+    ) {
+      visibleSlides = 4;
+    }
+    console.log("visibleSlides: ", visibleSlides);
+
+    console.log("WW CAROUSEL", this.props.windowWidth);
     const enumValues = Object.entries(this.state.enumValues);
     //console.log("enumValues: ", enumValues);
 
@@ -73,7 +93,7 @@ class Carousel extends React.Component {
                   <div key={index}>
                     <h3>{category}</h3>
                     <CarouselProvider
-                      visibleSlides={3}
+                      visibleSlides={visibleSlides}
                       totalSlides={this.props.data.length}
                       step={1}
                       naturalSlideWidth={50}

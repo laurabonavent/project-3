@@ -20,7 +20,12 @@ import Footer from "./components/nav/Footer";
 import EditProfile from "./components/profile/EditProfile";
 
 class App extends React.Component {
-  state = { loggedInUser: null };
+  state = { loggedInUser: null, windowWidth: window.innerWidth };
+
+  handleResize = (e) => {
+    this.setState({ windowWidth: window.innerWidth });
+    console.log("WW APP.JS", this.state.windowWidth);
+  };
 
   fetchUser() {
     if (this.state.loggedInUser === null) {
@@ -37,6 +42,11 @@ class App extends React.Component {
 
   componentDidMount() {
     this.fetchUser();
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.addEventListener("resize", this.handleResize);
   }
 
   updateLoggedInUser = (userObj) => {
@@ -47,9 +57,10 @@ class App extends React.Component {
 
   render() {
     //if (isnull(this.state.loggedInUser)) return "..loading";
+    console.log("user", this.state.loggedInUser);
 
     return (
-      <div className='App'>
+      <div className="App">
         <Route
           render={(props) => (
             <>
@@ -60,12 +71,12 @@ class App extends React.Component {
               />
 
               <Switch>
-                <Route exact path='/' component={Home} />
+                <Route exact path="/" component={Home} />
                 {/* <Route exact path='/parallax' component={Parallax} /> */}
 
                 <Route
                   exact
-                  path='/login'
+                  path="/login"
                   render={(props) => (
                     <Login
                       userInSession={this.state.loggedInUser}
@@ -76,7 +87,7 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path='/signup'
+                  path="/signup"
                   render={(props) => (
                     <Signup
                       history={props.history}
@@ -86,7 +97,7 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path='/profile/edit'
+                  path="/profile/edit"
                   render={(props) => (
                     <EditProfile
                       {...props}
@@ -98,7 +109,7 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path='/profile'
+                  path="/profile"
                   render={(props) => (
                     <Profile
                       {...props}
@@ -108,12 +119,12 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path='/ressources/create'
+                  path="/ressources/create"
                   component={CreateRessource}
                 />
                 <Route
                   exact
-                  path='/ressources/edit/:id'
+                  path="/ressources/edit/:id"
                   render={(props) => (
                     <EditRessource
                       {...props}
@@ -123,7 +134,7 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path='/ressources/:id'
+                  path="/ressources/:id"
                   render={(props) => (
                     <Ressource
                       {...props}
