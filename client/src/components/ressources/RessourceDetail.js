@@ -30,10 +30,10 @@ export default class RessourceDetail extends Component {
         const user = response.user;
         this.props.updateUser(user);
         this.setState({ fav: true });
-        message.info(response.message);
+        message.success(response.message);
       })
       .catch((error) => {
-        message.info(error.message);
+        message.error(error.message);
         console.log(error);
       });
   };
@@ -41,15 +41,15 @@ export default class RessourceDetail extends Component {
   deleteFavorite = (id) => {
     deleteFavorite(this.state.ressource._id)
       .then((response) => {
-        //console.log("deletFav", response.data);
+        //console.log("deletFav", response);
         const user = response.user;
-        //console.log(user);
-        this.props.updateUser({ user });
+        //console.log("new user update - delete", user);
+        this.props.updateUser(user);
         this.setState({ fav: false });
-        message.info(response.message);
+        message.success(response.message);
       })
       .catch((error) => {
-        message.info(error.message);
+        message.error(error.message);
         console.log(error);
       });
   };
@@ -62,7 +62,7 @@ export default class RessourceDetail extends Component {
         console.log(this.props.history);
       })
       .catch((error) => {
-        message.info(error.message);
+        message.error(error.message);
         console.log(error);
       });
   };
@@ -79,18 +79,31 @@ export default class RessourceDetail extends Component {
     this.findRessource(params.id);
     //console.log("userInSession", this.props.userInSession);
 
-    if (isnull(this.props.userInSession)) return "..loading";
-
-    if (this.props.userInSession === false) {
-      message.info("You need to log in before access this page");
+    if (isnull(this.props.userInSession)) {
+      message.error("You need to log in before access this page");
       this.props.history.push("/");
       //return <Redirect to="/" />;
       return;
     }
 
-    if (this.props.userInSession.favorites.includes(params.id)) {
+    if (this.props.userInSession === false) {
+      message.error("You need to log in before access this page");
+      this.props.history.push("/");
+      //return <Redirect to="/" />;
+      return;
+    }
+
+    let favIds = [];
+    this.props.userInSession.favorites.map((favorite) => {
+      favIds.push(favorite._id);
+      //console.log(favIds);
+    });
+
+    if (favIds.includes(params.id)) {
+      //console.log("fav yes");
       this.setState({ fav: true });
     } else {
+      //console.log("fav no");
       this.setState({ fav: false });
     }
   }
@@ -123,12 +136,12 @@ export default class RessourceDetail extends Component {
                 </Link>
                 {/* <Button onClick={this.deleteRessource}>Delete</Button> */}
                 <Popconfirm
-                  title="Are you sure to delete this ressource?"
+                  title='Are you sure to delete this ressource?'
                   onConfirm={this.deleteRessource}
                   onCancel={this.cancel}
-                  okText="Yes I do"
-                  cancelText="Nope">
-                  <a href="#" alt="delete">
+                  okText='Yes I do'
+                  cancelText='Nope'>
+                  <a href='#' alt='delete'>
                     Delete
                   </a>
                 </Popconfirm>
@@ -160,13 +173,17 @@ export default class RessourceDetail extends Component {
             <p>Level : {ressource.level}</p>
             <p>Price : {ressource.price}</p>
             <p>
-              <a href={ressource.link} rel="noreferrer" target="_blank">
+              <a href={ressource.link} rel='noreferrer' target='_blank'>
                 Find your way
               </a>
             </p>
             <p>{ressource.description}</p>
             <p>
-              <img src={ressource.image} alt={ressource.title} />
+              <img
+                className='preview'
+                src={ressource.image}
+                alt={ressource.title}
+              />
             </p>
             {ressource.comments.length === 0 ? (
               "No comment"

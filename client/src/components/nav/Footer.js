@@ -10,7 +10,7 @@ const Navbar = (props) => {
         </>
       ) : (
         <>
-          <p>Website created with love</p>
+          <p>Website created with love 🚀</p>
         </>
       )}
     </>

@@ -7,6 +7,12 @@ import { editRessource } from "../auth/auth-service";
 import { getOneRessource } from "../auth/auth-service";
 import { uploadImage } from "../auth/auth-service";
 
+import BackGround from "../BackGround";
+
+import { RiArrowRightSLine } from "react-icons/ri";
+
+import isnull from "lodash.isnull";
+
 const { TextArea } = Input;
 //const { Option } = Select;
 
@@ -121,9 +127,30 @@ export default class EditRessource extends Component {
     } = this.props;
     this.findRessource(params.id);
 
-    if (this.props.userInSession.role === "user") {
-      message.info("Sorry, only for admin here");
+    if (isnull(this.props.userInSession)) {
+      message.error("You need to log in before access this page");
       this.props.history.push("/");
+      //return <Redirect to="/" />;
+      return;
+    }
+
+    if (this.props.userInSession === false) {
+      message.error("You need to log in before access this page");
+      this.props.history.push("/");
+      //return <Redirect to="/" />;
+      return;
+    }
+    if (isnull(this.props.userInSession)) {
+      message.error("You need to log in before access this page");
+      this.props.history.push("/");
+      //return <Redirect to="/" />;
+      return;
+    }
+
+    if (this.props.userInSession === false) {
+      message.error("You need to log in before access this page");
+      this.props.history.push("/");
+      //return <Redirect to="/" />;
       return;
     }
   }
@@ -165,9 +192,11 @@ export default class EditRessource extends Component {
     const enumValues = this.state.enumValues;
     const ressource = this.state.ressource;
     return (
-      <div>
+      <div className='main form'>
+        <h1>Edit ressource</h1>
+        <BackGround />
         <Form
-          name="create"
+          name='create'
           onFinish={this.onFinish}
           scrollToFirstError
           ref={this.formRef}>
@@ -178,10 +207,9 @@ export default class EditRessource extends Component {
           enumValues.price &&
           ressource ? (
             <div>
-              Edit ressource
               <Form.Item
-                name="title"
-                label="Title"
+                name='title'
+                label='Title'
                 rules={[
                   {
                     required: true,
@@ -191,8 +219,8 @@ export default class EditRessource extends Component {
                 <Input />
               </Form.Item>
               <Form.Item
-                name="description"
-                label="Description"
+                name='description'
+                label='Description'
                 rules={[
                   {
                     required: true,
@@ -201,7 +229,7 @@ export default class EditRessource extends Component {
                   },
                 ]}>
                 <TextArea
-                  placeholder="Description"
+                  placeholder='Description'
                   //onChange={this.onChange}
                   autoSize={{ minRows: 1, maxRows: 5 }}
                   showCount
@@ -209,8 +237,8 @@ export default class EditRessource extends Component {
                 />
               </Form.Item>
               <Form.Item
-                name="link"
-                label="URL"
+                name='link'
+                label='URL'
                 rules={[
                   {
                     required: true,
@@ -221,8 +249,8 @@ export default class EditRessource extends Component {
                 <Input />
               </Form.Item>
               <Form.Item
-                name="technology"
-                label="Technology"
+                name='technology'
+                label='Technology'
                 rules={[
                   {
                     required: true,
@@ -231,7 +259,7 @@ export default class EditRessource extends Component {
                     max: 4,
                   },
                 ]}>
-                <Select mode="multiple" allowClear>
+                <Select mode='multiple' allowClear>
                   {enumValues.technology.map((technology, index) => {
                     return (
                       <Select.Option value={technology} key={index}>
@@ -242,8 +270,8 @@ export default class EditRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name="type"
-                label="Type"
+                name='type'
+                label='Type'
                 rules={[
                   {
                     required: true,
@@ -252,7 +280,7 @@ export default class EditRessource extends Component {
                     max: 3,
                   },
                 ]}>
-                <Select mode="multiple" allowClear>
+                <Select mode='multiple' allowClear>
                   {enumValues.type.map((type, index) => {
                     return (
                       <Select.Option value={type} key={index}>
@@ -263,8 +291,8 @@ export default class EditRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name="level"
-                label="Level"
+                name='level'
+                label='Level'
                 rules={[
                   {
                     required: true,
@@ -278,8 +306,8 @@ export default class EditRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name="language"
-                label="Language"
+                name='language'
+                label='Language'
                 rules={[
                   {
                     required: true,
@@ -295,8 +323,8 @@ export default class EditRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name="price"
-                label="Price"
+                name='price'
+                label='Price'
                 rules={[
                   {
                     required: true,
@@ -310,12 +338,13 @@ export default class EditRessource extends Component {
                 </Select>
               </Form.Item>
               <img
+                className='preview'
                 src={this.state.ressource.image}
                 alt={this.state.ressource.title}
               />
               <Form.Item
-                name="image"
-                label="Image"
+                name='image'
+                label='Image'
                 rules={[
                   {
                     required: true,
@@ -323,14 +352,17 @@ export default class EditRessource extends Component {
                   },
                 ]}>
                 <input
-                  type="file"
+                  type='file'
                   value={this.state.ressource.image}
                   onChange={this.fileChangedHandler}
                 />
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit">
-                  Edit
+                <Button
+                  type='primary'
+                  htmlType='submit'
+                  className='main-form-button'>
+                  <RiArrowRightSLine />
                 </Button>
               </Form.Item>
             </div>
