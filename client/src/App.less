@@ -27,6 +27,7 @@
   --black: #000000;
   --dark-red: #9a1809;
   --primary-color: black;
+  --light-red: #e45c46;
 }
 
 body {
@@ -151,22 +152,35 @@ html {
   font-family: "Nunito", sans-serif;
   font-weight: 700;
   font-size: 24px;
-  width: 50%;
   padding-left: 5%;
+}
+
+.logo img {
+  padding: 20px 0;
+  width: 60%;
+  max-width: 400px;
+  min-width: 150px;
 }
 
 .links {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  width: 50%;
+  align-content: center;
+  justify-content: flex-end;
   font-size: 14px;
-  padding-left: 5%;
   margin-right: 5%;
+  margin-left: auto;
+  padding: 20px 0;
+  flex-wrap: wrap;
+  width: 200px;
 }
 
 .links a {
   margin: auto;
+  padding-left: 10%;
+  padding-top: 2px;
+  text-transform: uppercase;
+  font-family: "Nunito", sans-serif;
 }
 
 .links svg {
@@ -565,3 +579,41 @@ html {
 ##     ## ##     ## ##     ## ##       
 ##     ## ##     ## ##     ## ##       
 ##     ##  #######  ##     ## ########  */
+
+// HEADER
+.header {
+  height: 90vh;
+  background: var(--light-red);
+  background-image: url("./images/back-header.svg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  padding: 10%;
+}
+
+.header h1 {
+  font-size: 40px;
+  margin: 0;
+  color: white;
+}
+
+.multiple-h1 {
+  padding-bottom: 30px;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 80%;
+  align-items: center;
+  margin: 0 auto;
+}

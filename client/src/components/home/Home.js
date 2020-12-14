@@ -4,7 +4,7 @@ import Card from "../card/Card";
 import Filters from "../Filters";
 import SearchBar from "../SearchBar";
 import { Pagination, Button } from "antd";
-import { render } from "react-dom";
+import { Spring, animated } from "react-spring/renderprops";
 
 import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons";
 import DarkRed from "../../images/dark-red.svg";
@@ -52,6 +52,12 @@ export default class Home extends Component {
     });
   };
 
+  hideRandom = () => {
+    this.setState({
+      randomRessource: [],
+    });
+  };
+
   getFilterValues = (event) => {
     //console.log("event: ", event);
 
@@ -94,6 +100,7 @@ export default class Home extends Component {
   };
 
   render() {
+    console.log("coucou", this.state.randomRessource);
     // filtrer les réponses en fonction de la search bar
     let showedRessources = this.state.ressources.filter((el) => {
       return el.title.toLowerCase().includes(this.state.search.toLowerCase());
@@ -130,10 +137,23 @@ export default class Home extends Component {
       // });
       //}
     });
-    console.log("this.state.maxValue: ", this.state.maxValue);
-    console.log("this.state.minValue: ", this.state.minValue);
+
+    const { toggle } = this.state;
+
     return (
       <>
+        <div className="header">
+          <div className="multiple-h1">
+            <h1>{`<Link to=`}</h1>
+            <h1>infinity, and beyond!</h1>
+            <h1>{`/>`}</h1>
+          </div>
+          <p>
+            Skyrocket, a website made with lots of love and kittens, lists
+            resources to help you continue your training after IronHack, but
+            also all the useful tools to make your developers' life easier.
+          </p>
+        </div>
         <Parallax
           ref={(ref) => (this.parallax = ref)}
           pages={4.55}
@@ -264,13 +284,27 @@ export default class Home extends Component {
           <ParallaxLayer offset={0} speed={0} factor={3} className="content">
             {this.state.ressources ? (
               <>
-                <div>Le texte de présentation qui vend du rêve</div>
-                <SearchBar handleChange={this.handleChange} />
-                <button onClick={this.getRandomRessources}>
-                  Random button
-                </button>
-                <div>{this.state.randomRessource.title}</div>
-                <Filters handleChange={this.getFilterValues} />
+                <div className="search-container">
+                  <SearchBar
+                    className="search-bar"
+                    handleChange={this.handleChange}
+                  />
+
+                  <Filters
+                    className="filters-bar"
+                    handleChange={this.getFilterValues}
+                  />
+                </div>
+                <Button onClick={this.getRandomRessources}>
+                  Get a random ressource
+                </Button>
+
+                {this.state.randomRessource.length !== 0 && (
+                  <div>
+                    <Button onClick={this.hideRandom}>X</Button>
+                    <Card data={this.state.randomRessource} />
+                  </div>
+                )}
 
                 <div className="home-card-container">
                   {showedRessources &&
