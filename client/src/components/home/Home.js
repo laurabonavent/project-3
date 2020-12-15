@@ -4,7 +4,7 @@ import Card from "../card/Card";
 import Filters from "../Filters";
 import SearchBar from "../SearchBar";
 import { Pagination, Button } from "antd";
-import { render } from "react-dom";
+import { Spring, animated } from "react-spring/renderprops";
 
 import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons";
 import DarkRed from "../../images/dark-red.svg";
@@ -13,7 +13,9 @@ import OrangeRed from "../../images/orange-red.svg";
 import Purple from "../../images/purple.svg";
 import LightOrange from "../../images/light-orange.svg";
 import LightPink from "../../images/light-pink.svg";
-import Rocket from "../../images/rocket.png";
+import Rocket from "../../images/rocket.svg";
+import Arrow from "../../images/down-arrow.svg";
+import LogoRocket from "../../images/logo-rocket.svg";
 
 export default class Home extends Component {
   state = {
@@ -66,6 +68,12 @@ export default class Home extends Component {
     });
   };
 
+  hideRandom = () => {
+    this.setState({
+      randomRessource: [],
+    });
+  };
+
   getFilterValues = (event) => {
     //console.log("event: ", event);
 
@@ -108,6 +116,7 @@ export default class Home extends Component {
   };
 
   render() {
+    console.log("coucou", this.state.randomRessource);
     // filtrer les réponses en fonction de la search bar
     let showedRessources = this.state.ressources.filter((el) => {
       return el.title.toLowerCase().includes(this.state.search.toLowerCase());
@@ -144,21 +153,34 @@ export default class Home extends Component {
       // });
       //}
     });
-    console.log("this.state.maxValue: ", this.state.maxValue);
-    console.log("this.state.minValue: ", this.state.minValue);
 
     return (
       <>
+        <div className="header">
+          <div className="header-top">
+            <img src={LogoRocket} />
+          </div>
+          <div className="header-bottom">
+            <div className="header-h1">To infinity, and beyond!</div>
+            <p>
+              Find resources to continue your training after IronHack and all
+              the useful tools to make your developers' life easier.
+            </p>
+            <span className="scroll-down et-pb-icon show_icon">
+              <img className="arrow" src={Arrow} />
+            </span>
+          </div>
+        </div>
         <Parallax
           ref={(ref) => (this.parallax = ref)}
           pages={5.5}
           scrolling={true}
-          className='home-container'>
+          className="home-container">
           <ParallaxLayer
             offset={0}
             speed={0}
             factor={3}
-            className='background'
+            className="background"
             style={{
               //   backgroundImage: url("stars", true),
               backgroundSize: "cover",
@@ -168,10 +190,10 @@ export default class Home extends Component {
             offset={0.5}
             speed={0.5}
             style={{ opacity: 15 }}
-            className='background'>
+            className="background">
             <img
               src={DarkRed}
-              alt=''
+              alt=""
               style={{
                 display: "block",
                 width: "20%",
@@ -180,7 +202,7 @@ export default class Home extends Component {
               }}
             />
             <img
-              alt=''
+              alt=""
               src={LightPink}
               style={{
                 display: "block",
@@ -190,7 +212,7 @@ export default class Home extends Component {
               }}
             />
             <img
-              alt=''
+              alt=""
               src={Purple}
               style={{
                 display: "block",
@@ -204,7 +226,7 @@ export default class Home extends Component {
           <ParallaxLayer offset={1} speed={0.4} style={{ opacity: 10 }}>
             <img
               src={OrangeRed}
-              alt=''
+              alt=""
               style={{
                 display: "block",
                 width: "70%",
@@ -216,33 +238,33 @@ export default class Home extends Component {
 
           <ParallaxLayer offset={1.4} speed={-0.3} style={{ opacity: 10 }}>
             <img
-              alt=''
+              alt=""
               src={Purple}
-              className='purple'
+              className="purple"
               style={{ display: "block", width: "100%", marginLeft: "0%" }}
             />
             <img
-              alt=''
+              alt=""
               src={LightOrange}
-              className='light-orange'
+              className="light-orange"
               style={{ display: "block", width: "100%", marginLeft: "0%" }}
             />
             <img
-              alt=''
+              alt=""
               src={LightPink}
-              className='light-pink'
+              className="light-pink"
               style={{ display: "block", width: "100%", marginLeft: "0%" }}
             />
           </ParallaxLayer>
 
           <ParallaxLayer offset={0.9} speed={0.2} style={{ opacity: 5 }}>
             <img
-              alt=''
+              alt=""
               src={Yellow}
               style={{ display: "block", width: "10%", marginLeft: "10%" }}
             />
             <img
-              alt=''
+              alt=""
               src={LightOrange}
               style={{ display: "block", width: "20%", marginLeft: "75%" }}
             />
@@ -257,9 +279,9 @@ export default class Home extends Component {
               justifyContent: "center",
               pointerEvents: "none",
             }}>
-            <img className='dark-red' src={DarkRed} alt='' />
-            <img className='yellow' src={Yellow} alt='' />
-            <img className='orange-red' src={OrangeRed} alt='' />
+            <img className="dark-red" src={DarkRed} alt="" />
+            <img className="yellow" src={Yellow} alt="" />
+            <img className="orange-red" src={OrangeRed} alt="" />
           </ParallaxLayer>
           <ParallaxLayer
             offset={2}
@@ -270,23 +292,37 @@ export default class Home extends Component {
               justifyContent: "flex-end",
               margin: "-4% 0% 0% -3%",
             }}>
-            <div className='footer'>
+            <div className="footer">
               <p>Website created with love</p>
-              <img alt='' src={Rocket} style={{ width: "10%" }} />
+              <img alt="" src={Rocket} style={{ width: "10%" }} />
             </div>
           </ParallaxLayer>
-          <ParallaxLayer offset={0} speed={0} factor={3} className='content'>
+          <ParallaxLayer offset={0} speed={0} factor={3} className="content">
             {this.state.ressources ? (
               <>
-                <div>Le texte de présentation qui vend du rêve</div>
-                <SearchBar handleChange={this.handleChange} />
-                <button onClick={this.getRandomRessources}>
-                  Random button
-                </button>
-                <div>{this.state.randomRessource.title}</div>
-                <Filters handleChange={this.getFilterValues} />
+                <div className="search-container">
+                  <SearchBar
+                    className="search-bar"
+                    handleChange={this.handleChange}
+                  />
 
-                <div className='home-card-container'>
+                  <Filters
+                    className="filters-bar"
+                    handleChange={this.getFilterValues}
+                  />
+                </div>
+                <Button onClick={this.getRandomRessources}>
+                  Get a random ressource
+                </Button>
+
+                {this.state.randomRessource.length !== 0 && (
+                  <div>
+                    <Button onClick={this.hideRandom}>X</Button>
+                    <Card data={this.state.randomRessource} />
+                  </div>
+                )}
+
+                <div className="home-card-container">
                   {showedRessources &&
                     showedRessources.length > 0 &&
                     showedRessources

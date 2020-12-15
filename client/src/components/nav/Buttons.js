@@ -1,29 +1,39 @@
 import React from "react";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
+import Dashboard from "../../images/dashboard.svg";
+import Turnoff from "../../images/turnoff.svg";
 
 import { RiAccountPinCircleLine } from "react-icons/ri";
 
 const LoginButton = () => {
-  return <Link to="/login">Login</Link>;
+  return <Link to="/login">Log/in</Link>;
 };
 
 export { LoginButton };
 
 const SignupButton = () => {
-  return <Link to="/signup">Sign up</Link>;
+  return <Link to="/signup">Sign/up</Link>;
 };
 
 export { SignupButton };
 
 const LogoutButton = (props) => {
-  return <Button {...props}>Log out</Button>;
+  return (
+    <Link to="/" {...props}>
+      <img className="turnoff" src={Turnoff} alt="turnoff" />
+    </Link>
+  );
 };
 
 export { LogoutButton };
 
 const ProfileButton = () => {
-  return <Link to="/profile">Profile</Link>;
+  return (
+    <Link to="/profile">
+      <img className="dashboard" src={Dashboard} alt="dashboard" />
+    </Link>
+  );
 };
 
 export { ProfileButton };
