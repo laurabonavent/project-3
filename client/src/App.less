@@ -755,8 +755,6 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "Nunito", sans-serif;
-  font-size: 20px;
 
   position: relative;
 }
@@ -791,21 +789,30 @@ html {
 }
 
 .header-h1 {
+  font-family: "Nunito", sans-serif;
   font-size: 50px;
+  font-weight: 700;
   margin: 0;
   color: white;
   text-transform: uppercase;
   padding-bottom: 17%;
   line-height: 1;
+  width: 90%;
+}
+
+@media (min-width: 768px) {
+  .header-h1 {
+    font-size: 70px;
+  }
 }
 
 .header p {
-  border-top: 3px solid white;
-  border-bottom: 3px solid white;
   width: 90%;
   padding: 20px 0;
   margin-top: 10px;
   text-align: justify;
+  font-size: 20px;
+  color: var(--light-grey);
 }
 
 .header span {
