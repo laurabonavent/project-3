@@ -168,10 +168,10 @@ html {
 
 .navbar {
   display: flex;
-  height: 10%;
+  height: 12vh;
   width: 100%;
   align-items: center;
-  padding: 3% 0 5% 0;
+  padding: 1% 0 1% 0;
 }
 
 .logo {
@@ -468,24 +468,6 @@ html {
   }
 }
 
-// #     #
-// #     #  ####  #    # ######
-// #     # #    # ##  ## #
-// ####### #    # # ## # #####
-// #     # #    # #    # #
-// #     # #    # #    # #
-// #     #  ####  #    # ######
-
-.home-container .content {
-  padding: 0 5% 0 5%;
-}
-
-@media (min-height: 768px) {
-  .home-container .content {
-    padding: 0 5% 0 0;
-  }
-}
-
 /* ##        #######   ######   #### ##    ## 
 ##       ##     ## ##    ##   ##  ###   ## 
 ##       ##     ## ##         ##  ####  ## 
@@ -750,39 +732,134 @@ html {
 ##     ##  #######  ##     ## ########  */
 
 // HEADER
+
+.home-container .content {
+  padding: 0 5% 0 5%;
+}
+
+@media (min-height: 768px) {
+  .home-container .content {
+    padding: 0 5% 0 0;
+  }
+}
+
 .header {
-  height: 90vh;
-  background: var(--light-red);
-  background-image: url("./images/back-header.svg");
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  height: 88vh;
+  background-image: linear-gradient(
+    132deg,
+    rgba(228, 92, 70, 1) 36%,
+    rgba(154, 9, 96, 0.9878326330532213) 100%
+  );
   text-align: center;
-  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: "Nunito", sans-serif;
   font-size: 20px;
-  padding: 10%;
+
+  position: relative;
 }
 
-.header h1 {
-  font-size: 40px;
+@media (min-width: 768px) {
+  .header {
+    height: 88vh;
+    padding: 8%;
+
+    background-image: url("./images/dot-1.svg"), url("./images/dot-2.svg"),
+      linear-gradient(
+        132deg,
+        rgba(228, 92, 70, 1) 36%,
+        rgba(154, 9, 96, 0.9878326330532213) 100%
+      );
+    background-position: left 10% top 10%, left 100% top 120%, center;
+    background-repeat: no-repeat;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+
+    position: relative;
+  }
+}
+
+.header img {
+  width: 40px;
+}
+
+.header-h1 {
+  font-size: 50px;
   margin: 0;
   color: white;
+  text-transform: uppercase;
+  padding-bottom: 17%;
+  line-height: 1;
 }
 
-.multiple-h1 {
-  padding-bottom: 30px;
+.header p {
+  border-top: 3px solid white;
+  border-bottom: 3px solid white;
+  width: 90%;
+  padding: 20px 0;
+  margin-top: 10px;
+  text-align: justify;
+}
+
+.header span {
+  position: absolute;
+  bottom: 10px;
+  right: 50vw;
 }
 
 .search-container {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   width: 80%;
   align-items: center;
-  margin: 0 auto;
+  margin: 3% auto;
+}
+
+// FlECHE
+@-webkit-keyframes bounce {
+  0%,
+  100% {
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}
+@keyframes bounce {
+  0%,
+  100% {
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}
+span.scroll-down.et-pb-icon {
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
 }
