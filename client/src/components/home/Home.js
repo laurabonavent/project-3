@@ -15,6 +15,7 @@ import LightOrange from "../../images/light-orange.svg";
 import LightPink from "../../images/light-pink.svg";
 import Rocket from "../../images/rocket.png";
 import Arrow from "../../images/down-arrow.svg";
+import LogoRocket from "../../images/logo-rocket.svg";
 
 export default class Home extends Component {
   state = {
@@ -144,15 +145,19 @@ export default class Home extends Component {
     return (
       <>
         <div className="header">
-          <div className="header-h1">To infinity, and beyond!</div>
-          <p>
-            Skyrocket, a website made with lots of love and kittens, lists
-            resources to help you continue your training after IronHack, but
-            also all the useful tools to make your developers' life easier.
-          </p>
-          <span className="scroll-down et-pb-icon show_icon">
-            <img src={Arrow} />
-          </span>
+          <div className="header-top">
+            <img src={LogoRocket} />
+          </div>
+          <div className="header-bottom">
+            <div className="header-h1">To infinity, and beyond!</div>
+            <p>
+              Find resources to continue your training after IronHack and all
+              the useful tools to make your developers' life easier.
+            </p>
+            <span className="scroll-down et-pb-icon show_icon">
+              <img className="arrow" src={Arrow} />
+            </span>
+          </div>
         </div>
         <Parallax
           ref={(ref) => (this.parallax = ref)}
