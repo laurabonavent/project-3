@@ -72,7 +72,13 @@ class App extends React.Component {
               />
 
               <Switch>
-                <Route exact path='/' component={Home} />
+                <Route
+                  exact
+                  path='/'
+                  render={(props) => (
+                    <Home windowWidth={this.state.windowWidth} />
+                  )}
+                />
                 {/* <Route exact path='/parallax' component={Parallax} /> */}
 
                 <Route

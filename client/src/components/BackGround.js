@@ -7,9 +7,9 @@ export default class BackGround extends Component {
   render() {
     return (
       <div>
-        <img className='dark-red' src={DarkRed} alt='' />
-        <img className='yellow' src={Yellow} alt='' />
-        <img className='orange-red' src={OrangeRed} alt='' />
+        <img className='dark-red svg-background' src={DarkRed} alt='' />
+        <img className='yellow svg-background' src={Yellow} alt='' />
+        <img className='orange-red svg-background' src={OrangeRed} alt='' />
       </div>
     );
   }
