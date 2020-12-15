@@ -97,7 +97,7 @@ authRoutes.post("/login", (req, res, next) => {
 // POST LOGOUT
 authRoutes.post("/logout", (req, res, next) => {
   req.session.destroy();
-  res.json({ message: "Your are now logged out." });
+  res.json({ message: "You're now logged out." });
 });
 
 // GET LOGGEDIN

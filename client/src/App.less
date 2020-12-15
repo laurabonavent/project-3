@@ -304,6 +304,10 @@ html {
   transform: rotate(-9.23deg);
 }
 
+.svg-background {
+  z-index: -2;
+}
+
 /* ##     ##    ###    #### ##    ## 
 ###   ###   ## ##    ##  ###   ## 
 #### ####  ##   ##   ##  ####  ## 
@@ -671,7 +675,7 @@ html {
   justify-content: space-between;
   align-items: flex-start;
   padding-left: 15px;
-  hheight: 100px;
+  height: 100px;
 }
 
 .card-technology {
@@ -725,7 +729,7 @@ html {
   font-size: 13px;
   border-top: 1px solid black;
   padding: 10px 0;
-  hheight: 105px;
+  height: 105px;
 }
 
 /* 
@@ -909,4 +913,116 @@ span.scroll-down.et-pb-icon {
   animation-fill-mode: both;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
+}
+// ######
+// #     # ###### #####   ##   # #         #####  ######  ####   ####   ####  #    # #####   ####  ######
+// #     # #        #    #  #  # #         #    # #      #      #      #    # #    # #    # #    # #
+// #     # #####    #   #    # # #         #    # #####   ####   ####  #    # #    # #    # #      #####
+// #     # #        #   ###### # #         #####  #           #      # #    # #    # #####  #      #
+// #     # #        #   #    # # #         #   #  #      #    # #    # #    # #    # #   #  #    # #
+// ######  ######   #   #    # # ######    #    # ######  ####   ####   ####   ####  #    #  ####  ######
+
+.detail-ressource {
+  width: 90%;
+}
+
+.content-ressource {
+  background-color: rgba(250, 250, 250, 0.9);
+  border-radius: 15px;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.detail-ressource h1 {
+  padding-left: 2%;
+}
+
+.content-ressource p {
+  font-family: "Nunito", sans-serif;
+}
+
+.content-ressource .label {
+  font-weight: 700;
+}
+
+.content-ressource .link {
+  border-radius: 25px;
+  color: white !important;
+  background: rgb(154, 9, 96);
+  background: linear-gradient(
+    90deg,
+    rgba(154, 9, 96, 1) 0%,
+    rgba(244, 54, 77, 1) 50%,
+    rgba(253, 143, 64, 1) 100%
+  );
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 5%;
+  position: relative;
+  top: 35px;
+  left: 55%;
+}
+
+.button-ressource {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: baseline;
+}
+
+.admin-button {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+}
+
+.admin-button > button,
+.admin-button > a {
+  margin: auto;
+}
+
+.button-ressource .ant-btn {
+  background-color: var(--light-grey);
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+}
+
+.ant-btn:not([disabled]):active {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.technology {
+  color: white;
+  background: rgb(154, 9, 96);
+  background: linear-gradient(
+    90deg,
+    rgba(154, 9, 96, 1) 0%,
+    rgba(244, 54, 77, 1) 50%,
+    rgba(253, 143, 64, 1) 100%
+  );
+  border-radius: 15px;
+  padding: 2%;
+  margin: 1.5%;
+  position: relative;
+  top: -25px;
+  left: -1%;
+}
+
+.technology-p {
+  margin: -1%;
+}
+
+.image-container {
+  display: flex;
+}
+
+.detail-ressource .preview {
+  z-index: 2;
+  width: 45%;
+  margin: 5% auto;
+  border-radius: 2%;
 }

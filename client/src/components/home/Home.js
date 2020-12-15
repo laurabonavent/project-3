@@ -26,10 +26,24 @@ export default class Home extends Component {
     minValue: 0,
     pageSize: 10,
     maxValue: 10,
+    offSetValue: 5.7,
   };
 
   componentDidMount() {
     this.findRessources();
+
+    // console.log(this.props.windowWidth);
+    // if (this.state.maxValue === 10 && this.props.windowWidth <= 360) {
+    //   return this.setState({ offSetValue: 6 });
+    //   console.log("mobile");
+    // } else if (this.state.maxValue === 10 && this.props.windowWidth <= 768) {
+    //   return this.setState({ offSetValue: 4 });
+    //   console.log("tablette");
+    // } else if (this.state.maxValue === 10 && this.props.windowWidth >= 1048) {
+    //   return this.setState({ offSetValue: 2 });
+    //   console.log("desktop");
+    // }
+    // console.log("offSetValue", this.state.offSetValue);
   }
 
   findRessources = () => {
@@ -140,8 +154,6 @@ export default class Home extends Component {
       //}
     });
 
-    const { toggle } = this.state;
-
     return (
       <>
         <div className="header">
@@ -161,7 +173,7 @@ export default class Home extends Component {
         </div>
         <Parallax
           ref={(ref) => (this.parallax = ref)}
-          pages={6}
+          pages={5.5}
           scrolling={true}
           className="home-container">
           <ParallaxLayer
@@ -271,7 +283,20 @@ export default class Home extends Component {
             <img className="yellow" src={Yellow} alt="" />
             <img className="orange-red" src={OrangeRed} alt="" />
           </ParallaxLayer>
-
+          <ParallaxLayer
+            offset={2}
+            speed={-0.5}
+            style={{
+              display: "flex",
+              alignItems: "flex-end",
+              justifyContent: "flex-end",
+              margin: "-4% 0% 0% -3%",
+            }}>
+            <div className="footer">
+              <p>Website created with love</p>
+              <img alt="" src={Rocket} style={{ width: "10%" }} />
+            </div>
+          </ParallaxLayer>
           <ParallaxLayer offset={0} speed={0} factor={3} className="content">
             {this.state.ressources ? (
               <>
@@ -318,20 +343,6 @@ export default class Home extends Component {
             ) : (
               "Loading"
             )}
-          </ParallaxLayer>
-          <ParallaxLayer
-            offset={2}
-            speed={-0.5}
-            style={{
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "flex-end",
-              margin: "-4% 0% 0% -3%",
-            }}>
-            <div className="footer">
-              <p>Website created with love</p>
-              <img alt="" src={Rocket} style={{ width: "10%" }} />
-            </div>
           </ParallaxLayer>
         </Parallax>
       </>
