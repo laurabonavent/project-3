@@ -13,7 +13,7 @@ import OrangeRed from "../../images/orange-red.svg";
 import Purple from "../../images/purple.svg";
 import LightOrange from "../../images/light-orange.svg";
 import LightPink from "../../images/light-pink.svg";
-import Rocket from "../../images/rocket.png";
+import Rocket from "../../images/rocket.svg";
 import Arrow from "../../images/down-arrow.svg";
 import LogoRocket from "../../images/logo-rocket.svg";
 

@@ -754,14 +754,13 @@ html {
 @media (min-width: 769px) {
   .header {
     height: 88vh;
-    ppadding: 8%;
     background-image: url("./images/dot-1.svg"), url("./images/dot-2.svg"),
       linear-gradient(
         132deg,
         rgba(228, 92, 70, 1) 36%,
         rgba(154, 9, 96, 0.9878326330532213) 100%
       );
-    background-position: left 10% top 10%, left 100% top 120%, center;
+    background-position: left 10% top 10%, left 100% top 110%, center;
     background-repeat: no-repeat;
   }
 }
@@ -803,6 +802,21 @@ html {
 @media (min-width: 768px) {
   .header-h1 {
     font-size: 60px;
+    width: 60%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-h1 {
+    font-size: 60px;
+    width: 45%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .header-h1 {
+    font-size: 70px;
+    width: 35%;
   }
 }
 
@@ -813,6 +827,22 @@ html {
   margin-top: 10px;
   font-size: 16px;
   color: var(--light-grey);
+}
+
+@media (min-width: 1024px) {
+  .header p {
+    width: 50%;
+    font-weight: 700;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .header p {
+    color: white;
+    width: 38%;
+    font-size: 20px;
+  }
 }
 
 .header span {
