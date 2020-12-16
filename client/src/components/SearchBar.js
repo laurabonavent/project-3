@@ -5,9 +5,10 @@ class SearchBar extends React.Component {
     return (
       <>
         <input
+          className="search-bar"
           type="search"
           name="search"
-          placeholder="Search"
+          placeholder="Search..."
           onChange={this.props.handleChange}
         />
       </>
