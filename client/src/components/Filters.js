@@ -1,5 +1,6 @@
 import React from "react";
 import { getEnumValues } from "./auth/auth-service";
+
 import { TreeSelect } from "antd";
 const { TreeNode } = TreeSelect;
 
@@ -27,11 +28,12 @@ class Filters extends React.Component {
     return (
       <>
         <TreeSelect
+          className="filters-bar"
           showSearch
           style={{ width: "100%" }}
           value={this.state.value}
           dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
-          placeholder="Filter by technology, type, level, language and price"
+          placeholder="Filter by technology, type, level, language, price"
           allowClear
           multiple
           treeDefaultExpandAll

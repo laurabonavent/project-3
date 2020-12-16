@@ -3,7 +3,7 @@ import { getRessources } from "../auth/auth-service";
 import Card from "../card/Card";
 import Filters from "../Filters";
 import SearchBar from "../SearchBar";
-import { Pagination, Button } from "antd";
+import { Pagination, Button, Popover } from "antd";
 import { Spring, animated } from "react-spring/renderprops";
 
 import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons";
@@ -16,6 +16,7 @@ import LightPink from "../../images/light-pink.svg";
 import Rocket from "../../images/rocket.svg";
 import Arrow from "../../images/down-arrow.svg";
 import LogoRocket from "../../images/logo-rocket.svg";
+import Dices from "../../images/dices.svg";
 
 export default class Home extends Component {
   state = {
@@ -156,6 +157,20 @@ export default class Home extends Component {
 
     return (
       <>
+        <div className="random-content">
+          <Popover
+            placement="left"
+            content={<Card data={this.state.randomRessource} />}>
+            <button onClick={this.getRandomRessources}></button>
+          </Popover>
+
+          {/* {this.state.randomRessource.length !== 0 && (
+              <div>
+                <Button onClick={this.hideRandom}>X</Button>
+                <Card data={this.state.randomRessource} />
+              </div>
+            )} */}
+        </div>
         <div className="header">
           <div className="header-top">
             <img src={LogoRocket} />
@@ -171,10 +186,18 @@ export default class Home extends Component {
             </span>
           </div>
         </div>
+        <div className="search-container">
+          <div className="title-search-container">
+            Search your happiness here
+          </div>
+          <SearchBar handleChange={this.handleChange} />
+
+          <Filters handleChange={this.getFilterValues} />
+        </div>
+
         <Parallax
           ref={(ref) => (this.parallax = ref)}
           pages={5.5}
-          scrolling={true}
           className="home-container">
           <ParallaxLayer
             offset={0}
@@ -300,28 +323,6 @@ export default class Home extends Component {
           <ParallaxLayer offset={0} speed={0} factor={3} className="content">
             {this.state.ressources ? (
               <>
-                <div className="search-container">
-                  <SearchBar
-                    className="search-bar"
-                    handleChange={this.handleChange}
-                  />
-
-                  <Filters
-                    className="filters-bar"
-                    handleChange={this.getFilterValues}
-                  />
-                </div>
-                <Button onClick={this.getRandomRessources}>
-                  Get a random ressource
-                </Button>
-
-                {this.state.randomRessource.length !== 0 && (
-                  <div>
-                    <Button onClick={this.hideRandom}>X</Button>
-                    <Card data={this.state.randomRessource} />
-                  </div>
-                )}
-
                 <div className="home-card-container">
                   {showedRessources &&
                     showedRessources.length > 0 &&
