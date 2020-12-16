@@ -19,6 +19,7 @@ import Navbar from "./components/nav/Navbar";
 import Footer from "./components/nav/Footer";
 import EditProfile from "./components/profile/EditProfile";
 import SuggestRessource from "./components/ressources/SuggestRessource";
+import Parallax from "./components/Parallax";
 
 class App extends React.Component {
   state = { loggedInUser: null, windowWidth: window.innerWidth };
@@ -79,7 +80,7 @@ class App extends React.Component {
                     <Home windowWidth={this.state.windowWidth} />
                   )}
                 />
-                {/* <Route exact path='/parallax' component={Parallax} /> */}
+                <Route exact path='/parallax' component={Parallax} />
 
                 <Route
                   exact

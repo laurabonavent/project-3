@@ -114,7 +114,6 @@ button {
 }
 ::selection {
   background: none;
-  color: black;
 }
 
 a:hover,
@@ -740,7 +739,9 @@ html {
 ##     ## ##     ## ##     ## ##       
 ##     ## ##     ## ##     ## ##       
 ##     ##  #######  ##     ## ########  */
-
+.home-container::-webkit-scrollbar {
+  display: none;
+}
 // HEADER GENERAL
 .home-container .content {
   padding: 0 5% 0 5%;
@@ -1023,4 +1024,123 @@ span.scroll-down.et-pb-icon {
   width: 45%;
   margin: 5% auto;
   border-radius: 2%;
+}
+
+@media (min-width: 768px) {
+  .detail-ressource h1 {
+    text-align: center;
+  }
+
+  .technology {
+    padding: 1%;
+    top: -35px;
+  }
+
+  .content-ressource .link {
+    padding: 3%;
+    left: 80%;
+    top: 55px;
+  }
+  .detail-ressource .preview {
+    width: 15%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .detail-ressource {
+    margin-bottom: 10%;
+    width: 80%;
+    min-height: 100vh;
+  }
+
+  .button-ressource {
+    width: 50%;
+    margin-left: 28%;
+  }
+  .technology {
+    padding: 0.9%;
+    top: -58px;
+  }
+
+  .content-ressource .link {
+    padding: 1%;
+    left: 85%;
+    top: 70px;
+  }
+  .detail-ressource .preview {
+    width: 15%;
+  }
+}
+
+// #####  #####   ####  ###### # #      ######
+// #    # #    # #    # #      # #      #
+// #    # #    # #    # #####  # #      #####
+// #####  #####  #    # #      # #      #
+// #      #   #  #    # #      # #      #
+// #      #    #  ####  #      # ###### ######
+
+.profile-container::-webkit-scrollbar {
+  display: none;
+}
+.profile-container .content {
+  padding: 0 5% 0 5%;
+}
+
+@media (min-height: 768px) {
+  .profile-container .content {
+    padding: 0 5% 0 0;
+  }
+}
+
+.profile-container h1 {
+  color: white;
+}
+
+.profile-container .button-ressource {
+  position: relative;
+  top: -63px;
+  left: 45%;
+  width: 80%;
+}
+
+.profile-container .avatar {
+  border-radius: 60px;
+  width: 115px;
+  height: 115px;
+  margin: auto;
+  object-fit: cover;
+  position: relative;
+  top: -6px;
+}
+
+.profile-container .back-button {
+  margin-top: 3%;
+}
+
+.welcome-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10%;
+  margin: 25% 5% 0% 0%;
+  position: absolute;
+  background: linear-gradient(
+    132deg,
+    rgba(228, 92, 70, 1) 36%,
+    rgba(154, 9, 96, 0.9878326330532213) 100%
+  );
+  border-radius: 25px;
+  height: 11%;
+}
+
+.profile-fav {
+  position: relative;
+  top: 17%;
+}
+
+.ant-btn .button-list-profile {
+  background-color: var(--light-grey);
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
 }
