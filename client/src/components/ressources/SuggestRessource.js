@@ -5,6 +5,7 @@ import { getEnumValues } from "../auth/auth-service";
 import { uploadImage } from "../auth/auth-service";
 
 import BackGround from "../BackGround";
+import Loading from "../Loading";
 
 import { RiArrowRightSLine } from "react-icons/ri";
 
@@ -312,7 +313,7 @@ export default class SuggestRessource extends Component {
             </Form>
           </div>
         ) : (
-          "Loading.."
+          <Loading />
         )}
       </div>
     );

@@ -32,7 +32,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className='main login'>
+      <div className='main form login'>
         <BackGround />
         <BackButton />
         <h1>

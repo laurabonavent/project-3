@@ -3,6 +3,7 @@ import { getRessources } from "../auth/auth-service";
 import Card from "../card/Card";
 import Filters from "../Filters";
 import SearchBar from "../SearchBar";
+import Loading from "../Loading";
 import { Pagination, Button, Popover } from "antd";
 import { Spring, animated } from "react-spring/renderprops";
 
@@ -306,7 +307,7 @@ export default class Home extends Component {
             <img className='yellow' src={Yellow} alt='' />
             <img className='orange-red' src={OrangeRed} alt='' />
           </ParallaxLayer>
-          <ParallaxLayer
+          {/* <ParallaxLayer
             offset={2}
             speed={-0.5}
             style={{
@@ -319,7 +320,7 @@ export default class Home extends Component {
               <p>Website created with love</p>
               <img alt='' src={Rocket} style={{ width: "10%" }} />
             </div>
-          </ParallaxLayer>
+          </ParallaxLayer> */}
           <ParallaxLayer offset={0} speed={0} factor={3} className='content'>
             {this.state.ressources ? (
               <>
@@ -342,7 +343,7 @@ export default class Home extends Component {
                 /> */}
               </>
             ) : (
-              "Loading"
+              <Loading />
             )}
           </ParallaxLayer>
         </Parallax>

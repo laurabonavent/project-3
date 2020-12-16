@@ -28,6 +28,7 @@
   --dark-red: #9a1809;
   --primary-color: black;
   --light-red: #e45c46;
+  --purple: #9a0960;
 }
 
 body {
@@ -114,6 +115,7 @@ button {
 }
 ::selection {
   background: none;
+  color: black;
 }
 
 a:hover,
@@ -264,6 +266,7 @@ html {
   height: 285.83px;
   left: -79px;
   top: 529px;
+  fill: var(--purple);
 }
 
 /* RED SVG BACKGROUND */
@@ -397,18 +400,8 @@ html {
 }
 
 .ant-form input[type="file"] {
-  width: 95%;
-  border: none;
-  height: 40px;
-  background: var(--light-grey);
-  color: var(--dark-grey);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 50px;
-  margin: 2%;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 1%;
-  outline: none;
+  width: 80%;
+  background-color: none !important;
 }
 
 .ant-form-item-label > label {
@@ -475,6 +468,25 @@ html {
   .ant-form-item-label > label {
     min-width: 100px;
   }
+
+  .form h1 {
+    text-align: center;
+  }
+
+  .form h2 {
+    text-align: center;
+  }
+}
+
+.form textarea {
+  background-color: var(--light-grey);
+  border-radius: 15px;
+  width: 95%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-left: 2%;
+  outline: none;
 }
 
 /* ##        #######   ######   #### ##    ## 
@@ -550,6 +562,33 @@ html {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background-color: var(--light-grey);
   color: black;
+}
+
+.avatar-block {
+  background-color: var(--light-grey);
+  border-radius: 15px;
+  padding: 2%;
+  margin: 0 2%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+#signup-edit .avatar-block,
+#create .avatar-block {
+  margin-top: 7%;
+}
+
+#signup_avatar,
+#signup-edit_avatar,
+#create_image {
+  background: none;
+  border-radius: none;
+  box-shadow: none;
+}
+
+.avatar-block .label {
+  font-family: "Nunito", sans-serif;
+  padding-top: 2%;
+  padding-left: 2%;
 }
 
 /*
@@ -1245,12 +1284,6 @@ span.scroll-down.et-pb-icon {
   padding: 0 5% 0 5%;
 }
 
-@media (min-height: 768px) {
-  .profile-container .content {
-    padding: 0 5% 0 0;
-  }
-}
-
 .profile-container h1 {
   color: white;
 }
@@ -1294,12 +1327,81 @@ span.scroll-down.et-pb-icon {
 
 .profile-fav {
   position: relative;
-  top: 17%;
+  top: 14%;
 }
 
-.ant-btn .button-list-profile {
+.button-list-profile {
   background-color: var(--light-grey);
   border-radius: 15px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   border: none;
+  font-family: "Nunito", sans-serif;
+  color: black;
+}
+
+.sort-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.sort-buttons span,
+button {
+  margin: auto;
+}
+
+@media (min-height: 768px) {
+  .profile-container .content {
+    padding: 5% auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .back-button {
+    margin: 0;
+  }
+  .welcome-block {
+    margin: 10%;
+    width: 70%;
+    height: 7%;
+  }
+
+  .profile-container .avatar {
+    top: -26px;
+    left: -37%;
+  }
+  .button-ressource {
+    top: -71% !important;
+    left: 13% !important;
+  }
+}
+
+// ######  ####   ####  ##### ###### #####
+// #      #    # #    #   #   #      #    #
+// #####  #    # #    #   #   #####  #    #
+// #      #    # #    #   #   #      #####
+// #      #    # #    #   #   #      #   #
+// #       ####   ####    #   ###### #    #
+
+.footer {
+}
+
+// #       ####    ##   #####  # #    #  ####
+// #      #    #  #  #  #    # # ##   # #    #
+// #      #    # #    # #    # # # #  # #
+// #      #    # ###### #    # # #  # # #  ###
+// #      #    # #    # #    # # #   ## #    #
+// ######  ####  #    # #####  # #    #  ####
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 5% auto auto 5%;
+  width: 85%;
+}
+
+.loading img {
+  margin-left: auto;
+  margin-right: auto;
 }

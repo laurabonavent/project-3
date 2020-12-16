@@ -7,6 +7,7 @@ import { message } from "antd";
 
 import { RiArrowRightSLine } from "react-icons/ri";
 import BackGround from "../BackGround";
+import Loading from "../Loading";
 
 export default class EditProfile extends React.Component {
   state = {
@@ -180,19 +181,21 @@ export default class EditProfile extends React.Component {
                   <Select.Option value='master jedi'>Master Jedi</Select.Option>
                 </Select>
               </Form.Item>
-              <p>Your actual magnificient avatar</p>
-              <img
-                className='preview'
-                src={this.props.userInSession.avatar}
-                alt='avatar'
-              />
-              <Form.Item name='avatar' label='Change the avatar'>
-                <input
-                  value={this.props.userInSession.image}
-                  type='file'
-                  onChange={this.fileChangedHandler}
+              <div className='avatar-block'>
+                <p className='label'>Your magnificent avatar 📸</p>
+                <img
+                  className='preview'
+                  src={this.props.userInSession.avatar}
+                  alt='avatar'
                 />
-              </Form.Item>
+                <Form.Item name='avatar' label='Want to change it ?'>
+                  <input
+                    value={this.props.userInSession.image}
+                    type='file'
+                    onChange={this.fileChangedHandler}
+                  />
+                </Form.Item>
+              </div>
               <Form.Item>
                 <Button
                   type='primary'
@@ -203,7 +206,7 @@ export default class EditProfile extends React.Component {
               </Form.Item>
             </>
           ) : (
-            "Loading.."
+            <Loading />
           )}
         </Form>
       </div>

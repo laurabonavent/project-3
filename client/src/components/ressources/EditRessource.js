@@ -8,6 +8,7 @@ import { getOneRessource } from "../auth/auth-service";
 import { uploadImage } from "../auth/auth-service";
 
 import BackGround from "../BackGround";
+import Loading from "../Loading";
 
 import { RiArrowRightSLine } from "react-icons/ri";
 
@@ -337,26 +338,28 @@ export default class EditRessource extends Component {
                   })}
                 </Select>
               </Form.Item>
-              <img
-                className='preview'
-                src={this.state.ressource.image}
-                alt={this.state.ressource.title}
-              />
-              <Form.Item
-                name='image'
-                label='Image'
-                rules={[
-                  {
-                    required: true,
-                    message: "Please upload an image",
-                  },
-                ]}>
-                <input
-                  type='file'
-                  value={this.state.ressource.image}
-                  onChange={this.fileChangedHandler}
+              <div className='avatar-block'>
+                <img
+                  className='preview'
+                  src={this.state.ressource.image}
+                  alt={this.state.ressource.title}
                 />
-              </Form.Item>
+                <Form.Item
+                  name='image'
+                  label='Image'
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please upload an image",
+                    },
+                  ]}>
+                  <input
+                    type='file'
+                    value={this.state.ressource.image}
+                    onChange={this.fileChangedHandler}
+                  />
+                </Form.Item>
+              </div>
               <Form.Item>
                 <Button
                   type='primary'
@@ -367,7 +370,7 @@ export default class EditRessource extends Component {
               </Form.Item>
             </div>
           ) : (
-            "Loading.."
+            <Loading />
           )}
         </Form>
       </div>

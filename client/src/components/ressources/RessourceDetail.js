@@ -13,6 +13,7 @@ import { Button, Popconfirm, message } from "antd";
 import isnull from "lodash.isnull";
 
 import BackGround from "../BackGround";
+import Loading from "../Loading";
 
 import { randomCats } from "../auth/cat-service";
 import { cat } from "../auth/cat-service";
@@ -100,7 +101,7 @@ export default class RessourceDetail extends Component {
     console.log("image", this.state.image);
 
     if (isnull(this.props.userInSession)) {
-      return <div>Loading...</div>;
+      return <Loading />;
     }
 
     if (this.props.userInSession === false) {
@@ -133,7 +134,7 @@ export default class RessourceDetail extends Component {
     //console.log(this.props);
 
     if (isnull(this.props.userInSession)) {
-      return <div>Loading...</div>;
+      return <Loading />;
     }
 
     return (
@@ -255,7 +256,7 @@ export default class RessourceDetail extends Component {
             </div>
           </div>
         ) : (
-          "Loading..."
+          <Loading />
         )}
       </div>
     );

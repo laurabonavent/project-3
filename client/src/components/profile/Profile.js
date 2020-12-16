@@ -19,7 +19,10 @@ import LightOrange from "../../images/light-orange.svg";
 import LightPink from "../../images/light-pink.svg";
 import Rocket from "../../images/rocket.svg";
 
+import { VscListSelection } from "react-icons/vsc";
+
 import BackButton from "../nav/BackButton";
+import Loading from "../Loading";
 
 export default class Profile extends Component {
   state = {
@@ -108,7 +111,7 @@ export default class Profile extends Component {
   };
 
   render() {
-    if (isnull(this.props.userInSession)) return "..loading";
+    if (isnull(this.props.userInSession)) return <Loading />;
 
     let showedfavorites = this.props.userInSession.favorites.filter(
       (item, index) => {
@@ -255,7 +258,7 @@ export default class Profile extends Component {
             <img className='orange-red' src={OrangeRed} alt='' />
           </ParallaxLayer>
 
-          <ParallaxLayer
+          {/* <ParallaxLayer
             offset={2}
             speed={-0.5}
             style={{
@@ -268,7 +271,7 @@ export default class Profile extends Component {
               <p>Website created with love</p>
               <img alt='' src={Rocket} style={{ width: "10%" }} />
             </div>
-          </ParallaxLayer>
+          </ParallaxLayer> */}
 
           <ParallaxLayer offset={0} speed={0} factor={3} className='content'>
             <BackButton />
@@ -286,6 +289,13 @@ export default class Profile extends Component {
               <Link className='button-ressource' to='/profile/edit'>
                 <Button>✍️</Button>
               </Link>
+              {/* {this.props.userInSession.role === "admin" ? (
+                <div>
+                  <Link className='button-ressource' to='/ressource/create'>
+                    <Button>Add one</Button>
+                  </Link>
+                </div>
+              ) : null} */}
             </div>
 
             <div className='profile-fav'>
@@ -299,15 +309,18 @@ export default class Profile extends Component {
               sortQuery={this.state.sortQuery}
               windowWidth={this.props.windowWidth}
             /> */}
-              <Button className='button-list-profile' onClick={this.sortBy}>
-                technology
-              </Button>
-              <Button className='button-list-profile' onClick={this.sortBy}>
-                type
-              </Button>
-              <Button className='button-list-profile' onClick={this.sortBy}>
-                no sorting
-              </Button>
+              <div className='sort-buttons'>
+                <span>Sort by : </span>
+                <Button className='button-list-profile' onClick={this.sortBy}>
+                  <VscListSelection />
+                </Button>
+                <Button className='button-list-profile' onClick={this.sortBy}>
+                  technology
+                </Button>
+                <Button className='button-list-profile' onClick={this.sortBy}>
+                  type
+                </Button>
+              </div>
               <Carousel2
                 data={showedfavorites}
                 sortQuery={this.state.sortQuery}
