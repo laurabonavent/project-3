@@ -7,7 +7,17 @@ const uploader = require("../configs/cloudinary-setup.config");
 // POST SIGNUP
 authRoutes.post("/signup", (req, res, next) => {
   const { email, password, username, level, avatar } = req.body;
-  const role = "user";
+  let role;
+  if (
+    email === "laura.bonavent@gmail.com" ||
+    email === "quaresma.nina@gmail.com" ||
+    email === "ecassignol@gmail.com" ||
+    email === "antoine.bernier@gmail.com"
+  ) {
+    role = "admin";
+  } else {
+    role = "user";
+  }
 
   // if (req.file) {
   //   avatarUser = req.file.path;
@@ -45,7 +55,7 @@ authRoutes.post("/signup", (req, res, next) => {
         username: username,
         avatar: avatar,
         level: level,
-        role: "user",
+        role: role,
       });
 
       aNewUser
@@ -103,11 +113,16 @@ authRoutes.post("/logout", (req, res, next) => {
 // GET LOGGEDIN
 authRoutes.get("/loggedin", (req, res, next) => {
   // req.isAuthenticated() is defined by passport
-  if (req.session.user) {
-    res.status(200).json(req.session.user);
-    return;
+  if (!req.session.user) {
+    return res.status(403).json({ message: "Unauthorized" });
   }
-  res.status(403).json({ message: "Unauthorized" });
+
+  User.findById(req.session.user._id)
+    .populate("favorites")
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => res.status(500).json({ message: "erreurr inconnue" }));
 });
 
 // UPLOAD
