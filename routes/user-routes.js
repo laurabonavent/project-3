@@ -34,13 +34,20 @@ userRouter.put("/user", uploader.single("avatar"), (req, res, next) => {
     console.log("hasPas3: ", hashPass);
   }
 
+  let role;
+  if (req.session.user.role === "admin") {
+    role = "admin";
+  } else {
+    role = "user";
+  }
+
   let updateUser = {
     email: email,
     password: hashPass,
     username: username,
     avatar: avatar,
     level: level,
-    role: "user",
+    role: role,
   };
 
   User.findOneAndUpdate(req.session.user.id, updateUser, { new: true })

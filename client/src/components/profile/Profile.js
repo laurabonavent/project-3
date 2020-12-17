@@ -154,35 +154,39 @@ export default class Profile extends Component {
             src={this.props.userInSession.avatar}
             alt=""
           />
-          <h1>
-            {this.props.userInSession.username.charAt(0).toUpperCase() +
-              this.props.userInSession.username.slice(1)}
-            's dashboard
-          </h1>
-          <Link className="button-ressource" to="/profile/edit">
-            <Button>✍️</Button>
-          </Link>
+          <div className="welcome-block-text">
+            <h1>
+              {this.props.userInSession.username.charAt(0).toUpperCase() +
+                this.props.userInSession.username.slice(1)}
+              's dashboard
+            </h1>
+            <div className="welcome-block-buttons-flex">
+              <Link className="button-ressource" to="/profile/edit">
+                <Button>✍️</Button>
+              </Link>
 
-          {/* {this.props.userInSession.role === "admin" ? (
+              {this.props.userInSession.role === "admin" ? (
                 <div>
-                  <Link className='button-ressource' to='/ressource/create'>
-                    <Button>Add one</Button>
+                  <Link className="button-ressource" to="/ressource/create">
+                    <Button>Add Ressource</Button>
                   </Link>
                 </div>
-              ) : null} */}
+              ) : null}
+            </div>
+          </div>
         </div>
         <div className="search-container">
           <div className="title-search-container">Search in your favorites</div>
           <SearchBar handleChange={this.handleChange} />
           <span className="sort-title">Sort by </span>
           <div className="sort-buttons">
-            <Button className="button-list-profile" onClick={this.sortBy}>
+            <Button className="button-sort-profile" onClick={this.sortBy}>
               <VscListSelection />
             </Button>
-            <Button className="button-list-profile" onClick={this.sortBy}>
+            <Button className="button-sort-profile" onClick={this.sortBy}>
               technology
             </Button>
-            <Button className="button-list-profile" onClick={this.sortBy}>
+            <Button className="button-sort-profile" onClick={this.sortBy}>
               type
             </Button>
           </div>
@@ -190,7 +194,7 @@ export default class Profile extends Component {
         <Parallax
           ref={(ref) => (this.parallax = ref)}
           pages={4.55}
-          className="main profile-container">
+          className="main">
           <ParallaxLayer
             offset={0}
             speed={0}
