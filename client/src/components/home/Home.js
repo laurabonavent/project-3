@@ -17,7 +17,7 @@ import LightPink from "../../images/light-pink.svg";
 import Rocket from "../../images/rocket.svg";
 import Arrow from "../../images/down-arrow.svg";
 import LogoRocket from "../../images/logo-rocket.svg";
-import Dices from "../../images/dices.svg";
+import Cat1 from "../../images/cat/chat1.png";
 
 export default class Home extends Component {
   state = {
@@ -158,10 +158,10 @@ export default class Home extends Component {
 
     return (
       <>
-        <div className='header'>
-          <div className='random-content'>
+        <div className="header">
+          <div className="random-content">
             <Popover
-              placement='left'
+              placement="left"
               content={<Card data={this.state.randomRessource} />}>
               <button onClick={this.getRandomRessources}></button>
             </Popover>
@@ -173,22 +173,25 @@ export default class Home extends Component {
               </div>
             )} */}
           </div>
-          <div className='header-top'>
-            <img src={LogoRocket} alt='logorocket' />
+          <div className="header-top">
+            <img src={LogoRocket} alt="logorocket" />
           </div>
-          <div className='header-bottom'>
-            <div className='header-h1'>To infinity, and beyond!</div>
+          <div className="header-bottom">
+            <div className="header-h1">To infinity, and beyond!</div>
             <p>
               Find resources to continue your training after IronHack and all
               the useful tools to make your developers' life easier.
             </p>
-            <span className='scroll-down et-pb-icon show_icon'>
-              <img className='arrow' src={Arrow} alt='arrow' />
+            <span className="scroll-down et-pb-icon show_icon">
+              <img className="arrow" src={Arrow} alt="arrow" />
             </span>
+            {/* {this.props.userInSession && this.props.userInSession.email === "ecassignol@gmail.com" ? (
+              <img src={Cat1} alt="cat1" />
+            )} */}
           </div>
         </div>
-        <div className='search-container'>
-          <div className='title-search-container'>
+        <div className="search-container">
+          <div className="title-search-container">
             Search your happiness here
           </div>
           <SearchBar handleChange={this.handleChange} />
@@ -196,11 +199,11 @@ export default class Home extends Component {
           <Filters handleChange={this.getFilterValues} />
         </div>
 
-        <div className='home-container background-full'>
-          <div className='content'>
+        <div className="home-container background-full">
+          <div className="content">
             {this.state.ressources ? (
               <>
-                <div className='home-card-container'>
+                <div className="home-card-container">
                   {showedRessources &&
                     showedRessources.length > 0 &&
                     showedRessources
@@ -208,7 +211,9 @@ export default class Home extends Component {
                       .map((val, index) => <Card data={val} key={index} />)}
                 </div>
 
-                <Button onClick={this.loadMore}>Load More</Button>
+                <Button className="load-more" onClick={this.loadMore}>
+                  Load more
+                </Button>
 
                 {/* <Pagination
                   showSizeChanger={false}

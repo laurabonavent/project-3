@@ -63,7 +63,7 @@ class App extends React.Component {
     console.log("user", this.state.loggedInUser);
 
     return (
-      <div className='App'>
+      <div className="App">
         <Route
           render={(props) => (
             <>
@@ -76,17 +76,17 @@ class App extends React.Component {
               <Switch>
                 <Route
                   exact
-                  path='/'
+                  path="/"
                   render={(props) => (
                     <Home windowWidth={this.state.windowWidth} />
                   )}
                 />
-                <Route exact path='/parallax' component={Parallax} />
-                <Route exact path='/loading' component={Loading} />
+                <Route exact path="/parallax" component={Parallax} />
+                <Route exact path="/loading" component={Loading} />
 
                 <Route
                   exact
-                  path='/login'
+                  path="/login"
                   render={(props) => (
                     <Login
                       userInSession={this.state.loggedInUser}
@@ -97,7 +97,7 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path='/signup'
+                  path="/signup"
                   render={(props) => (
                     <Signup
                       history={props.history}
@@ -107,7 +107,7 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path='/profile/edit'
+                  path="/profile/edit"
                   render={(props) => (
                     <EditProfile
                       {...props}
@@ -119,7 +119,7 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path='/profile'
+                  path="/profile"
                   render={(props) => (
                     <Profile
                       {...props}
@@ -129,17 +129,17 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path='/ressources/create'
+                  path="/ressources/create"
                   component={CreateRessource}
                 />
                 <Route
                   exact
-                  path='/ressources/suggest'
+                  path="/ressources/suggest"
                   component={SuggestRessource}
                 />
                 <Route
                   exact
-                  path='/ressources/edit/:id'
+                  path="/ressources/edit/:id"
                   render={(props) => (
                     <EditRessource
                       {...props}
@@ -149,7 +149,7 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path='/ressources/:id'
+                  path="/ressources/:id"
                   render={(props) => (
                     <Ressource
                       {...props}
@@ -159,7 +159,7 @@ class App extends React.Component {
                   )}
                 />
               </Switch>
-              {/* <Footer userInSession={this.state.loggedInUser} /> */}
+              <Footer userInSession={this.state.loggedInUser} />
             </>
           )}></Route>
       </div>

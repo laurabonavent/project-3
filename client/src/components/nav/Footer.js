@@ -4,16 +4,17 @@ import Logo from "../../images/logo.svg";
 
 const Navbar = (props) => {
   return (
-    <div className='footer'>
+    <div className="footer">
+      <img src={Logo} alt="skyrocket" />
       {props.userInSession ? (
         <>
-          <Link to='/ressources/suggest'>Suggest a ressource</Link>
+          <Link to="/ressources/suggest" className="suggest-text">
+            Suggest a ressource
+          </Link>
         </>
       ) : (
         <>
-          <p>
-            Website created with love <img src={Logo} alt='skyrocket' />
-          </p>
+          <p>Website created with love</p>
         </>
       )}
     </div>
