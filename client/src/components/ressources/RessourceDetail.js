@@ -138,81 +138,83 @@ export default class RessourceDetail extends Component {
     }
 
     return (
-      <div className='main detail-ressource'>
-        <BackGround />
-        {this.state.ressource &&
-        this.state.ressource.technology &&
-        this.state.ressource.type &&
-        this.state.ressource.votes &&
-        this.state.ressource.comments ? (
-          <div>
-            <h1>{ressource.title}</h1>
-            <div className='button-ressource'>
-              {this.state.fav === true ? (
-                <p>
-                  <Button onClick={this.deleteFavorite}>
-                    Delete favorite 🌟
-                  </Button>
+      <div className='background-full'>
+        <div className='main detail-ressource'>
+          {this.state.ressource &&
+          this.state.ressource.technology &&
+          this.state.ressource.type &&
+          this.state.ressource.votes &&
+          this.state.ressource.comments ? (
+            <div>
+              <h1>{ressource.title}</h1>
+              <div className='button-ressource'>
+                {this.state.fav === true ? (
+                  <p>
+                    <Button onClick={this.deleteFavorite}>
+                      Delete favorite 🌟
+                    </Button>
+                  </p>
+                ) : (
+                  <p>
+                    <Button onClick={this.addAFavorite}>
+                      Add favorite ⭐️{" "}
+                    </Button>
+                  </p>
+                )}
+                {this.props.userInSession.role === "admin" ? (
+                  <div className='admin-button'>
+                    <Link
+                      className='ant-btn'
+                      to={`/ressources/edit/${this.state.ressource._id}`}>
+                      ✍️
+                    </Link>
+                    {/* <Button onClick={this.deleteRessource}>Delete</Button> */}
+                    <Popconfirm
+                      title='Are you sure to delete this ressource?'
+                      onConfirm={this.deleteRessource}
+                      onCancel={this.cancel}
+                      okText='Yes I do'
+                      cancelText='Nope'>
+                      <a className='ant-btn' href='#' alt='delete'>
+                        🗑
+                      </a>
+                    </Popconfirm>
+                  </div>
+                ) : null}
+              </div>
+              <p className='image-container'>
+                <img
+                  className='preview'
+                  src={ressource.image ? ressource.image : cat}
+                  alt={ressource.title}
+                />
+              </p>
+              <div className='content-ressource'>
+                <p className='technology-p'>
+                  {/* <span className='label'>Technologies : </span> */}
+                  {ressource.technology.map((technology, index) => {
+                    if (technology !== "") {
+                      return (
+                        <span className='technology' key={index}>
+                          {technology.charAt(0).toUpperCase() +
+                            technology.slice(1)}{" "}
+                        </span>
+                      );
+                    }
+                  })}
                 </p>
-              ) : (
+                <p>{ressource.description}</p>
                 <p>
-                  <Button onClick={this.addAFavorite}>Add favorite ⭐️ </Button>
-                </p>
-              )}
-              {this.props.userInSession.role === "admin" ? (
-                <div className='admin-button'>
-                  <Link
-                    className='ant-btn'
-                    to={`/ressources/edit/${this.state.ressource._id}`}>
-                    ✍️
-                  </Link>
-                  {/* <Button onClick={this.deleteRessource}>Delete</Button> */}
-                  <Popconfirm
-                    title='Are you sure to delete this ressource?'
-                    onConfirm={this.deleteRessource}
-                    onCancel={this.cancel}
-                    okText='Yes I do'
-                    cancelText='Nope'>
-                    <a className='ant-btn' href='#' alt='delete'>
-                      🗑
-                    </a>
-                  </Popconfirm>
-                </div>
-              ) : null}
-            </div>
-            <p className='image-container'>
-              <img
-                className='preview'
-                src={ressource.image ? ressource.image : cat}
-                alt={ressource.title}
-              />
-            </p>
-            <div className='content-ressource'>
-              <p className='technology-p'>
-                {/* <span className='label'>Technologies : </span> */}
-                {ressource.technology.map((technology, index) => {
-                  if (technology !== "") {
+                  <span className='label'>Types : </span>
+                  {ressource.type.map((type, index) => {
                     return (
-                      <span className='technology' key={index}>
-                        {technology.charAt(0).toUpperCase() +
-                          technology.slice(1)}{" "}
+                      <span key={index}>
+                        {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
                       </span>
                     );
-                  }
-                })}
-              </p>
-              <p>{ressource.description}</p>
-              <p>
-                <span className='label'>Types : </span>
-                {ressource.type.map((type, index) => {
-                  return (
-                    <span key={index}>
-                      {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
-                    </span>
-                  );
-                })}
-              </p>
-              {/* {ressource.votes.length === 0 ? (
+                  })}
+                </p>
+                {/* {ressource.votes.length === 0 ? (
                 "No vote"
               ) : (
                 <p>
@@ -222,28 +224,28 @@ export default class RessourceDetail extends Component {
                   })}
                 </p>
               )} */}
-              <p>
-                <span className='label'>Languages : </span>
-                {language.charAt(0).toUpperCase() + language.slice(1)}
-              </p>
-              <p>
-                <span className='label'>Level : </span>
-                {level.charAt(0).toUpperCase() + level.slice(1)}
-              </p>
-              <p>
-                <span className='label'>Price : </span>
-                {price.charAt(0).toUpperCase() + price.slice(1)}
-              </p>
-              <p>
-                <a
-                  className='link'
-                  href={ressource.link}
-                  rel='noreferrer'
-                  target='_blank'>
-                  Find your way
-                </a>
-              </p>
-              {/* {ressource.comments.length === 0 ? (
+                <p>
+                  <span className='label'>Languages : </span>
+                  {language.charAt(0).toUpperCase() + language.slice(1)}
+                </p>
+                <p>
+                  <span className='label'>Level : </span>
+                  {level.charAt(0).toUpperCase() + level.slice(1)}
+                </p>
+                <p>
+                  <span className='label'>Price : </span>
+                  {price.charAt(0).toUpperCase() + price.slice(1)}
+                </p>
+                <p>
+                  <a
+                    className='link'
+                    href={ressource.link}
+                    rel='noreferrer'
+                    target='_blank'>
+                    Find your way
+                  </a>
+                </p>
+                {/* {ressource.comments.length === 0 ? (
                 "No comment"
               ) : (
                 <p>
@@ -253,11 +255,12 @@ export default class RessourceDetail extends Component {
                   })}
                 </p>
               )} */}
+              </div>
             </div>
-          </div>
-        ) : (
-          <Loading />
-        )}
+          ) : (
+            <Loading />
+          )}
+        </div>
       </div>
     );
   }

@@ -126,7 +126,7 @@ export default class SuggestRessource extends Component {
         enumValues.level &&
         enumValues.languages &&
         enumValues.price ? (
-          <div className='main form'>
+          <div className='main form background-full'>
             <h1>Suggest a ressource</h1>
             <Form name='suggest' scrollToFirstError>
               <Form.Item

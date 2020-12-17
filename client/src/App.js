@@ -21,7 +21,6 @@ import EditProfile from "./components/profile/EditProfile";
 import SuggestRessource from "./components/ressources/SuggestRessource";
 import Parallax from "./components/Parallax";
 import Loading from "./components/Loading";
-import BackgroundFull from "./components/BackgroundFull";
 
 class App extends React.Component {
   state = { loggedInUser: null, windowWidth: window.innerWidth };
@@ -84,7 +83,6 @@ class App extends React.Component {
                 />
                 <Route exact path='/parallax' component={Parallax} />
                 <Route exact path='/loading' component={Loading} />
-                <Route exact path='/background' component={BackgroundFull} />
 
                 <Route
                   exact

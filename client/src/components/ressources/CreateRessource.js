@@ -145,8 +145,7 @@ export default class CreateRessource extends Component {
   render() {
     const enumValues = this.state.enumValues;
     return (
-      <div>
-        <BackGround />
+      <div className='background-full'>
         {enumValues.technology &&
         enumValues.type &&
         enumValues.level &&

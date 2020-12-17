@@ -112,8 +112,7 @@ export default class EditProfile extends React.Component {
     //if (isnull(this.state.loggedInUser)) return "..loading";
     //console.log("user", this.props.userInSession);
     return (
-      <div className='main form'>
-        <BackGround />
+      <div className='main form background-full'>
         <h1>Edit profile page</h1>
         <Form
           name='signup-edit'
