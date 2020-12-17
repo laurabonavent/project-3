@@ -179,12 +179,13 @@ html {
   font-weight: 700;
   font-size: 24px;
   padding-left: 5%;
+  width: 55%;
 }
 
 .logo img {
   padding: 20px 0;
-  width: 60%;
-  max-width: 400px;
+  width: 100%;
+  max-width: 270px;
   min-width: 150px;
 }
 
@@ -197,22 +198,47 @@ html {
   margin-right: 5%;
   margin-left: auto;
   padding: 20px 0;
+  width: 25%;
 }
 
 .links a {
   margin: auto;
-  padding-left: 5%;
-  padding-top: 2px;
+  padding-left: 10%;
+
   text-transform: uppercase;
   font-family: "Nunito", sans-serif;
 }
 
-.dashboard {
-  width: 20px;
+.buttons-img {
+  height: 20px;
 }
 
-.turnoff {
-  width: 20px;
+@media (min-width: 768px) {
+  .buttons-img {
+    height: 25px;
+  }
+}
+
+.buttons-text span {
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .buttons-img {
+    display: none;
+  }
+  .buttons-text {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .buttons-img {
+    display: block;
+  }
+  .buttons-text {
+    display: none;
+  }
 }
 
 .links svg {
@@ -528,13 +554,13 @@ html {
   padding: 5%;
 }
 
-// #####  ###  #####  #     # #     # ######
-// #     #  #  #     # ##    # #     # #     #
-// #        #  #       # #   # #     # #     #
-//  #####   #  #  #### #  #  # #     # ######
-//       #  #  #     # #   # # #     # #
-// #     #  #  #     # #    ## #     # #
-//  #####  ###  #####  #     #  #####  #
+//  ######  ####  ######   ##    ## ##     ## ########
+// ##    ##  ##  ##    ##  ###   ## ##     ## ##     ##
+// ##        ##  ##        ####  ## ##     ## ##     ##
+//  ######   ##  ##   #### ## ## ## ##     ## ########
+//       ##  ##  ##    ##  ##  #### ##     ## ##
+// ##    ##  ##  ##    ##  ##   ### ##     ## ##
+//  ######  ####  ######   ##    ##  #######  ##
 
 #signup {
   margin-top: 5%;
@@ -615,10 +641,10 @@ html {
 /* HOME CARD CONTAINER */
 .home-card-container {
   width: 768;
-  margin: 10px auto;
+  margin: 20px auto;
   columns: 2;
   column-gap: 40px;
-  padding: 20px 0;
+  ppadding: 20px 0;
 }
 
 @media (max-width: 1900px) {
@@ -657,7 +683,7 @@ html {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   margin: 0 0 20px;
-  padding: 10px 0;
+  ppadding: 10px 0;
   overflow: hidden;
   break-inside: avoid;
   color: #303030;
@@ -677,7 +703,7 @@ html {
   justify-content: space-between;
   align-items: flex-start;
   padding-left: 15px;
-  height: 100px;
+  hheight: 100px;
 }
 
 .card-technology {
@@ -737,7 +763,6 @@ html {
   font-size: 13px;
   border-top: 1px solid #303030;
   padding: 10px 0;
-  height: 105px;
 }
 
 /* 
@@ -926,7 +951,14 @@ span.scroll-down.et-pb-icon {
   animation-iteration-count: infinite;
 }
 
-// SEARCH CONTAINER
+//  ######  ########    ###    ########   ######  ##     ##     ######   #######  ##    ## ########    ###    #### ##    ## ######## ########
+// ##    ## ##         ## ##   ##     ## ##    ## ##     ##    ##    ## ##     ## ###   ##    ##      ## ##    ##  ###   ## ##       ##     ##
+// ##       ##        ##   ##  ##     ## ##       ##     ##    ##       ##     ## ####  ##    ##     ##   ##   ##  ####  ## ##       ##     ##
+//  ######  ######   ##     ## ########  ##       #########    ##       ##     ## ## ## ##    ##    ##     ##  ##  ## ## ## ######   ########
+//       ## ##       ######### ##   ##   ##       ##     ##    ##       ##     ## ##  ####    ##    #########  ##  ##  #### ##       ##   ##
+// ##    ## ##       ##     ## ##    ##  ##    ## ##     ##    ##    ## ##     ## ##   ###    ##    ##     ##  ##  ##   ### ##       ##    ##
+//  ######  ######## ##     ## ##     ##  ######  ##     ##     ######   #######  ##    ##    ##    ##     ## #### ##    ## ######## ##     ##
+
 .search-container {
   display: flex;
   flex-direction: column;
@@ -1008,64 +1040,39 @@ span.scroll-down.et-pb-icon {
   font-weight: bold;
 }
 
-// RANDOM CARD
+// ########     ###    ##    ## ########   #######  ##     ##
+// ##     ##   ## ##   ###   ## ##     ## ##     ## ###   ###
+// ##     ##  ##   ##  ####  ## ##     ## ##     ## #### ####
+// ########  ##     ## ## ## ## ##     ## ##     ## ## ### ##
+// ##   ##   ######### ##  #### ##     ## ##     ## ##     ##
+// ##    ##  ##     ## ##   ### ##     ## ##     ## ##     ##
+// ##     ## ##     ## ##    ## ########   #######  ##     ##
+
 .random-content {
   position: fixed;
-  top: 250px;
-  right: -30px;
-  background-image: url("./images/dices.svg");
-  background-size: 70%;
+  top: 350px;
+  right: 5px;
+  background-image: url("./images/shuffle.svg");
+  background-size: 100%;
   background-repeat: no-repeat;
-  background-position: center;
+  z-index: 50;
 }
 
-@media (mind-width: 768px) {
-  .random-content {
-    right: -35px;
-  }
-}
-
-@media (mind-width: 1024px) {
-  .random-content {
-    right: -40px;
-  }
-}
 .random-content button {
   border-radius: 100%;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   background-color: transparent;
   border: 0;
   box-shadow: 0px 0px 14px 0px rgba(133, 10, 84, 1);
 }
 
-@media (min-width: 768px) {
-  .random-content button {
-    width: 80px;
-    height: 80px;
-  }
-}
+// .ant-popover .ant-popover-placement-left .ant-popover-content {
+//   border-radius: 50px !important;
+// }
 
-@media (min-width: 1024px) {
-  .random-content button {
-    width: 90px;
-    height: 90px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .random-content button {
-    width: 100px;
-    height: 100px;
-  }
-}
-
-.ant-popover .ant-popover-placement-left {
-  border-radius: 50px !important;
-}
-
-.ant-popover-content {
-  border-radius: 50px !important;
+.ant-popover-inner {
+  border-radius: 15px !important;
 }
 
 .ant-popover-inner-content {
@@ -1073,14 +1080,13 @@ span.scroll-down.et-pb-icon {
 }
 // LOAD MORE BUTTON
 
-// ######
-// #     # ###### #####   ##   # #         #####  ######  ####   ####   ####  #    # #####   ####  ######
-// #     # #        #    #  #  # #         #    # #      #      #      #    # #    # #    # #    # #
-// #     # #####    #   #    # # #         #    # #####   ####   ####  #    # #    # #    # #      #####
-// #     # #        #   ###### # #         #####  #           #      # #    # #    # #####  #      #
-// #     # #        #   #    # # #         #   #  #      #    # #    # #    # #    # #   #  #    # #
-// ######  ######   #   #    # # ######    #    # ######  ####   ####   ####   ####  #    #  ####  ######
-
+// ########  ######## ########    ###    #### ##          ########  ########  ######   ######   #######  ##     ## ########   ######  ########
+// ##     ## ##          ##      ## ##    ##  ##          ##     ## ##       ##    ## ##    ## ##     ## ##     ## ##     ## ##    ## ##
+// ##     ## ##          ##     ##   ##   ##  ##          ##     ## ##       ##       ##       ##     ## ##     ## ##     ## ##       ##
+// ##     ## ######      ##    ##     ##  ##  ##          ########  ######    ######   ######  ##     ## ##     ## ########  ##       ######
+// ##     ## ##          ##    #########  ##  ##          ##   ##   ##             ##       ## ##     ## ##     ## ##   ##   ##       ##
+// ##     ## ##          ##    ##     ##  ##  ##          ##    ##  ##       ##    ## ##    ## ##     ## ##     ## ##    ##  ##    ## ##
+// ########  ########    ##    ##     ## #### ########    ##     ## ########  ######   ######   #######   #######  ##     ##  ######  ########
 .detail-ressource {
   width: 90%;
 }

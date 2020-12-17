@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
 import Dashboard from "../../images/dashboard.svg";
-import Turnoff from "../../images/turnoff.svg";
+import Logout from "../../images/logout.svg";
 
 import { RiAccountPinCircleLine } from "react-icons/ri";
 
@@ -21,7 +21,10 @@ export { SignupButton };
 const LogoutButton = (props) => {
   return (
     <Link to="/" {...props}>
-      <img className="turnoff" src={Turnoff} alt="turnoff" />
+      <img className="buttons-img" src={Logout} alt="turnoff" />
+      <div className="buttons-text">
+        LOG<span>/</span>OUT
+      </div>
     </Link>
   );
 };
@@ -31,7 +34,8 @@ export { LogoutButton };
 const ProfileButton = () => {
   return (
     <Link to="/profile">
-      <img className="dashboard" src={Dashboard} alt="dashboard" />
+      <img className="buttons-img" src={Dashboard} alt="dashboard" />
+      <div className="buttons-text">DASH/BOARD</div>
     </Link>
   );
 };

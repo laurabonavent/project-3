@@ -141,6 +141,19 @@ export default class Profile extends Component {
 
     return (
       <div>
+        <div className="search-container">
+          <div className="title-search-container">Search in your favorites</div>
+          <SearchBar handleChange={this.handleChange} />
+          <div className="title-profile-sort-buttons">Sort by</div>
+          <div className="profile-sort-buttons">
+            <Button onClick={this.sortBy}>technology</Button>
+            <Button onClick={this.sortBy}>type</Button>
+            <Button onClick={this.sortBy}>no sorting</Button>
+            {/* {this.state.sortQuery === "" && (
+              <Filters handleChange={this.getFilterValues} />
+            )} */}
+          </div>
+        </div>
         <Parallax
           ref={(ref) => (this.parallax = ref)}
           pages={4.55}
@@ -275,15 +288,7 @@ export default class Profile extends Component {
             <Link to="/profile/edit">
               <Button>Edit Profile</Button>
             </Link>
-            <SearchBar handleChange={this.handleChange} />
 
-            <h2>Sort by</h2>
-            <Button onClick={this.sortBy}>technology</Button>
-            <Button onClick={this.sortBy}>type</Button>
-            <Button onClick={this.sortBy}>no sorting</Button>
-            {this.state.sortQuery === "" && (
-              <Filters handleChange={this.getFilterValues} />
-            )}
             {/* <Carousel
               data={showedfavorites}
               sortQuery={this.state.sortQuery}
