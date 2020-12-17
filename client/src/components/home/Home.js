@@ -183,7 +183,7 @@ export default class Home extends Component {
               the useful tools to make your developers' life easier.
             </p>
             <span className="scroll-down et-pb-icon show_icon">
-              <img className="arrow" src={Arrow} />
+              <img className="arrow" src={Arrow} alt="arrow" />
             </span>
           </div>
         </div>
