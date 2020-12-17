@@ -158,39 +158,23 @@ export default class Home extends Component {
 
     return (
       <>
-<<<<<<< HEAD
-        <div className="header">
-          <div className="random-content">
-            <Popover
-              placement="left"
-              content={<Card data={this.state.randomRessource} />}>
-              <button onClick={this.getRandomRessources}></button>
-            </Popover>
-=======
         <div className='random-content'>
           <Popover
             placement='left'
             content={<Card data={this.state.randomRessource} />}>
             <button onClick={this.getRandomRessources}></button>
           </Popover>
->>>>>>> d7bc78b6005c090e780c8f92302cd17f22da984e
 
-            {/* {this.state.randomRessource.length !== 0 && (
+          {/* {this.state.randomRessource.length !== 0 && (
               <div>
                 <Button onClick={this.hideRandom}>X</Button>
                 <Card data={this.state.randomRessource} />
               </div>
             )} */}
-<<<<<<< HEAD
-          </div>
-          <div className="header-top">
-            <img src={LogoRocket} alt="logorocket" />
-=======
         </div>
         <div className='header'>
           <div className='header-top'>
             <img src={LogoRocket} />
->>>>>>> d7bc78b6005c090e780c8f92302cd17f22da984e
           </div>
           <div className='header-bottom'>
             <div className='header-h1'>To infinity, and beyond!</div>

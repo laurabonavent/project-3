@@ -146,11 +146,11 @@ export default class Profile extends Component {
 
     return (
       <div>
-        <div className="search-container">
-          <div className="title-search-container">Search in your favorites</div>
+        <div className='search-container'>
+          <div className='title-search-container'>Search in your favorites</div>
           <SearchBar handleChange={this.handleChange} />
-          <div className="title-profile-sort-buttons">Sort by</div>
-          <div className="profile-sort-buttons">
+          <div className='title-profile-sort-buttons'>Sort by</div>
+          <div className='profile-sort-buttons'>
             <Button onClick={this.sortBy}>technology</Button>
             <Button onClick={this.sortBy}>type</Button>
             <Button onClick={this.sortBy}>no sorting</Button>
@@ -286,17 +286,6 @@ export default class Profile extends Component {
             </div>
           </ParallaxLayer> */}
 
-<<<<<<< HEAD
-          <ParallaxLayer offset={0} speed={0} factor={3} className="content">
-            <img src={this.props.userInSession.avatar} alt="" />
-            <p>{this.props.userInSession.username}'s dashboard</p>
-            <p>Email : {this.props.userInSession.email}</p>
-            <Link to="/profile/edit">
-              <Button>Edit Profile</Button>
-            </Link>
-
-            {/* <Carousel
-=======
           <ParallaxLayer offset={0} speed={0} factor={3} className='content'>
             <BackButton />
             <div className='welcome-block'>
@@ -329,7 +318,6 @@ export default class Profile extends Component {
                 <Filters handleChange={this.getFilterValues} />
               )}
               {/* <Carousel
->>>>>>> d7bc78b6005c090e780c8f92302cd17f22da984e
               data={showedfavorites}
               sortQuery={this.state.sortQuery}
               windowWidth={this.props.windowWidth}
