@@ -71,7 +71,7 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className='main form create'>
+      <div className='main form create background-full'>
         <BackGround />
         <h1>Signup</h1>
         <h2>to access the next level 🤓</h2>

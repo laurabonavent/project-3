@@ -193,9 +193,8 @@ export default class EditRessource extends Component {
     const enumValues = this.state.enumValues;
     const ressource = this.state.ressource;
     return (
-      <div className='main form'>
+      <div className='main form background-full'>
         <h1>Edit ressource</h1>
-        <BackGround />
         <Form
           name='create'
           onFinish={this.onFinish}

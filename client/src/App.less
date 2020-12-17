@@ -109,7 +109,7 @@ button {
 
 @media (min-width: 768px) {
   .content {
-    width: 80%;
+    // width: 80%;
     margin: 0 4%;
   }
 }
@@ -335,6 +335,26 @@ html {
 
 .svg-background {
   z-index: -2;
+}
+
+.background-full {
+  background-image: url("./images/background-full.svg");
+  background-repeat: no-repeat repeat;
+  min-height: 88vh;
+}
+
+@media (min-width: 768px) {
+  .background-full {
+    background-image: url("./images/background-full-tab.svg");
+    min-height: 88vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .background-full {
+    background-image: url("./images/background-full-desktop.svg");
+    min-height: 88vh;
+  }
 }
 
 /* ##     ##    ###    #### ##    ## 
