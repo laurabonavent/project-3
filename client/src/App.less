@@ -173,6 +173,7 @@ html {
   width: 100%;
   align-items: center;
   padding: 1% 0 1% 0;
+  box-shadow: 0px 2px 5px 0px rgba(204, 204, 204, 1);
 }
 
 .logo {
@@ -690,6 +691,7 @@ html {
     columns: 4;
     width: calc(100%-40px);
     box-sizing: border-box;
+    margin: 20px auto;
   }
 }
 
@@ -698,18 +700,21 @@ html {
     columns: 3;
     width: calc(100%-40px);
     box-sizing: border-box;
+    margin: 20px auto;
   }
 }
 
 @media (max-width: 1047px) {
   .home-card-container {
     columns: 2;
+    margin: 20px auto;
   }
 }
 
 @media (max-width: 675px) {
   .home-card-container {
     columns: 1;
+    margin: 20px auto;
   }
 }
 
@@ -720,7 +725,7 @@ html {
   background: rgba(250, 250, 250, 0.92);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
-  margin: 0 0 20px;
+  margin: 0 auto 20px auto;
   ppadding: 10px 0;
   overflow: hidden;
   break-inside: avoid;
@@ -1276,59 +1281,71 @@ span.scroll-down.et-pb-icon {
   }
 }
 
-// #####  #####   ####  ###### # #      ######
-// #    # #    # #    # #      # #      #
-// #    # #    # #    # #####  # #      #####
-// #####  #####  #    # #      # #      #
-// #      #   #  #    # #      # #      #
-// #      #    #  ####  #      # ###### ######
+// ########  ########   #######  ######## #### ##       ########
+// ##     ## ##     ## ##     ## ##        ##  ##       ##
+// ##     ## ##     ## ##     ## ##        ##  ##       ##
+// ########  ########  ##     ## ######    ##  ##       ######
+// ##        ##   ##   ##     ## ##        ##  ##       ##
+// ##        ##    ##  ##     ## ##        ##  ##       ##
+// ##        ##     ##  #######  ##       #### ######## ########
+
+.profile-container {
+  margin-top: 30px;
+}
 
 .profile-container::-webkit-scrollbar {
   display: none;
 }
+
 .profile-container .content {
   padding: 0 5% 0 5%;
 }
 
 .profile-container h1 {
   color: white;
+  margin-top: -50px;
 }
 
-.profile-container .button-ressource {
-  position: relative;
-  top: -63px;
-  left: 45%;
-  width: 80%;
-}
+// .profile-container .button-ressource {
+//   position: relative;
+//   top: -63px;
+//   right: 15px;
+//   width: 80%;
+// }
 
 .profile-container .avatar {
-  border-radius: 60px;
-  width: 115px;
-  height: 115px;
-  margin: auto;
+  border-radius: 50%;
+  width: 170px;
+  height: 170px;
+  margin: 0 auto;
   object-fit: cover;
-  position: relative;
-  top: -6px;
+  pposition: relative;
+  pposition: absolute;
+  ttop: -50px;
+  lleft: 50%;
+  transform: translateY(-50%);
+  border: 10px solid white;
 }
 
 .profile-container .back-button {
-  margin-top: 3%;
+  mmargin-top: 3%;
 }
 
 .welcome-block {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 0 10%;
-  margin: 25% 5% 0% 0%;
-  position: absolute;
+  justify-content: flex-start;
+  padding: 0 10% 10% 10%;
+  margin: 50px 5%;
+  mmargin: 25% auto 0% auto;
   background: linear-gradient(
     132deg,
     rgba(228, 92, 70, 1) 36%,
     rgba(154, 9, 96, 0.9878326330532213) 100%
   );
   border-radius: 25px;
-  height: 11%;
+  position: relative;
+  height: 300px;
 }
 
 .profile-fav {
@@ -1337,24 +1354,32 @@ span.scroll-down.et-pb-icon {
 }
 
 .button-list-profile {
-  background-color: var(--light-grey);
+  background-color: #303030;
   border-radius: 15px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   border: none;
   font-family: "Nunito", sans-serif;
-  color: black;
+  color: white;
+}
+
+.button-list-profile span {
+  text-transform: capitalize;
 }
 
 .sort-buttons {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 5%;
+  width: 250px;
+  border-top: solid 1px black;
+  padding-top: 2%;
 }
 
-.sort-buttons span,
-button {
-  margin: auto;
+.sort-title {
+  color: #303030;
+  margin-top: 15px;
+  font-size: 16px;
 }
 
 @media (min-height: 768px) {
@@ -1367,15 +1392,10 @@ button {
     margin: 0;
   }
   .welcome-block {
-    margin: 10%;
-    width: 70%;
-    height: 7%;
+    margin: 50px 10% 0 10%;
+    hheight: 7%;
   }
 
-  .profile-container .avatar {
-    top: -26px;
-    left: -37%;
-  }
   .button-ressource {
     top: -71% !important;
     left: 13% !important;
