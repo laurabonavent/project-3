@@ -7,6 +7,7 @@ import { uploadImage } from "../auth/auth-service";
 import { createRessource } from "../auth/auth-service";
 
 import BackGround from "../BackGround";
+import Loading from "../Loading";
 
 import { RiArrowRightSLine } from "react-icons/ri";
 
@@ -342,7 +343,7 @@ export default class CreateRessource extends Component {
             </Form>
           </div>
         ) : (
-          "Loading.."
+          <Loading />
         )}
       </div>
     );

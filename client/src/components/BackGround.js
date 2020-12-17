@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import DarkRed from "../images/dark-red.svg";
-import Yellow from "../images/yellow.svg";
-import OrangeRed from "../images/orange-red.svg";
+import DarkRed from "../images/background-purple.svg";
+import Yellow from "../images/background-red.svg";
+import OrangeRed from "../images/background-orange.svg";
 
 export default class BackGround extends Component {
   render() {

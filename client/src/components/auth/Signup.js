@@ -138,18 +138,20 @@ class Signup extends React.Component {
               },
             ]}>
             <Select placeholder='Level' className='select-test'>
-              <Select.Option value='padawan'>Padawan</Select.Option>
-              <Select.Option value='jedi'>Jedi</Select.Option>
-              <Select.Option value='master jedi'>Master Jedi</Select.Option>
+              <Select.Option value='padawan'>Padawan 🍼</Select.Option>
+              <Select.Option value='jedi'>Jedi 🤓</Select.Option>
+              <Select.Option value='master jedi'>Master Jedi 🧙‍♂️</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item name='avatar' label='Your magnificent avatar 📸'>
-            <input
-              type='file'
-              onChange={this.fileChangedHandler}
-              placeholder='Avatar'
-            />
-          </Form.Item>
+          <div className='avatar-block'>
+            <Form.Item name='avatar' label='Your magnificent avatar 📸'>
+              <input
+                type='file'
+                onChange={this.fileChangedHandler}
+                placeholder='Avatar'
+              />
+            </Form.Item>
+          </div>
           <Form.Item>
             <Button
               type='primary'

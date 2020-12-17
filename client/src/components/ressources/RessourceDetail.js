@@ -13,22 +13,24 @@ import { Button, Popconfirm, message } from "antd";
 import isnull from "lodash.isnull";
 
 import BackGround from "../BackGround";
+import Loading from "../Loading";
+
+import { randomCats } from "../auth/cat-service";
+import { cat } from "../auth/cat-service";
 
 export default class RessourceDetail extends Component {
   state = {
     ressource: {},
-    image:
-      "https://filmdaily.co/wp-content/uploads/2020/04/cute-cat-videos-lede-1536x1042.jpg",
   };
 
-  getOneCat = () => {
-    getCats()
-      .then((response) => {
-        console.log("response", response.url);
-        this.setState({ image: response.url });
-      })
-      .catch((error) => console.log(error));
-  };
+  // getOneCat = () => {
+  //   getCats()
+  //     .then((response) => {
+  //       console.log("response", response.url);
+  //       this.setState({ image: response.url });
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
 
   findRessource = (id) => {
     getOneRessource(id)
@@ -95,13 +97,11 @@ export default class RessourceDetail extends Component {
     } = this.props;
     this.findRessource(params.id);
     //console.log("userInSession", this.props.userInSession);
-    // this.getOneCat();
+
+    console.log("image", this.state.image);
 
     if (isnull(this.props.userInSession)) {
-      message.error("You need to log in before access this page");
-      this.props.history.push("/");
-      //return <Redirect to="/" />;
-      return;
+      return <Loading />;
     }
 
     if (this.props.userInSession === false) {
@@ -117,7 +117,7 @@ export default class RessourceDetail extends Component {
       //console.log(favIds);
     });
 
-    if (favIds.includes(params.id)) {
+    if (favIds.includes(this.props.match.params.id)) {
       //console.log("fav yes");
       this.setState({ fav: true });
     } else {
@@ -132,6 +132,11 @@ export default class RessourceDetail extends Component {
     let level = ressource.level;
     let price = ressource.price;
     //console.log(this.props);
+
+    if (isnull(this.props.userInSession)) {
+      return <Loading />;
+    }
+
     return (
       <div className='main detail-ressource'>
         <BackGround />
@@ -178,24 +183,24 @@ export default class RessourceDetail extends Component {
             <p className='image-container'>
               <img
                 className='preview'
-                src={ressource.image ? ressource.image : this.state.image}
+                src={ressource.image ? ressource.image : cat}
                 alt={ressource.title}
               />
             </p>
             <div className='content-ressource'>
-              {/* <span className='label'>Technologies : </span> */}
-              {ressource.technology.map((technology, index) => {
-                if (technology !== "") {
-                  return (
-                    <p className='technology-p'>
+              <p className='technology-p'>
+                {/* <span className='label'>Technologies : </span> */}
+                {ressource.technology.map((technology, index) => {
+                  if (technology !== "") {
+                    return (
                       <span className='technology' key={index}>
                         {technology.charAt(0).toUpperCase() +
                           technology.slice(1)}{" "}
                       </span>
-                    </p>
-                  );
-                }
-              })}
+                    );
+                  }
+                })}
+              </p>
               <p>{ressource.description}</p>
               <p>
                 <span className='label'>Types : </span>
@@ -251,7 +256,7 @@ export default class RessourceDetail extends Component {
             </div>
           </div>
         ) : (
-          "Loading..."
+          <Loading />
         )}
       </div>
     );
