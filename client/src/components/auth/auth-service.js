@@ -20,6 +20,7 @@ function signup(email, username, password, level, role, avatar) {
     })
     .then((response) => {
       return response.data;
+      //console.log(response);
     });
 }
 

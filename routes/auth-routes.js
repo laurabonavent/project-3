@@ -65,6 +65,7 @@ authRoutes.post("/signup", (req, res, next) => {
           req.session.user = aNewUser;
 
           res.status(200).json(aNewUser);
+          console.log(aNewUser);
         })
         .catch((err) => {
           console.log("err: ", err);

@@ -9,6 +9,8 @@ import BackButton from "../nav/BackButton";
 
 import BackGround from "../BackGround";
 
+import { cat } from "../auth/cat-service";
+
 import { RiArrowRightSLine } from "react-icons/ri";
 
 class Signup extends React.Component {
@@ -52,17 +54,17 @@ class Signup extends React.Component {
         });
         this.props.updateUser(response);
         this.props.history.push("/profile");
-        message.info("Welcome friend!");
+        message.success("Yeaah you're in");
       })
       .catch((error) => {
-        message.info("Something went wrong, try again");
+        message.error("Something went wrong");
+        console.log(error);
       });
   };
 
   render() {
     return (
       <div className="main form create background-full">
-        <BackGround />
         <BackButton />
         <h1>Signup</h1>
         <h2>to access the next level 🤓</h2>

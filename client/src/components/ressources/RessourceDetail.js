@@ -5,18 +5,14 @@ import { addFavorite } from "../auth/auth-service";
 import { deleteFavorite } from "../auth/auth-service";
 import { deleteRessource } from "../auth/auth-service";
 
-import { getCats } from "../auth/cat-service";
-
 import { Link } from "react-router-dom";
 
 import { Button, Popconfirm, message } from "antd";
 import isnull from "lodash.isnull";
 import BackButton from "../nav/BackButton";
 
-import BackGround from "../BackGround";
 import Loading from "../Loading";
 
-import { randomCats } from "../auth/cat-service";
 import { cat } from "../auth/cat-service";
 
 export default class RessourceDetail extends Component {
@@ -87,7 +83,6 @@ export default class RessourceDetail extends Component {
     } = this.props;
     this.findRessource(params.id);
     //console.log("userInSession", this.props.userInSession);
-
     if (isnull(this.props.userInSession)) {
       return <Loading />;
     }
@@ -128,8 +123,8 @@ export default class RessourceDetail extends Component {
 
     return (
       // <div className="background-full">
-      <div className="detail-ressource-container">
-        <div className="main detail-ressource">
+      <div className='detail-ressource-container'>
+        <div className='main detail-ressource'>
           <BackButton />
           {this.state.ressource &&
           this.state.ressource.technology &&
@@ -138,7 +133,7 @@ export default class RessourceDetail extends Component {
           this.state.ressource.comments ? (
             <div>
               <h1>{ressource.title}</h1>
-              <div className="button-ressource">
+              <div className='button-ressource'>
                 {this.state.fav === true ? (
                   <p>
                     <Button onClick={this.deleteFavorite}>
@@ -153,20 +148,20 @@ export default class RessourceDetail extends Component {
                   </p>
                 )}
                 {this.props.userInSession.role === "admin" ? (
-                  <div className="admin-button">
+                  <div className='admin-button'>
                     <Link
-                      className="ant-btn"
+                      className='ant-btn'
                       to={`/ressources/edit/${this.state.ressource._id}`}>
                       ✍️
                     </Link>
                     {/* <Button onClick={this.deleteRessource}>Delete</Button> */}
                     <Popconfirm
-                      title="Are you sure to delete this ressource?"
+                      title='Are you sure to delete this ressource?'
                       onConfirm={this.deleteRessource}
                       onCancel={this.cancel}
-                      okText="Yes I do"
-                      cancelText="Nope">
-                      <a className="ant-btn" href="#" alt="delete">
+                      okText='Yes I do'
+                      cancelText='Nope'>
+                      <a className='ant-btn' href='#' alt='delete'>
                         🗑
                       </a>
                     </Popconfirm>
@@ -174,20 +169,20 @@ export default class RessourceDetail extends Component {
                 ) : null}
               </div>
 
-              <div className="content-ressource">
-                <p className="image-container">
+              <div className='content-ressource'>
+                <p className='image-container'>
                   <img
-                    className="preview"
+                    className='preview'
                     src={ressource.image ? ressource.image : cat}
                     alt={ressource.title}
                   />
                 </p>
-                <p className="technology-p">
+                <p className='technology-p'>
                   {/* <span className='label'>Technologies : </span> */}
                   {ressource.technology.map((technology, index) => {
                     if (technology !== "") {
                       return (
-                        <span className="technology" key={index}>
+                        <span className='technology' key={index}>
                           {technology.charAt(0).toUpperCase() +
                             technology.slice(1)}{" "}
                         </span>
@@ -195,37 +190,37 @@ export default class RessourceDetail extends Component {
                     }
                   })}
                 </p>
-                <p className="ressource-description">{ressource.description}</p>
-                <div className="ressource-types">
+                <p className='ressource-description'>{ressource.description}</p>
+                <div className='ressource-types'>
                   <p>
-                    <span className="label">Types / </span>
+                    <span className='label'>Types / </span>
                     {ressource.type.map((type, index) => {
                       return (
-                        <span key={index} className="type">
+                        <span key={index} className='type'>
                           {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
                         </span>
                       );
                     })}
                   </p>
                   <p>
-                    <span className="label">Language / </span>
+                    <span className='label'>Language / </span>
                     {language.charAt(0).toUpperCase() + language.slice(1)}
                   </p>
                   <p>
-                    <span className="label">Level / </span>
+                    <span className='label'>Level / </span>
                     {level.charAt(0).toUpperCase() + level.slice(1)}
                   </p>
                   <p>
-                    <span className="label">Price / </span>
+                    <span className='label'>Price / </span>
                     {price.charAt(0).toUpperCase() + price.slice(1)}
                   </p>
                 </div>
                 <p>
                   <a
-                    className="link"
+                    className='link'
                     href={ressource.link}
-                    rel="noreferrer"
-                    target="_blank">
+                    rel='noreferrer'
+                    target='_blank'>
                     Find your way
                   </a>
                 </p>
