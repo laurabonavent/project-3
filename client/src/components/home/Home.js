@@ -4,7 +4,7 @@ import Card from "../card/Card";
 import Filters from "../Filters";
 import SearchBar from "../SearchBar";
 import Loading from "../Loading";
-import { Pagination, Button, Popover } from "antd";
+import { Button, Popover } from "antd";
 import { Spring, animated } from "react-spring/renderprops";
 
 import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons";
@@ -67,20 +67,6 @@ export default class Home extends Component {
       filters: event,
       //[...new Set([...this.state.filters, ...event])], // newSet pour éviter d'avoir des doubons d'event
     });
-  };
-
-  changePage = (value) => {
-    if (value <= 1) {
-      this.setState({
-        minValue: 0,
-        maxValue: this.state.pageSize,
-      });
-    } else {
-      this.setState({
-        minValue: this.state.maxValue,
-        maxValue: value * this.state.pageSize,
-      });
-    }
   };
 
   loadMore = (value) => {
@@ -161,9 +147,6 @@ export default class Home extends Component {
             <span className="scroll-down et-pb-icon show_icon">
               <img className="arrow" src={Arrow} alt="arrow" />
             </span>
-            {/* {this.props.userInSession && this.props.userInSession.email === "ecassignol@gmail.com" ? (
-              <img src={Cat1} alt="cat1" />
-            )} */}
           </div>
         </div>
         <div className="search-container">
@@ -190,14 +173,6 @@ export default class Home extends Component {
                 <Button className="load-more" onClick={this.loadMore}>
                   Load more
                 </Button>
-
-                {/* <Pagination
-                  showSizeChanger={false}
-                  responsive
-                  defaultCurrent={1}
-                  onChange={this.changePage}
-                  total={showedRessources.length}
-                /> */}
               </>
             ) : (
               <Loading />

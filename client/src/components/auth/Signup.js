@@ -52,11 +52,10 @@ class Signup extends React.Component {
         });
         this.props.updateUser(response);
         this.props.history.push("/profile");
-        message.info(response.message);
+        message.info("Welcome friend!");
       })
       .catch((error) => {
-        message.info(error.message);
-        console.log(error);
+        message.info("Something went wrong, try again");
       });
   };
 
@@ -97,10 +96,9 @@ class Signup extends React.Component {
                 required: true,
                 message: "Please input your password!",
               },
-            ]}
-            hasFeedback>
+            ]}>
             <Input.Password
-              placeholder="Password"
+              placeholder="Password - 8 characters please"
               // prefix={<LockOutlined className='site-form-item-icon' />}
             />
           </Form.Item>

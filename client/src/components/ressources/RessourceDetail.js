@@ -115,6 +115,7 @@ export default class RessourceDetail extends Component {
   }
 
   render() {
+    console.log("cat", cat);
     const ressource = this.state.ressource;
     let language = ressource.language;
     let level = ressource.level;
