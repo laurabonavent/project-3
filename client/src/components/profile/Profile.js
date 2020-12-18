@@ -7,7 +7,6 @@ import { Pagination, Button } from "antd";
 import isnull from "lodash.isnull";
 import { Link } from "react-router-dom";
 import { message } from "antd";
-import Carousel from "../card/Carousel";
 import Carousel2 from "../card/Carousel2";
 
 import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons";
@@ -168,7 +167,7 @@ export default class Profile extends Component {
               {this.props.userInSession.role === "admin" ? (
                 <div>
                   <Link className="button-ressource" to="/ressource/create">
-                    <Button>Add Ressource</Button>
+                    <Button>Add ressource</Button>
                   </Link>
                 </div>
               ) : null}
@@ -181,7 +180,10 @@ export default class Profile extends Component {
           <span className="sort-title">Sort by </span>
           <div className="sort-buttons">
             <Button className="button-sort-profile" onClick={this.sortBy}>
-              <VscListSelection />
+              <VscListSelection
+                style={{ height: "1.5em", width: "1.5em" }}
+                viewBox="0 0 15 15"
+              />
             </Button>
             <Button className="button-sort-profile" onClick={this.sortBy}>
               technology

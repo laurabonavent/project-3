@@ -9,6 +9,8 @@
 ##    ##  ##       ##     ## ##     ## ######### ##       
 ##    ##  ##       ##     ## ##     ## ##     ## ##       
  ######   ########  #######  ########  ##     ## ########  */
+
+// PRIMARY COLOR
 @primary-color: black;
 @link-decoration: black;
 @link-active-color: black;
@@ -19,6 +21,7 @@
 @text-color-inverse: black;
 @text-selection-bg: white;
 
+// VAR
 :root {
   --orange: #ff9f1c;
   --yellow: #fdca40;
@@ -31,6 +34,7 @@
   --purple: #9a0960;
 }
 
+// BODY
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
@@ -40,46 +44,12 @@ body {
   margin: auto;
 }
 
-// .App-logo {
-//   height: 40vmin;
-//   pointer-events: none;
-// }
-
-// @media (prefers-reduced-motion: no-preference) {
-//   .App-logo {
-//     animation: App-logo-spin infinite 20s linear;
-//   }
-// }
-
-// .App-header {
-//   background-color: #282c34;
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: calc(10px + 2vmin);
-//   color: white;
-// }
-
-// .App-link {
-//   color: #61dafb;
-// }
-
-// @keyframes App-logo-spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
-
+// TITLES
 h1 {
   font-family: "Nunito", sans-serif;
   font-weight: 700;
   color: var(--black);
-  font-size: 36px;
+  font-size: 50px;
 }
 
 h2 {
@@ -88,6 +58,7 @@ h2 {
   font-size: 18px;
 }
 
+// LINKS
 body a {
   text-decoration: none;
   color: var(--black);
@@ -95,6 +66,7 @@ body a {
   outline: none;
 }
 
+// BUTTONS
 button {
   border: none;
   border-radius: 50px;
@@ -102,22 +74,13 @@ button {
   height: 35px;
 }
 
+// DIV CONTENT
 .content {
   display: flex;
   flex-direction: column;
 }
 
-@media (min-width: 768px) {
-  .content {
-    // width: 80%;
-    margin: 0 4%;
-  }
-}
-::selection {
-  background: none;
-  color: black;
-}
-
+// MESSAGES
 a:hover,
 a:active,
 a:focus {
@@ -141,7 +104,20 @@ html {
   padding-right: 14%;
 }
 
-/* ##    ##    ###    ##     ## ########     ###    ########  
+// RESPONSIVE
+@media (min-width: 768px) {
+  .content {
+    // width: 80%;
+    margin: 0 4%;
+  }
+}
+::selection {
+  background: none;
+  color: black;
+}
+
+/* 
+##    ##    ###    ##     ## ########     ###    ########  
 ###   ##   ## ##   ##     ## ##     ##   ## ##   ##     ## 
 ####  ##  ##   ##  ##     ## ##     ##  ##   ##  ##     ## 
 ## ## ## ##     ## ##     ## ########  ##     ## ########  
@@ -149,6 +125,7 @@ html {
 ##   ### ##     ##   ## ##   ##     ## ##     ## ##    ##  
 ##    ## ##     ##    ###    ########  ##     ## ##     ##  */
 
+// RESPONSIVE
 @media (min-width: 768px) {
   .links {
     display: flex;
@@ -166,7 +143,7 @@ html {
     margin-right: 10% !important;
   }
 }
-
+// NAVBAR GLOBALE
 .navbar {
   display: flex;
   height: 12vh;
@@ -176,6 +153,7 @@ html {
   box-shadow: 0px 2px 5px 0px rgba(204, 204, 204, 1);
 }
 
+// LOGO
 .logo {
   font-family: "Nunito", sans-serif;
   font-weight: 700;
@@ -191,6 +169,7 @@ html {
   min-width: 150px;
 }
 
+// MENU
 .links {
   display: flex;
   align-items: center;
@@ -215,14 +194,11 @@ html {
   height: 20px;
 }
 
+// RESPONSIVE
 @media (min-width: 768px) {
   .buttons-img {
     height: 25px;
   }
-}
-
-.buttons-text span {
-  font-weight: bold;
 }
 
 @media (min-width: 768px) {
@@ -243,14 +219,11 @@ html {
   }
 }
 
-.links svg {
-  width: 1.5em;
-  height: 1.5em;
-}
-
+// BACK BUTTON
 .back-button {
   width: 35px;
-  margin: 10% 0 5% 0;
+  height: 35px;
+  margin: 10px 0 50px 15px;
   background-color: var(--light-grey);
 }
 
@@ -326,20 +299,20 @@ html {
 .background-full {
   background-image: url("./images/background-full.svg");
   background-repeat: no-repeat repeat;
-  min-height: 88vh;
+  min-height: 80vh;
 }
 
 @media (min-width: 768px) {
   .background-full {
     background-image: url("./images/background-full-tab.svg");
-    min-height: 88vh;
+    min-height: 82vh;
   }
 }
 
 @media (min-width: 1024px) {
   .background-full {
     background-image: url("./images/background-full-desktop.svg");
-    min-height: 88vh;
+    min-height: 82vh;
   }
 }
 
@@ -356,6 +329,7 @@ html {
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 }
 
 /* ########  #######  ########  ##     ## 
@@ -522,7 +496,8 @@ html {
   outline: none;
 }
 
-/* ##        #######   ######   #### ##    ## 
+/* 
+##        #######   ######   #### ##    ## 
 ##       ##     ## ##    ##   ##  ###   ## 
 ##       ##     ## ##         ##  ####  ## 
 ##       ##     ## ##   ####  ##  ## ## ## 
@@ -530,46 +505,56 @@ html {
 ##       ##     ## ##    ##   ##  ##   ### 
 ########  #######   ######   #### ##    ##  */
 
+// LOGIN GLOBAL
+.login {
+  padding: 0px 20px;
+}
+
 .login form {
   min-height: 50vh;
 }
 
+// Buttons
 .main-form-button svg {
-  color: black;
-  width: 1.5em;
-  height: 1.5em;
+  color: #303030;
 }
 
-.login .bottom-links {
-  flex: 1;
-}
-
+// LOGIN H1
 .login h1 {
+  padding-bottom: 14%;
+  width: 60%;
+  line-height: 1;
+}
+
+// FORM
+.login .ant-form-item-control-input {
+  margin-bottom: 20px;
+}
+
+.login .main-form-button {
+  margin-top: 80px;
+}
+
+// RESPONSIVE
+@media (min-width: 425px) {
   padding-left: 5%;
 }
-
 @media (min-width: 768px) {
-  .login {
+  .login h1 {
+    margin: 0 auto;
+    padding-bottom: 0;
+  }
+  .login .main-form-button {
+    margin-left: 85%;
   }
 }
 @media (min-width: 1024px) {
-  .login {
-    width: 500px;
-    margin-left: 27%;
-    display: flex;
-    align-items: flex-start;
-    padding: 0% !important;
+  .login .main-form-button {
+    margin-top: 50px;
   }
   .login h1 {
     text-align: center;
-    padding-left: 0%;
-    margin-top: 10%;
   }
-}
-
-.login {
-  position: fixed;
-  padding: 5%;
 }
 
 //  ######  ####  ######   ##    ## ##     ## ########
@@ -582,19 +567,21 @@ html {
 
 #signup {
   margin-top: 5%;
+  margin-bottom: 7%;
 }
 
 .create .ant-form-item {
   margin-bottom: 5%;
 }
 
-.signup-button {
-  margin-left: 70%;
-  border: none;
-  border-radius: 50px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  background-color: var(--light-grey);
-  color: black;
+#signup .main-form-button {
+  margin-left: 85%;
+}
+
+@media (min-width: 768px) {
+  #signup .main-form-button {
+    margin-left: 88%;
+  }
 }
 
 .avatar-block {
@@ -655,7 +642,7 @@ html {
 
 .carousel-item {
   fflex: 1 0 250px;
-  margin-left: 1rem;
+  margin-right: 1rem;
   scroll-snap-align: start;
   display: inline-block;
 }
@@ -1408,6 +1395,18 @@ span.scroll-down.et-pb-icon {
   padding: 0 5% 0 5%;
 }
 
+//Carousel
+.carousel-container h3 {
+  text-transform: uppercase !important;
+  padding-left: 5px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 // ######  ####   ####  ##### ###### #####
 // #      #    # #    #   #   #      #    #
 // #####  #    # #    #   #   #####  #    #
@@ -1417,7 +1416,7 @@ span.scroll-down.et-pb-icon {
 
 .footer {
   width: 100%;
-  height: 50px;
+  height: 6vh;
   background-image: linear-gradient(
     132deg,
     rgba(228, 92, 70, 1) 36%,
@@ -1425,14 +1424,25 @@ span.scroll-down.et-pb-icon {
   );
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   font-family: "Nunito", sans-serif;
+  padding: 0 30px;
+  pposition: absolute;
+  bbottom: 0px;
 }
 
 .suggest-text {
   color: white !important;
   border-bottom: 1px solid white;
   font-weight: 700;
+}
+
+.footer p {
+  color: white;
+  margin-bottom: 0;
+  font-size: 12px;
+  width: 40%;
+  text-align: right;
 }
 
 .footer img {

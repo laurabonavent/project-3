@@ -23,15 +23,6 @@ export default class RessourceDetail extends Component {
     ressource: {},
   };
 
-  // getOneCat = () => {
-  //   getCats()
-  //     .then((response) => {
-  //       console.log("response", response.url);
-  //       this.setState({ image: response.url });
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
-
   findRessource = (id) => {
     getOneRessource(id)
       .then((response) => {

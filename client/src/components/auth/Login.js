@@ -32,11 +32,11 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className='main form login background-full'>
+      <div className="main form login background-full">
         <BackButton />
         <h1>
-          {`<h1> Welcome
-          Back 👋 </h1>`}
+          {`Welcome
+          Back 👋 `}
         </h1>
         <Form
           initialValues={{
@@ -44,17 +44,17 @@ export default class Login extends Component {
           }}
           onFinish={this.onFinish}>
           <Form.Item
-            name='email'
+            name="email"
             rules={[
               {
                 required: true,
                 message: "Please input your Email!",
               },
             ]}>
-            <Input placeholder='Email' />
+            <Input placeholder="Email" />
           </Form.Item>
           <Form.Item
-            name='password'
+            name="password"
             rules={[
               {
                 required: true,
@@ -62,22 +62,17 @@ export default class Login extends Component {
               },
             ]}
             hasFeedback>
-            <Input.Password placeholder='Password' />
-          </Form.Item>
-          <Form.Item>
-            {/* <Form.Item name='remember' valuePropName='checked' noStyle>
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item> */}
-            {/* <Link className='login-form-forgot' to=''>
-              Forgot password
-            </Link> */}
+            <Input.Password placeholder="Password" />
           </Form.Item>
           <Form.Item>
             <Button
-              type='primary'
-              htmlType='submit'
-              className='main-form-button'>
-              <RiArrowRightSLine />
+              type="primary"
+              htmlType="submit"
+              className="main-form-button">
+              <RiArrowRightSLine
+                style={{ height: "2em", width: "2em" }}
+                viewBox="0 0 26 14"
+              />
             </Button>
           </Form.Item>
         </Form>

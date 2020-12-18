@@ -14,7 +14,7 @@ const Navbar = (props) => {
         </>
       ) : (
         <>
-          <p>Website created with love</p>
+          <p>Website created with love for IronHack students</p>
         </>
       )}
     </div>

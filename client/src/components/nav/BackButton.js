@@ -8,7 +8,10 @@ const BackButton = () => {
   const history = useHistory();
   return (
     <button className="back-button" onClick={history.goBack}>
-      <RiArrowLeftSLine />
+      <RiArrowLeftSLine
+        style={{ height: "1.5em", width: "1.5em" }}
+        viewBox="0 0 24 15"
+      />
     </button>
   );
 };

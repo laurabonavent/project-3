@@ -68,16 +68,15 @@ class Carousel2 extends React.Component {
               })
               .map((category, index) => {
                 return (
-                  <div key={index}>
+                  <div key={index} className="carousel-container">
                     <h3>{category}</h3>
                     <section className="carousel">
                       <ul className="carousel-items">
                         {this.props.data.map((ressource, index) => {
                           if (this.props.sortQuery === "technology") {
                             if (ressource.technology.includes(category)) {
-                              //console.log("coucou");
                               return (
-                                <li class="carousel-item">
+                                <li className="carousel-item" key={index}>
                                   <Card data={ressource} key={index} />
                                 </li>
                               );
@@ -85,9 +84,8 @@ class Carousel2 extends React.Component {
                           }
                           if (this.props.sortQuery === "type") {
                             if (ressource.type.includes(category)) {
-                              //console.log("coucou2");
                               return (
-                                <li class="carousel-item">
+                                <li className="carousel-item" key={index}>
                                   <Card data={ressource} key={index} />
                                 </li>
                               );
