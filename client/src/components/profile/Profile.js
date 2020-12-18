@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { getUser, getFavorites } from "../auth/auth-service";
+import { cat } from "../auth/cat-service";
+
 import Card from "../card/Card";
 import Filters from "../Filters";
 import SearchBar from "../SearchBar";
@@ -115,29 +117,33 @@ export default class Profile extends Component {
     console.log("showedFav", showedfavorites);
 
     return (
-      <div className="profile-container">
+      <div className='profile-container'>
         <BackButton />
 
-        <div className="welcome-block">
+        <div className='welcome-block'>
           <img
-            className="avatar"
-            src={this.props.userInSession.avatar}
-            alt=""
+            className='avatar'
+            src={
+              this.props.userInSession.avatar
+                ? this.props.userInSession.avatar
+                : cat
+            }
+            alt=''
           />
-          <div className="welcome-block-text">
+          <div className='welcome-block-text'>
             <h1>
               {this.props.userInSession.username.charAt(0).toUpperCase() +
                 this.props.userInSession.username.slice(1)}
               's dashboard
             </h1>
-            <div className="welcome-block-buttons-flex">
-              <Link className="button-ressource" to="/profile/edit">
+            <div className='welcome-block-buttons-flex'>
+              <Link className='button-ressource' to='/profile/edit'>
                 <Button>✍️</Button>
               </Link>
 
               {this.props.userInSession.role === "admin" ? (
                 <div>
-                  <Link className="button-ressource" to="/ressource/create">
+                  <Link className='button-ressource' to='/ressources/create'>
                     <Button>Add ressource</Button>
                   </Link>
                 </div>
@@ -145,26 +151,26 @@ export default class Profile extends Component {
             </div>
           </div>
         </div>
-        <div className="search-container">
-          <div className="title-search-container">Search in your favorites</div>
+        <div className='search-container'>
+          <div className='title-search-container'>Search in your favorites</div>
           <SearchBar handleChange={this.handleChange} />
-          <span className="sort-title">Sort by </span>
-          <div className="sort-buttons">
-            <Button className="button-sort-profile" onClick={this.sortBy}>
+          <span className='sort-title'>Sort by </span>
+          <div className='sort-buttons'>
+            <Button className='button-sort-profile' onClick={this.sortBy}>
               <VscListSelection
                 style={{ height: "1.5em", width: "1.5em" }}
-                viewBox="0 0 15 15"
+                viewBox='0 0 15 15'
               />
             </Button>
-            <Button className="button-sort-profile" onClick={this.sortBy}>
+            <Button className='button-sort-profile' onClick={this.sortBy}>
               technology
             </Button>
-            <Button className="button-sort-profile" onClick={this.sortBy}>
+            <Button className='button-sort-profile' onClick={this.sortBy}>
               type
             </Button>
           </div>
         </div>
-        <div className="content background-full">
+        <div className='content background-full'>
           <Carousel2 data={showedfavorites} sortQuery={this.state.sortQuery} />
 
           {/* {showedfavorites &&

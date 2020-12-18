@@ -9,6 +9,8 @@ import BackButton from "../nav/BackButton";
 
 import BackGround from "../BackGround";
 
+import { cat } from "../auth/cat-service";
+
 import { RiArrowRightSLine } from "react-icons/ri";
 
 class Signup extends React.Component {
@@ -52,24 +54,23 @@ class Signup extends React.Component {
         });
         this.props.updateUser(response);
         this.props.history.push("/profile");
-        message.info(response.message);
+        message.success("Yeaah you're in");
       })
       .catch((error) => {
-        message.info(error.message);
+        message.error("Something went wrong");
         console.log(error);
       });
   };
 
   render() {
     return (
-      <div className="main form create background-full">
-        <BackGround />
+      <div className='main form create background-full'>
         <BackButton />
         <h1>Signup</h1>
         <h2>to access the next level 🤓</h2>
-        <Form name="signup" onFinish={this.onFinish} scrollToFirstError>
+        <Form name='signup' onFinish={this.onFinish} scrollToFirstError>
           <Form.Item
-            name="email"
+            name='email'
             //label="E-mail"
 
             value={this.state.email}
@@ -84,12 +85,12 @@ class Signup extends React.Component {
               },
             ]}>
             <Input
-              placeholder="Email"
+              placeholder='Email'
               // prefix={<UserOutlined className='site-form-item-icon' />}
             />
           </Form.Item>
           <Form.Item
-            name="password"
+            name='password'
             //label="Password"
             value={this.state.password}
             rules={[
@@ -100,12 +101,12 @@ class Signup extends React.Component {
             ]}
             hasFeedback>
             <Input.Password
-              placeholder="Password"
+              placeholder='Password'
               // prefix={<LockOutlined className='site-form-item-icon' />}
             />
           </Form.Item>
           <Form.Item
-            name="username"
+            name='username'
             //label="Name"
             value={this.state.username}
             rules={[
@@ -115,10 +116,10 @@ class Signup extends React.Component {
                 whitespace: true,
               },
             ]}>
-            <Input placeholder="Name" />
+            <Input placeholder='Name' />
           </Form.Item>
           <Form.Item
-            name="level"
+            name='level'
             //label="Level"
 
             value={this.state.level}
@@ -129,29 +130,29 @@ class Signup extends React.Component {
                 whitespace: true,
               },
             ]}>
-            <Select placeholder="Level" className="select-test">
-              <Select.Option value="padawan">Padawan 🍼</Select.Option>
-              <Select.Option value="jedi">Jedi 🤓</Select.Option>
-              <Select.Option value="master jedi">Master Jedi 🧙‍♂️</Select.Option>
+            <Select placeholder='Level' className='select-test'>
+              <Select.Option value='padawan'>Padawan 🍼</Select.Option>
+              <Select.Option value='jedi'>Jedi 🤓</Select.Option>
+              <Select.Option value='master jedi'>Master Jedi 🧙‍♂️</Select.Option>
             </Select>
           </Form.Item>
-          <div className="avatar-block">
-            <Form.Item name="avatar" label="Your magnificent avatar 📸">
+          <div className='avatar-block'>
+            <Form.Item name='avatar' label='Your magnificent avatar 📸'>
               <input
-                type="file"
+                type='file'
                 onChange={this.fileChangedHandler}
-                placeholder="Avatar"
+                placeholder='Avatar'
               />
             </Form.Item>
           </div>
           <Form.Item>
             <Button
-              type="primary"
-              htmlType="submit"
-              className="main-form-button">
+              type='primary'
+              htmlType='submit'
+              className='main-form-button'>
               <RiArrowRightSLine
                 style={{ height: "2em", width: "2em" }}
-                viewBox="0 0 26 14"
+                viewBox='0 0 26 14'
               />
             </Button>
           </Form.Item>

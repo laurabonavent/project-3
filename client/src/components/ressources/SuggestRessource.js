@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import { Form, Input, Select, Button, message } from "antd";
+import { Form, Input, Select, message } from "antd";
 
 import { getEnumValues } from "../auth/auth-service";
 import { uploadImage } from "../auth/auth-service";
 
 import BackGround from "../BackGround";
 import Loading from "../Loading";
-
-import { RiArrowRightSLine } from "react-icons/ri";
 
 import isnull from "lodash.isnull";
 
@@ -302,12 +300,12 @@ export default class SuggestRessource extends Component {
                   onChange={this.fileChangedHandler}
                 />
               </Form.Item> */}
-              <Form.Item>
+              <Form.Item className='suggest-button'>
                 <Mailto
-                  email='contact@test.com'
+                  style={{ color: "white" }}
                   subject={`Suggest a new ressource called ${this.state.title}`}
                   body={`Title : ${this.state.description} Description : ${this.state.description} URL : ${this.state.link} Technology : ${this.state.technology} Type : ${this.state.type} Level : ${this.state.level} Language : ${this.state.language} Price : ${this.state.price}`}>
-                  Want to help us ? <RiArrowRightSLine />
+                  Want to help us ?
                 </Mailto>
               </Form.Item>
             </Form>
