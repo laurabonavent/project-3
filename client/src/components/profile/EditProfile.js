@@ -40,15 +40,6 @@ export default class EditProfile extends React.Component {
 
     editSignup(email, username, password, level, avatar)
       .then((response) => {
-        //console.log(" avatar: ", avatar);
-        // this.setState({
-        //   email: "",
-        //   password: "",
-        //   username: "",
-        //   level: "",
-        //   avatar: "",
-        //   role: "user",
-        // });
         this.props.history.push("/profile");
         this.props.updateUser(response);
       })
@@ -56,18 +47,14 @@ export default class EditProfile extends React.Component {
   };
 
   fileChangedHandler = (event) => {
-    //console.log("event.target", event.target.files[0]);
-
     //this.setState({ avatar: event.target.files[0] });
     const uploadData = new FormData();
     uploadData.append("avatar", event.target.files[0]);
 
     upload(uploadData)
       .then((response) => {
-        //console.log("response", response);
         const avatar = response.secure_url;
         this.setState({ avatar });
-        //console.log("avatar: ", avatar);
       })
       .catch((error) => console.log(error));
   };
@@ -81,7 +68,7 @@ export default class EditProfile extends React.Component {
     //     //return <Redirect to="/" />;
     //     return;
     //   }
-    //console.log("helloooo");
+
     if (this.props.userInSession) {
       const { email, username, level } = this.props.userInSession;
 
@@ -94,36 +81,22 @@ export default class EditProfile extends React.Component {
     }
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevProps.userInSession === null && this.props.userInSession) {
-  //     console.log("coucou user", this.formRef);
-  //     const { email, username, level } = this.props.userInSession;
-
-  //     this.formRef.current.setFieldsValue({
-  //       email,
-  //       username,
-  //       password: "",
-  //       level,
-  //     });
-  //   }
-  // }
-
   render() {
     //if (isnull(this.state.loggedInUser)) return "..loading";
-    //console.log("user", this.props.userInSession);
+
     return (
-      <div className='main form background-full'>
+      <div className="main form background-full">
         <h1>Edit profile page</h1>
         <Form
-          name='signup-edit'
+          name="signup-edit"
           onFinish={this.onFinish}
           scrollToFirstError
           ref={this.formRef}>
           {this.props.userInSession ? (
             <>
               <Form.Item
-                name='email'
-                label='E-mail'
+                name="email"
+                label="E-mail"
                 // value={this.state.email}
                 rules={[
                   {
@@ -138,8 +111,8 @@ export default class EditProfile extends React.Component {
                 <Input />
               </Form.Item>
               <Form.Item
-                name='password'
-                label='Password'
+                name="password"
+                label="Password"
                 // value={this.state.password}
                 // rules={[
                 //   {
@@ -151,8 +124,8 @@ export default class EditProfile extends React.Component {
                 <Input.Password placeholder="Don't touch if you want to keep the same password" />
               </Form.Item>
               <Form.Item
-                name='username'
-                label='Name'
+                name="username"
+                label="Name"
                 // value={this.state.username}
                 rules={[
                   {
@@ -164,8 +137,8 @@ export default class EditProfile extends React.Component {
                 <Input />
               </Form.Item>
               <Form.Item
-                name='level'
-                label='Level'
+                name="level"
+                label="Level"
                 // value={this.state.level}
                 rules={[
                   {
@@ -175,31 +148,31 @@ export default class EditProfile extends React.Component {
                   },
                 ]}>
                 <Select>
-                  <Select.Option value='padawan'>Padawan</Select.Option>
-                  <Select.Option value='jedi'>Jedi</Select.Option>
-                  <Select.Option value='master jedi'>Master Jedi</Select.Option>
+                  <Select.Option value="padawan">Padawan</Select.Option>
+                  <Select.Option value="jedi">Jedi</Select.Option>
+                  <Select.Option value="master jedi">Master Jedi</Select.Option>
                 </Select>
               </Form.Item>
-              <div className='avatar-block'>
-                <p className='label'>Your magnificent avatar 📸</p>
+              <div className="avatar-block">
+                <p className="label">Your magnificent avatar 📸</p>
                 <img
-                  className='preview'
+                  className="preview"
                   src={this.props.userInSession.avatar}
-                  alt='avatar'
+                  alt="avatar"
                 />
-                <Form.Item name='avatar' label='Want to change it ?'>
+                <Form.Item name="avatar" label="Want to change it ?">
                   <input
                     value={this.props.userInSession.image}
-                    type='file'
+                    type="file"
                     onChange={this.fileChangedHandler}
                   />
                 </Form.Item>
               </div>
               <Form.Item>
                 <Button
-                  type='primary'
-                  htmlType='submit'
-                  className='main-form-button'>
+                  type="primary"
+                  htmlType="submit"
+                  className="main-form-button">
                   <RiArrowRightSLine />
                 </Button>
               </Form.Item>

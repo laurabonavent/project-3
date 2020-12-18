@@ -26,7 +26,6 @@ export default class Login extends Component {
       })
       .catch((error, response) => {
         message.error("Wrong credentials, try again !");
-        console.log(error);
       });
   };
 

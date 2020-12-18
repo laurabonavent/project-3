@@ -27,7 +27,6 @@ class App extends React.Component {
 
   handleResize = (e) => {
     this.setState({ windowWidth: window.innerWidth });
-    console.log("WW APP.JS", this.state.windowWidth);
   };
 
   fetchUser() {
@@ -35,7 +34,6 @@ class App extends React.Component {
       loggedin()
         .then((data) => {
           this.setState({ loggedInUser: data });
-          //console.log("loggedInUser", this.state.loggedInUser);
         })
         .catch((err) => {
           this.setState({ loggedInUser: false });
@@ -60,7 +58,6 @@ class App extends React.Component {
 
   render() {
     //if (isnull(this.state.loggedInUser)) return "..loading";
-    console.log("user", this.state.loggedInUser);
 
     return (
       <div className="App">

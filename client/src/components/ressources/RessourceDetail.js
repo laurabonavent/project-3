@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 
 import { Button, Popconfirm, message } from "antd";
 import isnull from "lodash.isnull";
+import BackButton from "../nav/BackButton";
 
 import BackGround from "../BackGround";
 import Loading from "../Loading";
@@ -69,7 +70,6 @@ export default class RessourceDetail extends Component {
       .then((response) => {
         //console.log("deleteRessource", response.data);
         this.props.history.push("/");
-        console.log(this.props.history);
       })
       .catch((error) => {
         message.error(error.message);
@@ -78,7 +78,6 @@ export default class RessourceDetail extends Component {
   };
 
   cancel = (e) => {
-    console.log(e);
     message.error("Change your mind ?");
   };
 
@@ -88,8 +87,6 @@ export default class RessourceDetail extends Component {
     } = this.props;
     this.findRessource(params.id);
     //console.log("userInSession", this.props.userInSession);
-
-    console.log("image", this.state.image);
 
     if (isnull(this.props.userInSession)) {
       return <Loading />;
@@ -129,8 +126,10 @@ export default class RessourceDetail extends Component {
     }
 
     return (
-      <div className="background-full">
+      // <div className="background-full">
+      <div className="detail-ressource-container">
         <div className="main detail-ressource">
+          <BackButton />
           {this.state.ressource &&
           this.state.ressource.technology &&
           this.state.ressource.type &&
@@ -173,14 +172,15 @@ export default class RessourceDetail extends Component {
                   </div>
                 ) : null}
               </div>
-              <p className="image-container">
-                <img
-                  className="preview"
-                  src={ressource.image ? ressource.image : cat}
-                  alt={ressource.title}
-                />
-              </p>
+
               <div className="content-ressource">
+                <p className="image-container">
+                  <img
+                    className="preview"
+                    src={ressource.image ? ressource.image : cat}
+                    alt={ressource.title}
+                  />
+                </p>
                 <p className="technology-p">
                   {/* <span className='label'>Technologies : </span> */}
                   {ressource.technology.map((technology, index) => {
@@ -195,38 +195,30 @@ export default class RessourceDetail extends Component {
                   })}
                 </p>
                 <p className="ressource-description">{ressource.description}</p>
-                <p>
-                  <span className="label">Types : </span>
-                  {ressource.type.map((type, index) => {
-                    return (
-                      <span key={index}>
-                        {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
-                      </span>
-                    );
-                  })}
-                </p>
-                {/* {ressource.votes.length === 0 ? (
-                "No vote"
-              ) : (
-                <p>
-                  <span className='label'> Votes : </span>
-                  {ressource.votes.map((vote, index) => {
-                    return <span key={index}>{vote} </span>;
-                  })}
-                </p>
-              )} */}
-                <p>
-                  <span className="label">Languages : </span>
-                  {language.charAt(0).toUpperCase() + language.slice(1)}
-                </p>
-                <p>
-                  <span className="label">Level : </span>
-                  {level.charAt(0).toUpperCase() + level.slice(1)}
-                </p>
-                <p>
-                  <span className="label">Price : </span>
-                  {price.charAt(0).toUpperCase() + price.slice(1)}
-                </p>
+                <div className="ressource-types">
+                  <p>
+                    <span className="label">Types / </span>
+                    {ressource.type.map((type, index) => {
+                      return (
+                        <span key={index} className="type">
+                          {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
+                        </span>
+                      );
+                    })}
+                  </p>
+                  <p>
+                    <span className="label">Language / </span>
+                    {language.charAt(0).toUpperCase() + language.slice(1)}
+                  </p>
+                  <p>
+                    <span className="label">Level / </span>
+                    {level.charAt(0).toUpperCase() + level.slice(1)}
+                  </p>
+                  <p>
+                    <span className="label">Price / </span>
+                    {price.charAt(0).toUpperCase() + price.slice(1)}
+                  </p>
+                </div>
                 <p>
                   <a
                     className="link"

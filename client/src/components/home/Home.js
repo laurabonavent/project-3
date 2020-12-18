@@ -33,19 +33,6 @@ export default class Home extends Component {
 
   componentDidMount() {
     this.findRessources();
-
-    // console.log(this.props.windowWidth);
-    // if (this.state.maxValue === 10 && this.props.windowWidth <= 360) {
-    //   return this.setState({ offSetValue: 6 });
-    //   console.log("mobile");
-    // } else if (this.state.maxValue === 10 && this.props.windowWidth <= 768) {
-    //   return this.setState({ offSetValue: 4 });
-    //   console.log("tablette");
-    // } else if (this.state.maxValue === 10 && this.props.windowWidth >= 1048) {
-    //   return this.setState({ offSetValue: 2 });
-    //   console.log("desktop");
-    // }
-    // console.log("offSetValue", this.state.offSetValue);
   }
 
   findRessources = () => {
@@ -64,7 +51,6 @@ export default class Home extends Component {
 
   getRandomRessources = () => {
     let index = Math.floor(Math.random() * this.state.ressources.length);
-    //console.log(index);
     return this.setState({
       randomRessource: this.state.ressources[index],
     });
@@ -77,8 +63,6 @@ export default class Home extends Component {
   };
 
   getFilterValues = (event) => {
-    //console.log("event: ", event);
-
     this.setState({
       filters: event,
       //[...new Set([...this.state.filters, ...event])], // newSet pour éviter d'avoir des doubons d'event
@@ -86,8 +70,6 @@ export default class Home extends Component {
   };
 
   changePage = (value) => {
-    //console.log("value: ", value);
-
     if (value <= 1) {
       this.setState({
         minValue: 0,
@@ -102,8 +84,6 @@ export default class Home extends Component {
   };
 
   loadMore = (value) => {
-    //console.log("value: ", value);
-
     if (value <= 1) {
       this.setState({
         minValue: 0,
@@ -118,13 +98,9 @@ export default class Home extends Component {
   };
 
   render() {
-    console.log("coucou", this.state.randomRessource);
-    // filtrer les réponses en fonction de la search bar
     let showedRessources = this.state.ressources.filter((el) => {
       return el.title.toLowerCase().includes(this.state.search.toLowerCase());
     });
-    //console.log("showedRessources: ", showedRessources);
-    // [{...}, {...}, ...]
 
     let filteredRessources = [];
     showedRessources.map((ressource) => {

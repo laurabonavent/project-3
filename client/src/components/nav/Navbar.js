@@ -13,7 +13,6 @@ import Logo from "../../images/logo.svg";
 class Navbar extends React.Component {
   killSession = (event) => {
     logout({}).then((response) => {
-      //console.log("logout request");
       this.props.history.push("/");
       this.props.updateUser(null);
       message.info(response.message);

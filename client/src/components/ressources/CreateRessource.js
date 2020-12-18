@@ -48,7 +48,6 @@ export default class CreateRessource extends Component {
   findEnumValues = () => {
     getEnumValues()
       .then((response) => {
-        //console.log("response", response);
         this.setState({ enumValues: response });
       })
       .catch((error) => console.log(error));
@@ -99,14 +98,12 @@ export default class CreateRessource extends Component {
       .then((response) => {
         const image = response.secure_url;
         this.setState({ image });
-        //console.log("image: ", image);
         message.success("Image uploaded");
       })
       .catch((error) => console.log(error));
   };
 
   onFinish = (event) => {
-    //console.log(event);
     const {
       title,
       description,
@@ -145,19 +142,19 @@ export default class CreateRessource extends Component {
   render() {
     const enumValues = this.state.enumValues;
     return (
-      <div className='background-full'>
+      <div className="background-full">
         {enumValues.technology &&
         enumValues.type &&
         enumValues.level &&
         enumValues.languages &&
         enumValues.price ? (
-          <div className='main form'>
+          <div className="main form">
             <h1>Create a new ressource</h1>
-            <Form name='create' onFinish={this.onFinish} scrollToFirstError>
+            <Form name="create" onFinish={this.onFinish} scrollToFirstError>
               <Form.Item
                 onChange={this.onChange}
-                name='title'
-                label='Title'
+                name="title"
+                label="Title"
                 value={this.state.title}
                 rules={[
                   {
@@ -168,8 +165,8 @@ export default class CreateRessource extends Component {
                 <Input />
               </Form.Item>
               <Form.Item
-                name='description'
-                label='Description'
+                name="description"
+                label="Description"
                 value={this.state.description}
                 rules={[
                   {
@@ -179,7 +176,7 @@ export default class CreateRessource extends Component {
                   },
                 ]}>
                 <TextArea
-                  placeholder='Description'
+                  placeholder="Description"
                   value={this.state.description}
                   onChange={this.onChange}
                   autoSize={{ minRows: 1, maxRows: 5 }}
@@ -188,8 +185,8 @@ export default class CreateRessource extends Component {
                 />
               </Form.Item>
               <Form.Item
-                name='link'
-                label='URL'
+                name="link"
+                label="URL"
                 value={this.state.link}
                 rules={[
                   {
@@ -205,8 +202,8 @@ export default class CreateRessource extends Component {
                 />
               </Form.Item>
               <Form.Item
-                name='technology'
-                label='Technology'
+                name="technology"
+                label="Technology"
                 value={this.state.technology}
                 rules={[
                   {
@@ -216,7 +213,7 @@ export default class CreateRessource extends Component {
                     max: 4,
                   },
                 ]}>
-                <Select mode='multiple' allowClear>
+                <Select mode="multiple" allowClear>
                   {enumValues.technology.map((technology, index) => {
                     return (
                       <Select.Option value={technology} key={index}>
@@ -227,8 +224,8 @@ export default class CreateRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name='type'
-                label='Type'
+                name="type"
+                label="Type"
                 value={this.state.type}
                 rules={[
                   {
@@ -238,7 +235,7 @@ export default class CreateRessource extends Component {
                     max: 3,
                   },
                 ]}>
-                <Select mode='multiple' allowClear>
+                <Select mode="multiple" allowClear>
                   {enumValues.type.map((type, index) => {
                     return (
                       <Select.Option value={type} key={index}>
@@ -249,8 +246,8 @@ export default class CreateRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name='level'
-                label='Level'
+                name="level"
+                label="Level"
                 value={this.state.level}
                 rules={[
                   {
@@ -269,8 +266,8 @@ export default class CreateRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name='language'
-                label='Language'
+                name="language"
+                label="Language"
                 value={this.state.language}
                 rules={[
                   {
@@ -289,8 +286,8 @@ export default class CreateRessource extends Component {
                 </Select>
               </Form.Item>
               <Form.Item
-                name='price'
-                label='Price'
+                name="price"
+                label="Price"
                 value={this.state.price}
                 rules={[
                   {
@@ -310,8 +307,8 @@ export default class CreateRessource extends Component {
               </Form.Item>
               {/* TODO UPLOAD Image : https://ant.design/components/upload/ */}
               <Form.Item
-                name='image'
-                label='Image'
+                name="image"
+                label="Image"
                 rules={[
                   {
                     required: true,
@@ -319,7 +316,7 @@ export default class CreateRessource extends Component {
                   },
                 ]}>
                 <input
-                  type='file'
+                  type="file"
                   value={this.state.image}
                   onChange={this.fileChangedHandler}
                 />
@@ -333,9 +330,9 @@ export default class CreateRessource extends Component {
               </Upload> */}
               <Form.Item>
                 <Button
-                  type='primary'
-                  htmlType='submit'
-                  className='main-form-button'>
+                  type="primary"
+                  htmlType="submit"
+                  className="main-form-button">
                   <RiArrowRightSLine />
                 </Button>
               </Form.Item>

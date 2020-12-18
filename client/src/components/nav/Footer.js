@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../images/logo.svg";
+import LogoWhite from "../../images/skyrocket-white.svg";
 
 const Navbar = (props) => {
   return (
     <div className="footer">
-      <img src={Logo} alt="skyrocket" />
+      <img src={LogoWhite} alt="skyrocket" />
       {props.userInSession ? (
         <>
           <Link to="/ressources/suggest" className="suggest-text">

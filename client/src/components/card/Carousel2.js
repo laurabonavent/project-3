@@ -19,7 +19,6 @@ class Carousel2 extends React.Component {
   findEnumValues = () => {
     getEnumValues()
       .then((response) => {
-        //console.log("response", response);
         this.setState({ enumValues: response });
       })
       .catch((error) => console.log(error));

@@ -22,18 +22,14 @@ class Signup extends React.Component {
   };
 
   fileChangedHandler = (event) => {
-    //console.log("event.target", event.target.files[0]);
-
     //this.setState({ avatar: event.target.files[0] });
     const uploadData = new FormData();
     uploadData.append("avatar", event.target.files[0]);
 
     upload(uploadData)
       .then((response) => {
-        //console.log("response", response);
         const avatar = response.secure_url;
         this.setState({ avatar });
-        //console.log("avatar: ", avatar);
       })
       .catch((error) => console.log(error));
   };
@@ -63,10 +59,6 @@ class Signup extends React.Component {
         console.log(error);
       });
   };
-
-  // uploadHandler = () => {
-  //   console.log(this.state.avatar);
-  // };
 
   render() {
     return (
