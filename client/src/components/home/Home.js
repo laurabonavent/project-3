@@ -65,7 +65,6 @@ export default class Home extends Component {
   getFilterValues = (event) => {
     this.setState({
       filters: event,
-      //[...new Set([...this.state.filters, ...event])], // newSet pour éviter d'avoir des doubons d'event
     });
   };
 
