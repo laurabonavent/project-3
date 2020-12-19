@@ -75,7 +75,10 @@ class App extends React.Component {
                   exact
                   path="/"
                   render={(props) => (
-                    <Home windowWidth={this.state.windowWidth} />
+                    <Home
+                      windowWidth={this.state.windowWidth}
+                      userInSession={this.state.loggedInUser}
+                    />
                   )}
                 />
                 <Route exact path="/parallax" component={Parallax} />

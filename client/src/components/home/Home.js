@@ -4,8 +4,10 @@ import Card from "../card/Card";
 import Filters from "../Filters";
 import SearchBar from "../SearchBar";
 import Loading from "../Loading";
-import { Button, Popover } from "antd";
+import { Button, Popover, message } from "antd";
 import { Spring, animated } from "react-spring/renderprops";
+import isnull from "lodash.isnull";
+import axios from "axios";
 
 import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons";
 import DarkRed from "../../images/dark-red.svg";
@@ -17,7 +19,7 @@ import LightPink from "../../images/light-pink.svg";
 import Rocket from "../../images/rocket.svg";
 import Arrow from "../../images/down-arrow.svg";
 import LogoRocket from "../../images/logo-rocket.svg";
-import Cat1 from "../../images/cat/chat1.png";
+import { cat } from "../auth/cat-service";
 
 export default class Home extends Component {
   state = {
@@ -29,11 +31,35 @@ export default class Home extends Component {
     pageSize: 10,
     maxValue: 10,
     offSetValue: 5.7,
+    cat: "",
   };
 
   componentDidMount() {
     this.findRessources();
+
+    if (isnull(this.props.userInSession)) {
+      return <Loading />;
+    }
+
+    if (this.props.userInSession === false) {
+      message.error("You need to log in before access this page");
+      this.props.history.push("/");
+      //return <Redirect to="/" />;
+      return;
+    }
   }
+
+  randomCats = () => {
+    axios
+      .get(
+        `https://api.thecatapi.com/v1/images/search?api_key=8560747d-c86e-4f9b-aafc-841f5fd91849`
+      )
+      .then((response) => {
+        this.setState({
+          cat: response.data[0].url,
+        });
+      });
+  };
 
   findRessources = () => {
     getRessources()
@@ -129,13 +155,24 @@ export default class Home extends Component {
               }>
               <button onClick={this.getRandomRessources}></button>
             </Popover>
-
             {/* {this.state.randomRessource.length !== 0 && (
               <div>
                 <Button onClick={this.hideRandom}>X</Button>
                 <Card data={this.state.randomRessource} />
               </div>
             )} */}
+          </div>
+          <div className="random-cat">
+            {this.props.userInSession &&
+            this.props.userInSession.role === "admin" ? (
+              <Popover
+                placement="left"
+                content={
+                  <img className="cat" src={this.state.cat} alt="cat" />
+                }>
+                <button onClick={this.randomCats}>🎁</button>
+              </Popover>
+            ) : null}
           </div>
           <div className="header-top">
             <img src={LogoRocket} alt="logorocket" />
