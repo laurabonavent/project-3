@@ -129,7 +129,7 @@ export default class Home extends Component {
               }>
               <button onClick={this.getRandomRessources}></button>
             </Popover>
-            )
+
             {/* {this.state.randomRessource.length !== 0 && (
               <div>
                 <Button onClick={this.hideRandom}>X</Button>
